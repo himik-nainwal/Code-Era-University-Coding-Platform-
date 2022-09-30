@@ -1,0 +1,5 @@
+{
+    "lang":"cpp",
+    "code": "#include <iostream>\nint main(){\nstd::string s;\nstd::cin>>s;\nstd::cout<<\"hello \"+s;\nreturn 0;}",
+    "input": "world"
+}
