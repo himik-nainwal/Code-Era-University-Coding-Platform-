@@ -1,3 +1,4 @@
+# test/develop on linux
 import subprocess
 import os
 import json
@@ -19,7 +20,7 @@ def main():
 def compile_cpp(code, input):
     code_file = open("code.cpp", "w")
     code_file.write(code)
-    t=subprocess.run("code.cpp", shell=True, capture_output=True, text=True)
+    t=subprocess.run("cat code.cpp", shell=True, capture_output=True, text=True)
     print(t.stdout, t.stderr)
     # compilation = subprocess.run("g++ code.cpp -o code.exe -Wall -O2", shell=True, capture_output=True, text=True)
     # print(compilation)
