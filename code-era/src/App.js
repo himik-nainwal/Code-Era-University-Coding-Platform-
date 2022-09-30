@@ -40,6 +40,7 @@ function App() {
     </div>
   </div>
 </nav>
+{/* navbar end */}
   </>;
 }
 
