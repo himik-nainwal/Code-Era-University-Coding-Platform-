@@ -19,10 +19,12 @@ def main():
 def compile_cpp(code, input):
     code_file = open("code.cpp", "w")
     code_file.write(code)
-    compilation = subprocess.run(
-        ["g++", "code.cpp", "-o", "code.out", "-Wall", "-O2"])
-    if compilation.returncode != 0:  # compilation failed
-        print(compilation.)
+    t=subprocess.run("code.cpp", shell=True, capture_output=True, text=True)
+    print(t.stdout, t.stderr)
+    # compilation = subprocess.run("g++ code.cpp -o code.exe -Wall -O2", shell=True, capture_output=True, text=True)
+    # print(compilation)
+    # if compilation.returncode != 0:  # compilation failed
+        # print(compilation.stderr)
 
 
 if __name__ == "__main__":
