@@ -119,20 +119,18 @@ def main():
 
     try: 
         for i in range(completed_upto + 1,len(links)):
-             question__title_slug, _ , frontend_question_id, question__title, question__article__slug = links[i]
-             url = ALGORITHMS_BASE_URL + question__title_slug
-             title = f"{frontend_question_id}. {question__title}"
-
-             # Download each file as html and write chapter to chapters.pickle
-             download(i, url , title, question__article__slug)
-
-             # Sleep for 20 secs for each problem and 2 minns after every 30 problems
-             if i % 30 == 0:
-                 print(f"Sleeping 10 secs\n")
-                 time.sleep(10)
-             else:
-                 print(f"Sleeping 20 secs\n")
-                 time.sleep(5)
+            question__title_slug, _ , frontend_question_id, question__title, question__article__slug = links[i]
+            url = ALGORITHMS_BASE_URL + question__title_slug
+            title = f"{frontend_question_id}. {question__title}"
+            # Download each file as html and write chapter to chapters.pickle
+            download(i, url , title, question__article__slug)
+            # Sleep for 20 secs for each problem and 2 mins after every 30 problems
+            if i % 30 == 0:
+                print(f"Sleeping 10 secs\n")
+                time.sleep(10)
+            else:
+                print(f"Sleeping 20 secs\n")
+                time.sleep(5)
 
     finally:
         # Close the browser after download
