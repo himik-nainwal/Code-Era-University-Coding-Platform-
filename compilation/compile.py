@@ -16,7 +16,10 @@ def main():
     input_text = json_data['input']
     # print(code_text)
     lang_func = {"cpp": compile_cpp}
-    lang_func[code_lang](code_text, input_text)
+    result = lang_func[code_lang](code_text, input_text)
+    # result is a compilation/execution object.
+    # send stuff back in json as per necessity of each case (returncode/stderr/stdout etc.)
+    # del result
 
 
 def compile_cpp(code, stdin_input):
@@ -28,15 +31,14 @@ def compile_cpp(code, stdin_input):
     compilation = subprocess.run(
         "g++ code.cpp -o code.exe -Wall -O2", shell=True, capture_output=True, text=True)
     print(compilation)
-    if compilation.returncode != 0:  # compilation failed
+    if compilation.returncode != 0:
         # print(compilation.stderr)
-        return ("compilation failed", compilation.stderr, compilation.returncode)
+        return compilation
     else:
         execution = subprocess.run(
             "code.exe", shell=True, capture_output=True, text=True, input=stdin_input)
         print(execution)
-        if execution.returncode != 0:  # execution failed
-            return ("execution failed", execution.stderr, execution.stdout, execution.returncode)
+        return execution
 
 
 if __name__ == "__main__":
