@@ -19,7 +19,6 @@ def main():
     result = lang_func[code_lang](code_text, input_text)
     # result is a compilation/execution object.
     # send stuff back in json as per necessity of each case (returncode/stderr/stdout etc.)
-    # del result
 
 
 def compile_cpp(code, stdin_input):
