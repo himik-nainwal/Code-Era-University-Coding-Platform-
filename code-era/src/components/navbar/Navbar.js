@@ -27,6 +27,11 @@ function navbar() {
                   Admin
                 </Link>
               </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/problem">
+                  Problem
+                </Link>
+              </li>
             </ul>
             <div class="dropdown">
               <button
