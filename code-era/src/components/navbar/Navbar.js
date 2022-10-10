@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { BsPerson } from "react-icons/bs";
 
-function navbar() {
+function Navbar() {
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -62,4 +62,4 @@ function navbar() {
   );
 }
 
-export default navbar;
+export default Navbar;

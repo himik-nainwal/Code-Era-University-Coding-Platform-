@@ -1,11 +1,11 @@
 import "../styles/App.css";
 import Navbar from "./../components/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
-import Home from "./Home";
-import Problemset from "./Problemset";
-import Profile from "./Profile";
-import Admin from "./Admin";
-import Problem from "./Problem";
+import Home from "../pages/Home";
+import Problemset from "../pages/Problemset";
+import Profile from "../pages/Profile";
+import Admin from "../pages/Admin";
+import Problem from "../pages/Problem";
 
 function App() {
   return (
