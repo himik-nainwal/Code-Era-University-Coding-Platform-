@@ -1,5 +1,5 @@
 import "../styles/App.css";
-import Navbar from "./../components/navbar/Navbar";
+import RootNavbar from "../components/navbar/RootNavbar";
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Problemset from "../pages/Problemset";
@@ -10,7 +10,7 @@ import Problem from "../pages/Problem";
 function App() {
   return (
     <>
-      <Navbar />
+      <RootNavbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/problemset" element={<Problemset />} />
