@@ -1,76 +1,87 @@
-import React, { useEffect } from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
+import React from 'react'
+import '../styles/Home.css'
+import imgr from '../../src/assets/IMG_9711.jpg'
+import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
 
-import axios from "../utils/axios";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card'
-import profile_pic from '../assets/IMG_9711.jpg'
-function Home() {
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(`/auth/register`);
-      console.log(res.data);
-    };
-    fetchData();
-  }, []);
-
-  return( 
-    <section className="vh-100" style={{ backgroundColor: '#f4f5f7' }}>
-    <MDBContainer className="py-5 h-100">
-      <MDBRow className="justify-content-center align-items-center h-100">
-        <MDBCol lg="6" className="mb-4 mb-lg-0">
-          <MDBCard className="mb-3" style={{ borderRadius: '.5rem' }}>
-            <MDBRow className="g-0">
-              <MDBCol md="4" className="gradient-custom text-center text-white"
-                style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
-                <MDBCardImage src="C:\Users\Simik\OneDrive\Documents\Code-Era-University-Coding-Platform-\code-era\src\assets\IMG_9711.jpg"
-                  alt="Avatar" className="my-5" style={{ width: '80px' }} fluid />
-                <MDBTypography tag="h5">Marie Horwitz</MDBTypography>
-                <MDBCardText>Web Designer</MDBCardText>
-                <MDBIcon far icon="edit mb-5" />
-              </MDBCol>
-              <MDBCol md="8">
-                <MDBCardBody className="p-4">
-                  <MDBTypography tag="h6">Information</MDBTypography>
-                  <hr className="mt-0 mb-4" />
-                  <MDBRow className="pt-1">
-                    <MDBCol size="6" className="mb-3">
-                      <MDBTypography tag="h6">Email</MDBTypography>
-                      <MDBCardText className="text-muted">info@example.com</MDBCardText>
-                    </MDBCol>
-                    <MDBCol size="6" className="mb-3">
-                      <MDBTypography tag="h6">Phone</MDBTypography>
-                      <MDBCardText className="text-muted">123 456 789</MDBCardText>
-                    </MDBCol>
-                  </MDBRow>
-
-                  <MDBTypography tag="h6">Information</MDBTypography>
-                  <hr className="mt-0 mb-4" />
-                  <MDBRow className="pt-1">
-                    <MDBCol size="6" className="mb-3">
-                      <MDBTypography tag="h6">Email</MDBTypography>
-                      <MDBCardText className="text-muted">info@example.com</MDBCardText>
-                    </MDBCol>
-                    <MDBCol size="6" className="mb-3">
-                      <MDBTypography tag="h6">Phone</MDBTypography>
-                      <MDBCardText className="text-muted">123 456 789</MDBCardText>
-                    </MDBCol>
-                  </MDBRow>
-
-                  <div className="d-flex justify-content-start">
-                    <a href="#!"><MDBIcon fab icon="facebook me-3" size="lg" /></a>
-                    <a href="#!"><MDBIcon fab icon="twitter me-3" size="lg" /></a>
-                    <a href="#!"><MDBIcon fab icon="instagram me-3" size="lg" /></a>
+const Home = props => {
+  return (
+    <section id='home'>
+    <h2>Welcome Himik</h2>
+    <div className='vh-10' style={{backgroundColor: '#e8e8e8'}}>
+      <MDBContainer>
+      <MDBRow className="justify-content-center">
+          <MDBCol md="9" lg="7" xl="5" className="mt-5">
+            <MDBCard style={{ borderRadius: '15px' }}>
+              <MDBCardBody className="p-4">
+                <div className="d-flex text-black">
+                  <div className="flex-shrink-0">
+                    <MDBCardImage
+                      style={{ width: '180px', borderRadius: '10px' }}
+                      src={imgr}
+                      alt='Generic placeholder image'
+                      fluid />
                   </div>
-                </MDBCardBody>
-              </MDBCol>
-            </MDBRow>
-          </MDBCard>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
-  </section>
-);
+                  <div className="flex-grow-1 ms-3" >
+                    <MDBCardTitle><h3>Himik Nainwal</h3></MDBCardTitle>
+                    <MDBCardText><h5>@himiknainwal</h5></MDBCardText>
+                    <MDBCardText>B.Tech CSE 4th Year</MDBCardText>
+
+                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2"
+                      style={{ backgroundColor: '#efefef' }}>
+                      <div>
+                        <p className="small text-muted mb-1">Easy</p>
+                        <p className="mb-0">41</p>
+                      </div>
+                      <div className="px-3">
+                        <p className="small text-muted mb-1">Medium</p>
+                        <p className="mb-0">976</p>
+                      </div>
+                      <div>
+                        <p className="small text-muted mb-1">Hard</p>
+                        <p className="mb-0">85</p>
+                      </div>
+                    </div>
+                    <div className="d-flex pt-1">
+                      <MDBBtn outline className="me-1 flex-grow-1">Solve</MDBBtn>
+                      <MDBBtn className="flex-grow-1">Edit</MDBBtn>
+                    </div>
+                  </div>
+                </div>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+        <MDBRow>
+      <MDBCol md="9" lg="7" xl="5">
+        <MDBCard style ={{borderRadius:'10px'}}>
+          <MDBCardBody>
+            <MDBCardTitle>Questions Solved </MDBCardTitle>
+            <MDBCardText>
+             Number of Questions
+            </MDBCardText>
+            <MDBBtn href='#'>Solve Now</MDBBtn>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+      <MDBCol md="9" lg="7" xl="5">
+        <MDBCard style ={{borderRadius:'10px'}}>
+          <MDBCardBody>
+            <MDBCardTitle>Acceptance Rate </MDBCardTitle>
+            <MDBCardText>
+              Harshit Bhai daaldena
+            </MDBCardText>
+            <MDBBtn href='#'>Full Stats</MDBBtn>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+    </MDBRow>
+      </MDBContainer>
+      
+    </div>
+    
+    </section>
+  )
 }
 
-export default Home;
+
+export default Home
