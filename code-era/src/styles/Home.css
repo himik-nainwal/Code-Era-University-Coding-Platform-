@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+h1,h2,h3,h4,h5{
+    font-weight: 500;
+    color: #4db5ff;   
+}
+h1{
+    font-size: 2.5rem;
+}
+
+section{
+    margin-top: 1rem;
+    /* height: 100vh; */
+}
+.profile_side_bar{
+    width: 100%;
+    min-width: 250px;
+    max-width: 370px;
+}
+
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.card {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+    position: relative;
+    background: #fff;
+    border-radius: 2px;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.card_head {
+    min-height: 48px;
+    margin-bottom: -1px;
+    padding: 0 24px;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    font-size: 16px;
+    background: transparent;
+    border-bottom: 1px solid #e8e8e8;
+    border-radius: 2px 2px 0 0;
+    zoom: 1;
+}
+.card_head::before {
+    content: ' ';
+    display: table;
+}
+
+.card_head_title {
+    display: inline-block;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 16px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.card_extra {
+    float: right;
+    margin-left: auto;
+    padding: 16px 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-weight: normal;
+    font-size: 14px;
+}
+a {
+    color: #1890ff;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: color 0.3s;
+    -o-transition: color 0.3s;
+    transition: color 0.3s;
+    -webkit-text-decoration-skip: objects;
+}
+*, *::before, *::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+.card_head::before, .card_head::after {
+    content: ' ';
+    display: table;
+}
+.ant-card-body {
+    padding: 24px;
+    zoom: 1;
+}
