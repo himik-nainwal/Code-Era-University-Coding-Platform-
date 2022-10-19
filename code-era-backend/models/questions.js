@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const QuestionSchema =new mongoose.Schema({
-    question_id:{
+    ques_id:{
         type: Number,
         required:true,
         unique:true,
@@ -10,16 +10,16 @@ const QuestionSchema =new mongoose.Schema({
         type: String,
         required:true,
     },
-    title_slug:{
+    question_title_slug:{
         type:String,
         required:true
     },
-    level:{
+    difficulty_level:{
         type:Number,
         required:true,
 
     },
-    description:{
+    description_html:{
         type:String,
         required:true,
     },
