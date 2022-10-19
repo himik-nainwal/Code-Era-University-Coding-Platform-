@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const UserSchema =new mongoose.Schema({
-    id:{
+const QuestionSchema =new mongoose.Schema({
+    question_id:{
         type: Number,
         required:true,
         unique:true,
@@ -27,4 +27,6 @@ const UserSchema =new mongoose.Schema({
 },
 {
     timestamps:true
-})
+});
+
+module.exports= mongoose.model(mongoose.models.Question || "Question",QuestionSchema);
