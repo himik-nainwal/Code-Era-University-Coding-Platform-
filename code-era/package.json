@@ -9,10 +9,7 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^1.1.2",
     "bootstrap": "^5.2.2",
-<<<<<<< HEAD
-=======
     "mdb-react-ui-kit": "^4.2.0",
->>>>>>> 446598782e5dcfed72eb51fb81ba4a622b76cf18
     "react": "^18.2.0",
     "react-ace": "^10.1.0",
     "react-bootstrap": "^2.5.0",
