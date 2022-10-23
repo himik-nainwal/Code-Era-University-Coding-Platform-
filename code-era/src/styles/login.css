@@ -1,0 +1,14 @@
+@media (min-width: 1025px) {
+    .h-custom-2 {
+      height: 100%;
+      }
+    }
+.fw-normal{
+  color: rgb(77, 140, 204);
+  font-size: 40px ;
+    }
+
+body{
+  background-color: rgb(177, 199, 199);
+}
+  
