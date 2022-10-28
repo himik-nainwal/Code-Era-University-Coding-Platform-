@@ -29,15 +29,34 @@ const Home = () => {
           <MDBCol>
           <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4'>
 
-            <h3 className="fw-normal mb-3 ps-5 pb-3" style={{letterSpacing: '1px'}}>Log in</h3>
+            <h3 className="fw-normal mb-3 ps-5 pb-3" style={{letterSpacing: '1px'}}>Login</h3>
 
             <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Email address' id='formControlLg' type='email' size="lg"/>
+            {/* <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Email address' id='formControlLg' type='email' size="lg"
+  name='Gmail Email'
+  validations={{
+  gmailValidation: function (values, value) {
+    let email = value;
+    
+    if (email) {
+      if (email.includes('@') && email.length > 9) { 
+        let split = email.split('@');
+    
+        if (split[1].toLowerCase() !== 'gehu.ac.in') {
+          return 'Graphic Era ID';
+        } else if (/[~`!#$%\^&*+=\-\[\]\\';,@/{}|\\":<>\?]/g.test(split[[0]])) {
+          return 'Please use Graphic Era ID ';
+        } else return true;
+      } else return true;
+    } else return true;
+  }
+  }}
+  required
+/> */}
             <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Password' id='formControlLg' type='password' size="lg"/>
 
-            <MDBBtn className="mb-4 px-5 mx-5 w-100" color='info' size='lg'>Login</MDBBtn>
+            <MDBBtn className="mb-4 px-5 mx-5 w-100"  color='info' size='lg'>Login</MDBBtn>
             <p className="small mb-5 pb-lg-3 ms-5"><a class="text-muted" href="#!">Forgot password?</a></p>
-            
-
           </div>
           </MDBCol>
       </MDBRow>
