@@ -1,85 +1,87 @@
-import React from 'react'
-import '../styles/login.css'
-import logo_img from '../assets/lo.jpg'
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBRow,
-  MDBCol,
-  MDBIcon,
-  MDBInput
-} from 'mdb-react-ui-kit';
+import React, { Component } from "react";
 
-
-const Login = () => {
-
-    constructor(props){
-        super(props);
-        this.state={
-            student_id:"",
-            password:"",
-        };
-    }
-
-handleSubmit(){
-    const{student_id,password}=this.state;
-    console.log(student_id,password);
-}
-
-  return (
-<MDBContainer fluid>
-      <MDBRow>
-
-        <MDBCol sm='6'>
-
-          <div className='d-flex flex-row ps-5 pt-5'>
-            <MDBIcon fas icon="crow fa-3x me-3" style={{ color: '#709085' }}/>
-            <span className="h1 fw-bold mb-0" >
-              <img src={logo_img}/>
-            </span>
-          </div>
-          </MDBCol>
-          <MDBCol>
-          <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4'>
-
-            <h3 className="fw-normal mb-3 ps-5 pb-3" style={{letterSpacing: '1px'}}>Login</h3>
-<form onSubmit={this.handleSubmit}>
-            <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Student ID' id='formControlLg' type='number' size="lg" onChange={e=>this.setState({student_id:e.target.value})}/>
-            {/* <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Email address' id='formControlLg' type='email' size="lg"
-  name='Gmail Email'
-  validations={{
-  gmailValidation: function (values, value) {
-    let email = value;
-    
-    if (email) {
-      if (email.includes('@') && email.length > 9) { 
-        let split = email.split('@');
-    
-        if (split[1].toLowerCase() !== 'gehu.ac.in') {
-          return 'Graphic Era ID';
-        } else if (/[~`!#$%\^&*+=\-\[\]\\';,@/{}|\\":<>\?]/g.test(split[[0]])) {
-          return 'Please use Graphic Era ID ';
-        } else return true;
-      } else return true;
-    } else return true;
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      student_id: "",
+      password: "",
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  }}
-  required
-/> */}
-            <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Password' id='formControlLg' type='password' size="lg" onChange={e=>this.setState({password:e.target.value})} />
+  handleSubmit(e) {
+    e.preventDefault();
+    const { student_id, password } = this.state;
+    console.log(student_id, password);
+    fetch("http://localhost:5000/login-user", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        student_id,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+        if (data.status == "ok") {
+          alert("login successful");
+          window.localStorage.setItem("token", data.data);
+          window.location.href = "./userDetails";
+        }
+      });
+  }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <h3>Sign In</h3>
 
-            <MDBBtn className="mb-4 px-5 mx-5 w-100"  color='info' size='lg'>Login</MDBBtn>
-            </form>
-            <p className="small mb-5 pb-lg-3 ms-5"><a class="text-muted" href="#!">Forgot password?</a></p>
+        <div className="mb-3">
+          <label>student_id</label>
+          <input
+            type="number"
+            className="form-control"
+            placeholder="Enter email"
+            onChange={(e) => this.setState({ student_id: e.target.value })}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label>Password</label>
+          <input
+            type="password"
+            className="form-control"
+            placeholder="Enter password"
+            onChange={(e) => this.setState({ password: e.target.value })}
+          />
+        </div>
+
+        <div className="mb-3">
+          <div className="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="customCheck1"
+            />
+            <label className="custom-control-label" htmlFor="customCheck1">
+              Remember me
+            </label>
           </div>
-          </MDBCol>
-      </MDBRow>
+        </div>
 
-    </MDBContainer>
-  );
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </div>
+        <p className="forgot-password text-right">
+        </p>
+      </form>
+    );
+  }
 }
-
-export default Login
