@@ -7,16 +7,15 @@ const cors =require("cors");
 app.use(cors());
 
 const bcrypt=require("bcryptjs");
-
+const jwt=require("jsonwebtoken")
+const JWT_SECRET="helloqwweeeffdfdfd"
 const mongoUrl="mongodb+srv://TeamrockeT:Cn3sszf7EjIS3nJq@cluster0.u1dxoy9.mongodb.net/codeera?retryWrites=true&w=majority";
 
 mongoose.connect(mongoUrl,{
     useNewUrlParser:true
 }).then(()=>{console.log("Connected to Database");}).catch(e=>console.log(e));
 
-app.listen(5000,()=>{
-    console.log("Server Started");
-});
+
 
 // Below code is for adding users through postman and mongo
 require("./userDetails");
@@ -45,6 +44,26 @@ app.post("/register",async(req,res)=>{
         console.log(error);
     }
 });
+// Login API
+app.post("/login-user",async (req,res)=>{
+    const{student_id,password}=req.body;
+    const user=await User.findOne({student_id});
+        if(!user){
+          return  res.send({error:"User Not Found"});
+        }
+        // console.log(user.password);
+        if(await bcrypt.compare(password,user.password)){
+            const token=jwt.sign({},JWT_SECRET);
+
+            if(res.status(201)){
+                return res.json({status:"ok",data:token});
+            }
+            else{
+                return res.json({status:"Error"});
+            }
+        }
+        return res.json({status:"error",error:"Invalid Password"});
+});
 
 // // Login API
 // app.post("/login-user",async(req,res)=>{
@@ -65,3 +84,27 @@ app.post("/register",async(req,res)=>{
 //     res.json({status:"error",error:"Incorrect Password"});
 // });
 
+
+//API for getting user Data
+
+app.post("/userData",async(req,res)=>{
+    const {token}=req.body;
+    try{
+        const user=jwt.verify(token,JWT_SECRET);
+        const userstudentid=user.student_id;
+        User.findOne({student_id:userstudentid}).then((data)=>
+        {
+            res.send({status:"ok",data:data});
+        }).catch((error)=>{
+            res.send({status:"error" , data:error});
+        });
+
+    }
+    catch (error) {
+
+    }
+})
+
+app.listen(5000,()=>{
+    console.log("Server Started");
+});
