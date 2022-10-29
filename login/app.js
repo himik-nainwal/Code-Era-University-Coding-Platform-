@@ -3,6 +3,10 @@ const app=express();
 const mongoose =require("mongoose")
 
 app.use(express.json());
+const cors =require("cors");
+app.use(cors());
+
+const bcrypt=require("bcryptjs");
 
 const mongoUrl="mongodb+srv://TeamrockeT:Cn3sszf7EjIS3nJq@cluster0.u1dxoy9.mongodb.net/codeera?retryWrites=true&w=majority";
 
@@ -17,17 +21,23 @@ app.listen(5000,()=>{
 // Below code is for adding users through postman and mongo
 require("./userDetails");
 
-const User= mongoose.model("Info");
+const User= mongoose.model("UserInfo");
 
 
 app.post("/register",async(req,res)=>{
-    const {sid,pass,email,uname}=req.body;
+    const {student_id,password,email,uname}=req.body;
+    const encryptedpass=await bcrypt.hash(password,10);
+   
     try {
+        const olduser=await User.findOne({email});
+        if(olduser){
+          return  res.send({error:"User Exists"});
+        }
         await User.create({
-            student_id:sid,
-            password:pass,
+            student_id,
+            password:encryptedpass,
             email,
-            username:uname, 
+            uname, 
         });
         res.send({status:"Ok"});
     } catch(error){

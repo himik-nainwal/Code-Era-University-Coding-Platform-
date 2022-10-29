@@ -3,16 +3,16 @@ const mongoose = require("mongoose");
 const userDetailsSchema=new mongoose.Schema({
     student_id:Number,
     password: String,
-    email: { type: String, unique: true },
+    email: {type:String,unique:true},
     uname: String,
 
 },
 {
-    collection:"Info"
+    collection:"UserInfo"
  }
 //, {
 //     timestamps:true
 //  }
  );
 
-mongoose.model("Info",userDetailsSchema);
+mongoose.model("UserInfo",userDetailsSchema);
