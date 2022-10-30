@@ -1,12 +1,37 @@
-import React from "react";
+import React ,{Component}from "react";
 import imgr from '../../src/assets/IMG_9711.jpg'
 import '../styles/Profile.css'
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
-
-function Profile() {
+export default class Profile extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      userData: "",
+    };
+  }
+  componentDidMount() {
+    fetch("http://localhost:5000/userData", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        token: window.localStorage.getItem("token"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userData");
+        this.setState({ userData: data.data });
+      });
+  }
+render() {
   return (
     <section id='profile'>
-    <h2>Welcome Himik</h2>
+    <h2>Welcome </h2>
     <div className='vh-10' style={{backgroundColor: '#e8e8e8'}}>
       <MDBContainer>
       <MDBRow className="justify-content-center">
@@ -23,7 +48,7 @@ function Profile() {
                   </div>
                   <div className="flex-grow-1 ms-3" >
                     <MDBCardTitle><h3>Himik Nainwal</h3></MDBCardTitle>
-                    <MDBCardText><h5>@himiknainwal</h5></MDBCardText>
+                    <MDBCardText><h5>@universalityfacto</h5></MDBCardText>
                     <MDBCardText>B.Tech CSE 4th Year</MDBCardText>
 
                     <div className="d-flex justify-content-start rounded-3 p-2 mb-2"
@@ -82,5 +107,5 @@ function Profile() {
     </section>
   );
 }
-
-export default Profile;
+}
+// export default Profile;

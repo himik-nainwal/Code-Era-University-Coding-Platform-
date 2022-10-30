@@ -1,18 +1,30 @@
 const mongoose = require("mongoose");
 
 const userDetailsSchema=new mongoose.Schema({
-    student_id:Number,
-    password: String,
-    email: {type:String,unique:true},
-    uname: String,
+    student_id:{type:Number,unique:true,require:true},
+    password: {type:String,require:true},
+    email: {type:String},
+    uname: {type:String},
+    q_done:{type:Number},
+    github_link:{type:String},
+    easy_q:{type:Number},
+    medium_q:{type:Number},
+    hard_q:{type:Number},
+    pic_url:{type:String},
+    role:{
+        type:String,
+        default:"user",
+        enum:["user","admin"],
+    },
 
+},
+{
+    timestamps: true
 },
 {
     collection:"UserInfo"
  }
-//, {
-//     timestamps:true
-//  }
+
  );
 
 mongoose.model("UserInfo",userDetailsSchema);

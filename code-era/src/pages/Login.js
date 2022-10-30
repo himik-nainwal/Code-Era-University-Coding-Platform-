@@ -43,7 +43,7 @@ export default class Login extends Component {
         if (data.status === "ok") {
           alert("login successful");
           window.localStorage.setItem("token", data.data);
-          window.location.href = "./userDetails";
+          window.location.href = "./Profile";
         }
       });
   }
@@ -52,7 +52,7 @@ export default class Login extends Component {
       <MDBContainer fluid>
       <MDBRow>
 
-        <MDBCol sm='6'>
+        <MDBCol sm='5'>
 
           <div className='d-flex flex-row ps-5 pt-5'>
             
