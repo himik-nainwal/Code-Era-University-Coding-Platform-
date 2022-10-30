@@ -3,12 +3,14 @@ const app=express();
 const mongoose =require("mongoose")
 
 app.use(express.json());
+
 const cors =require("cors");
 app.use(cors());
 
 const bcrypt=require("bcryptjs");
 const jwt=require("jsonwebtoken")
 const JWT_SECRET="myPasswrdis100%sexy"
+
 const mongoUrl="mongodb+srv://TeamrockeT:Cn3sszf7EjIS3nJq@cluster0.u1dxoy9.mongodb.net/codeera?retryWrites=true&w=majority";
 
 mongoose.connect(mongoUrl,{
