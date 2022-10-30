@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const userDetailsSchema=new mongoose.Schema({
     student_id:{type:Number,unique:true,require:true},
     password: {type:String,require:true},
+    fname:{type:String},
+    lname:{type:String},
     email: {type:String},
     uname: {type:String},
     q_done:{type:Number},

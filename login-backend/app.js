@@ -26,7 +26,7 @@ const User= mongoose.model("UserInfo");
 
 // API to register or directly ender through json through postman
 app.post("/register",async(req,res)=>{
-    const {student_id,password,email,uname,q_done,github_link,easy_q,medium_q,hard_q,pic_url,role}=req.body;
+    const {student_id,password,email,fname,lname,uname,q_done,github_link,easy_q,medium_q,hard_q,pic_url,role}=req.body;
     const encryptedpass=await bcrypt.hash(password,10);
    
     try {
@@ -37,6 +37,8 @@ app.post("/register",async(req,res)=>{
         await User.create({
             student_id,
             password:encryptedpass,
+            fname,
+            lname,
             email,
             uname, 
             q_done,

@@ -52,7 +52,7 @@ export default class Login extends Component {
       <MDBContainer fluid>
       <MDBRow>
 
-        <MDBCol sm='5'>
+        <MDBCol sm=''>
 
           <div className='d-flex flex-row ps-5 pt-5'>
             
