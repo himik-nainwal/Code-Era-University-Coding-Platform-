@@ -6,6 +6,7 @@ import Problemset from "../pages/Problemset";
 import Profile from "../pages/Profile";
 import Admin from "../pages/Admin";
 import Problem from "../pages/Problem";
+import Login from "../pages/Login"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/problem" element={<Problem />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );

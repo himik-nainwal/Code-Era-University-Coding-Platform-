@@ -18,6 +18,7 @@ function RootNavbar() {
             <Nav className="me-auto">
               <Nav.Link href="/problemset">Problem Set</Nav.Link>
               <Nav.Link href="/problem">Problem</Nav.Link>
+              <Nav.Link href="/login">Login</Nav.Link>
             </Nav>
             <Nav>
               <NavDropdown title="Account" id="collasible-nav-dropdown">
