@@ -24,7 +24,7 @@ require("./userDetails");
 
 const User= mongoose.model("UserInfo");
 
-
+// API to register or directly ender through json through postman
 app.post("/register",async(req,res)=>{
     const {student_id,password,email,uname}=req.body;
     const encryptedpass=await bcrypt.hash(password,10);

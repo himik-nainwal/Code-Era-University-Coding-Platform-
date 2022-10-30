@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^1.1.2",
     "bootstrap": "^5.2.2",
+    "jsonwebtoken": "^8.5.1",
     "mdb-react-ui-kit": "^4.2.0",
     "react": "^18.2.0",
     "react-ace": "^10.1.0",

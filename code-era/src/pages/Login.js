@@ -52,7 +52,7 @@ export default class Login extends Component {
       <MDBContainer fluid>
       <MDBRow>
 
-        <MDBCol sm='10'>
+        <MDBCol sm='6'>
 
           <div className='d-flex flex-row ps-5 pt-5'>
             
@@ -61,7 +61,7 @@ export default class Login extends Component {
             </span>
           </div>
           </MDBCol>
-          <MDBCol>
+          <MDBCol sm='5'>
             <form onSubmit={this.handleSubmit}>
           <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4'>
 
