@@ -1,0 +1,43 @@
+@import "../mixins";
+@import "../variables";
+@import "../extensions";
+
+.form {
+  display: -ms-grid;
+  display: grid;
+  margin: $main-margin * 4;
+  width: 433px;
+  @include media-max-width() {
+    width: 95%;
+  }
+}
+
+input {
+  @include input-placeholder();
+  padding-left: 75px;
+}
+
+.input {
+  @extend .mainInputStyle;
+  border: 1px solid #fff;
+  margin-top: $main-margin * 2;
+}
+.loginBtn {
+  @extend .mainInputStyle;
+  border: 2px solid $submit-color;
+  margin-top: $main-margin * 5;
+  font-size: medium;
+  color: $submit-color;
+  cursor: pointer;
+  &:active {
+    opacity: 50%;
+  }
+  &:hover {
+    filter: invert(100%);
+  }
+}
+.icon {
+  position: absolute;
+  margin-top: $main-margin * 3;
+  margin-left: $main-margin * 2;
+}
