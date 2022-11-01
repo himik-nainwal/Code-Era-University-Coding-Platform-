@@ -40,7 +40,7 @@ section{
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
-}
+} 
 .card_head {
     min-height: 48px;
     margin-bottom: -1px;
