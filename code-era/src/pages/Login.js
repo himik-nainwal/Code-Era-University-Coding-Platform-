@@ -1,93 +1,35 @@
-import React, { Component } from "react";
-import '../styles/login.css'
-import 'D:/archive/rea/my-app/src/styles/login.css'
+import React, { useState } from "react";
 
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBInput
+function Login() {
+  const [email, setEmail] = useState("");
+  const [passw, setPassw] = useState("");
+  return (
+    <div>
+      <form action="" onSubmit={() => {}}>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="passw">Password</label>
+          <input
+            type="text"
+            name="passw"
+            id="passw"
+            value={passw}
+            onChange={(e) => setPassw(e.target.value)}
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
 }
-from 'mdb-react-ui-kit';
-import logo_img from 'D:/archive/rea/my-app/src/assets/lo.jpg'
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      student_id: "",
-      password: "",
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleSubmit(e) {
-    e.preventDefault();
-    const { student_id, password } = this.state;
-    console.log(student_id, password);
-    fetch("http://localhost:5000/login-user", {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        student_id,
-        password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "userRegister");
-        if (data.status === "ok") {
-          alert("login successful");
-          window.localStorage.setItem("token", data.data);
-          window.location.href = "./Profile";
-        }
-      });
-  }
-  render() {
-    return (
-      <MDBContainer fluid>
-      <MDBRow>
-
-        <MDBCol sm=''>
-
-          <div className='d-flex flex-row ps-5 pt-5'>
-            
-            <span className="h1 fw-bold mb-0" >
-              <img src={logo_img}/>
-            </span>
-          </div>
-          </MDBCol>
-          <MDBCol sm='5'>
-            <form onSubmit={this.handleSubmit}>
-          <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4'>
-
-            <h3 className="fw-normal mb-3 ps-5 pb-3" style={{letterSpacing: '1px'}}>Log in</h3>
-
-            <MDBInput wrapperClass='mb-4 mx-5 w-100' 
-             id='formControlLg1' type='number' size="lg" 
-             placeholder="Enter Student ID" className="abc"
-             onChange={(e)=> this.setState({student_id: e.target.value})}/>
-            
-            <MDBInput wrapperClass='mb-4 mx-5 w-100'
-             placeholder='Password' id='formControlLg'
-              type='password' size="lg" className="abc"
-              onChange={(e) => this.setState({ password: e.target.value })}
-              />             
-
-            <MDBBtn className="mb-4 px-5 mx-5 w-100" color='info' size='lg'>Login</MDBBtn>
-            <p className="small mb-5 pb-lg-3 ms-5"><a  href="#!">Forgot password?</a></p>
-
-          </div>
-          </form>
-          </MDBCol>
-      </MDBRow>
-
-    </MDBContainer>
-    );
-  }
-}
+export default Login;
