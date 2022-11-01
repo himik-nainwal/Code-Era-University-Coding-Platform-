@@ -103,7 +103,7 @@ app.post("/userData",async(req,res)=>{
     try{
         const user=jwt.verify(token,JWT_SECRET);
         const userstudentid=user.student_id;
-        User.findOne({student_id:userstudentid}).then((data)=>
+       await User.findOne({student_id:userstudentid}).then((data)=>
         {
             res.send({status:"ok",data:data});
         }).catch((error)=>{

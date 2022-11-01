@@ -26,6 +26,7 @@ export default class Profile extends Component{
       .then((data) => {
         console.log(data, "userData");
         this.setState({ userData: data.data });
+        console.log(data.fname);
       });
   }
 render() {
@@ -48,7 +49,8 @@ render() {
                   </div>
                   <div className="flex-grow-1 ms-3" >
                     <MDBCardTitle><h3>Himik Nainwal</h3></MDBCardTitle>
-                    <MDBCardText><h5>@universalityfacto</h5></MDBCardText>
+                    {/* {this.state.data.fname( d => <div>{d}</div>)} */}
+                    <MDBCardText><h5>@universalityfactor</h5></MDBCardText>
                     <MDBCardText>B.Tech CSE 4th Year</MDBCardText>
 
                     <div className="d-flex justify-content-start rounded-3 p-2 mb-2"

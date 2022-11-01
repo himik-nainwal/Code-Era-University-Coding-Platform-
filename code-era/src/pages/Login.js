@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import '../styles/login.css'
 import 'D:/archive/rea/my-app/src/styles/login.css'
+
 import {
   MDBBtn,
   MDBContainer,
@@ -68,18 +69,18 @@ export default class Login extends Component {
             <h3 className="fw-normal mb-3 ps-5 pb-3" style={{letterSpacing: '1px'}}>Log in</h3>
 
             <MDBInput wrapperClass='mb-4 mx-5 w-100' 
-             id='formControlLg' type='number' size="lg" 
-             placeholder="Enter Student ID" 
+             id='formControlLg1' type='number' size="lg" 
+             placeholder="Enter Student ID" className="abc"
              onChange={(e)=> this.setState({student_id: e.target.value})}/>
             
             <MDBInput wrapperClass='mb-4 mx-5 w-100'
              placeholder='Password' id='formControlLg'
-              type='password' size="lg"
+              type='password' size="lg" className="abc"
               onChange={(e) => this.setState({ password: e.target.value })}
               />             
 
             <MDBBtn className="mb-4 px-5 mx-5 w-100" color='info' size='lg'>Login</MDBBtn>
-            <p className="small mb-5 pb-lg-3 ms-5"><a class="text-muted" href="#!">Forgot password?</a></p>
+            <p className="small mb-5 pb-lg-3 ms-5"><a  href="#!">Forgot password?</a></p>
 
           </div>
           </form>
