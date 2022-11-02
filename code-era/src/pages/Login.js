@@ -7,6 +7,31 @@ import logo from "../assets/lo.jpg";
 function Login() {
   const [StudentId, setStudentId] = useState("");
   const [Password, setPassword] = useState("");
+  const handleSubmit = (e) => {
+    console.log(StudentId);
+    console.log(Password);
+    e.preventDefault();
+    fetch("http://localhost:5000/login-user", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        student_id: StudentId,
+        password: Password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+        if (data.status === "ok") {
+          alert("login successful");
+          window.localStorage.setItem("token", data.data);
+          window.location.href = "./profile";
+        }
+      });
+  };
   return (
     <Container id="main-container" className="d-grid h-100">
       <Form id="sign-in-form" className="text-center w-100">
@@ -40,10 +65,7 @@ function Login() {
             variant="primary"
             size="lg"
             type="submit"
-            onClick={() => {
-              console.log(StudentId);
-              console.log(Password);
-            }}
+            onClick={handleSubmit}
           >
             Login
           </Button>
