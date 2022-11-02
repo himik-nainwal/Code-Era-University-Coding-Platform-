@@ -16,8 +16,16 @@ const userDetailsSchema=new mongoose.Schema({
     role:{
         type:String,
         default:"user",
-        enum:["user","admin"],
+        enum:["user","admin","dev"],
     },
+
+    codeforces:{type:String},
+    codechef: {type:String},
+    leetcode :{type:String},
+    course: {type:String},
+    passing_out_year: {type:Number},
+    linkedin: {type:String},
+    score:{type:Number} 
 
 },
 {

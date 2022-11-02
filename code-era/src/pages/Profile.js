@@ -42,7 +42,7 @@ export default class Profile extends Component {
   render() {
     return (
       <section id="profile">
-        <h2>Welcome {this.state.data.fname} </h2>
+        <h2>Welcome  </h2>
         <div className="vh-10" style={{ backgroundColor: "#e8e8e8" }}>
           <MDBContainer>
             <MDBRow className="justify-content-center">

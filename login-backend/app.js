@@ -45,6 +45,13 @@ app.post("/register", async (req, res) => {
     hard_q,
     pic_url,
     role,
+    codeforces,
+    codechef,
+    leetcode,
+    course,
+    passing_out_year,
+    linkedin,
+    score,
   } = req.body;
   const encryptedpass = await bcrypt.hash(password, 10);
 
@@ -67,6 +74,13 @@ app.post("/register", async (req, res) => {
       hard_q,
       pic_url,
       role,
+      codeforces,
+      codechef,
+      leetcode,
+      course,
+      passing_out_year,
+      linkedin,
+      score,
     });
     res.send({ status: "Ok" });
   } catch (error) {
