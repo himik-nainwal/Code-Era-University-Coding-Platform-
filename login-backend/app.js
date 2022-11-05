@@ -34,6 +34,7 @@ app.post("/register", async (req, res) => {
   const {
     student_id,
     password,
+    ph_no,
     email,
     fname,
     lname,
@@ -63,6 +64,7 @@ app.post("/register", async (req, res) => {
     await User.create({
       student_id,
       password: encryptedpass,
+      ph_no,
       fname,
       lname,
       email,
