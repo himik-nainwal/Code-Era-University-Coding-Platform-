@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import logo from "../assets/lo.jpg"
 
 export default class UserDetails extends Component {
   constructor(props) {
@@ -28,10 +32,11 @@ export default class UserDetails extends Component {
   }
   render() {
     return (
-      <div>
-        Name<h1>{this.state.userData.fname}</h1>
-        Email <h1>{this.state.userData.email}</h1>
-      </div>
+      <Container id="main-container" className="d-grid h-100">
+        <Form id="sign-in-form" className="text-center w-100">
+        <img className="loginLogo mb-4" src={logo} alt="Logo" />
+        </Form>
+      </Container>
     );
   }
 }
