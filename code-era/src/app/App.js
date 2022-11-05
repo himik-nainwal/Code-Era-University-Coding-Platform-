@@ -6,8 +6,9 @@ import Problemset from "../pages/Problemset";
 import Profile from "../pages/Profile";
 import Admin from "../pages/Admin";
 import Problem from "../pages/Problem";
-import Login from "../pages/Login"
-import Forgot from "../pages/Forgot"
+import Login from "../pages/Login";
+import Forgot from "../pages/Forgot";
+import Reset from "../pages/Reset";
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
         <Route path="/problem" element={<Problem />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot" element={<Forgot />} />
+        <Route path="/reset" element={<Reset />} />
       </Routes>
     </>
   );

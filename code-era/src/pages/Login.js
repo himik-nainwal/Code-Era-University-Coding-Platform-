@@ -79,7 +79,7 @@ function Login() {
           />
         </Form.Group>
         <p className="small mb-2 pb-lg-3 ms-5">
-          <a href="#!">Forgot password?</a>
+          <a href="/reset">Forgot password?</a>
         </p>
         <div className="d-grid">
           <Button

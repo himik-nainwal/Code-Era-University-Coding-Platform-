@@ -160,14 +160,16 @@ app.listen(5000, () => {
 // Forgot Password ! 
 
 app.post("/forgot-password", async (req, res) => {
-  const { email } = req.body;
+  const { student_id } = req.body;
+  // console.log(student_id);
   try {
-    const oldUser = await User.findOne({ email });
+    const oldUser = await User.findOne({ student_id });
+    // console.log(oldUser);
     if (!oldUser) {
       return res.json({ status: "User Not Exists!!" });
     }
     const secret = JWT_SECRET + oldUser.password;
-    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
+    const token = jwt.sign({ student_id: oldUser.student_id, id: oldUser._id }, secret, {
       expiresIn: "5m",
     });
     const link = `http://localhost:5000/reset-password/${oldUser._id}/${token}`;
@@ -207,7 +209,7 @@ app.get("/reset-password/:id/:token", async (req, res) => {
   const secret = JWT_SECRET + oldUser.password;
   try {
     const verify = jwt.verify(token, secret);
-    res.render("index", { email: verify.email, status: "Not Verified" });
+    res.render("index", { student_id: verify.student_id, status: "Not Verified" });
   } catch (error) {
     console.log(error);
     res.send("Not Verified");
@@ -238,7 +240,7 @@ app.post("/reset-password/:id/:token", async (req, res) => {
     );
     
 
-    res.render("index", { email: verify.email, status: "verified" });
+    res.render("index", { student_id: verify.student_id, status: "verified" });
   } catch (error) {
     console.log(error);
     res.json({ status: "Something Went Wrong" });
