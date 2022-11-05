@@ -8,10 +8,10 @@ function Login() {
   const [StudentId, setStudentId] = useState("");
   const [Password, setPassword] = useState("");
   const handleSubmit = (e) => {
-    console.log(StudentId);
-    console.log(Password);
+    // console.log(StudentId);
+    // console.log(Password);
     e.preventDefault();
-    fetch("http://localhost:5000/login-user", {
+    /*fetch("http://localhost:5000/login-user", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -29,6 +29,27 @@ function Login() {
           alert("login successful");
           window.localStorage.setItem("token", data.data);
           window.location.href = "./profile";
+      */
+          fetch("http://localhost:5000/login-user", {
+            method: "POST",
+            crossDomain: true,
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({
+              student_id: StudentId,
+               password: Password,
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data, "userRegister");
+              if (data.status === "ok") {
+                alert("login successful");
+                window.localStorage.setItem("token", data.data);
+                window.location.href = "./profile";
         }
       });
   };
