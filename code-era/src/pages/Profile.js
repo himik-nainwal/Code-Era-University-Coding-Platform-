@@ -3,6 +3,9 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import logo from "../assets/lo.jpg"
+import image from "../assets/IMG_9711.jpg"
+import "../styles/profile.css"
+
 
 export default class UserDetails extends Component {
   constructor(props) {
@@ -32,11 +35,7 @@ export default class UserDetails extends Component {
   }
   render() {
     return (
-      <Container id="main-container" className="d-grid h-100">
-        <Form id="sign-in-form" className="text-center w-100">
-        <img className="loginLogo mb-4" src={logo} alt="Logo" />
-        </Form>
-      </Container>
+      <h1>Hello</h1>
     );
   }
 }
