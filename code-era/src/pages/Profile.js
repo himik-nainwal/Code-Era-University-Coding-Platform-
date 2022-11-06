@@ -15,7 +15,7 @@ function Profile() {
   // const [lname, setLname] = useState("");
   // const [email, setEmail] = useState("");
   // const [userName, setUserName] = useState("");
-  // const [totalQ, setTotalQ] = useState(0);
+  const [totalQ, setTotalQ] = useState(1100);
   // const [easyQ, setEasyQ] = useState(0);
   // const [mediumQ, setMediumQ] = useState(0);
   // const [hardQ, setHardQ] = useState(0);
@@ -39,7 +39,7 @@ function Profile() {
   // const [questions, setQuestions] = useState([]);
   // const [score, setScore] = useState(0);
   // const [university, setUniversity] = useState("");
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     fetch("http://localhost:5000/userData", {
       method: "POST",
@@ -58,7 +58,7 @@ function Profile() {
         console.log(data, "userData");
         this.setState({ userData: data.data });
       });
-  }
+  };
   return (
     <>
       <div class="container mt-5 mb-5">
@@ -89,7 +89,7 @@ function Profile() {
               </div>
               <div class="d-flex flex-row text-white">
                 <div class="p-4 bg-primary text-center skill-block">
-                  <h4>360</h4>
+                  <h4>{totalQ}</h4>
                   <h6>Problem Solved</h6>
                 </div>
                 <div class="p-3 bg-success text-center skill-block">
