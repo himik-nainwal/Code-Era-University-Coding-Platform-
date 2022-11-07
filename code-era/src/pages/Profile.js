@@ -39,26 +39,6 @@ function Profile() {
   // const [questions, setQuestions] = useState([]);
   // const [score, setScore] = useState(0);
   // const [university, setUniversity] = useState("");
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:5000/userData", {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "userData");
-        this.setState({ userData: data.data });
-      });
-  };
   useEffect(() => {
     const fn = () => {
       const url = "http://localhost:5000/userData";
