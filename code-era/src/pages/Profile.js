@@ -11,8 +11,8 @@ import userImage from "../assets/IMG_9711.jpg";
 
 function Profile() {
   // const [studentId, setStudentId] = useState("");
-  // const [fname, setFname] = useState("");
-  // const [lname, setLname] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   // const [email, setEmail] = useState("");
   // const [userName, setUserName] = useState("");
   const [totalQ, setTotalQ] = useState(1100);
@@ -59,6 +59,31 @@ function Profile() {
         this.setState({ userData: data.data });
       });
   };
+  useEffect(() => {
+    const fn = () => {
+      const url = "http://localhost:5000/userData";
+      const data = fetch(url, {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          token: window.localStorage.getItem("token"),
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data, "userData");
+        });
+      setFname(JSON.stringify(data.fname));
+      console.log(fname);
+    };
+    fn();
+  }, []);
+
   return (
     <>
       <div class="container mt-5 mb-5">
@@ -69,7 +94,9 @@ function Profile() {
           <div class="col-md-8 col-lg-8">
             <div class="d-flex flex-column">
               <div class="d-flex flex-row justify-content-between align-items-center p-5 bg-dark text-white">
-                <h3 class="display-5">Himik Nainwal</h3>
+                <h3 class="display-5">
+                  {fname} {lname}
+                </h3>
                 <a href={linkedin}>
                   <FaLinkedin style={{ color: "white" }} />
                 </a>
