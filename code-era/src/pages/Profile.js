@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Profile.css";
 import { FaLinkedin } from "react-icons/fa";
-import { SiCodeforces, SiLeetcode, SiCodechef } from "react-icons/si";
+import { SiCodeforces, SiLeetcode, SiCodechef, SiGithub } from "react-icons/si";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
@@ -14,7 +14,7 @@ function Profile() {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
-  const [ph_no,setPh_no]=useState(0);
+  const [ph_no, setPh_no] = useState(0);
   const [userName, setUserName] = useState("");
   const [totalQ, setTotalQ] = useState(0);
   const [easyQ, setEasyQ] = useState(0);
@@ -23,7 +23,7 @@ function Profile() {
   const [github, setGithub] = useState("");
   const [image, setImage] = useState("");
   const [role, setRole] = useState("");
-  const [userdata,setUserdata] =useState("");
+  const [userdata, setUserdata] = useState("");
   const [codeforces, setCodeforces] = useState("");
   const [codechef, setCodechef] = useState("");
   const [leetcode, setLeetcode] = useState("");
@@ -34,47 +34,52 @@ function Profile() {
   const [score, setScore] = useState(0);
   const [university, setUniversity] = useState("");
   useEffect(() => {
-    const fn = () => {
-      const url = "http://localhost:5000/userData";
-      const data = fetch(url, {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          token: window.localStorage.getItem("token"),
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data, "userData");
-          setUserdata(data);
-          setFname(data.data.fname);
-          setLname(data.data.lname);
-          setEmail(data.data.email);
-          setCodechef(data.data.codechef);
-          setCodeforces(data.data.codeforces);
-          setEasyQ(data.data.easyQ);
-          setMediumQ(data.data.mediumQ);
-          setGithub(data.data.github);
-          setHardQ(data.data.hard);
-          setScore(data.data.score);
-         //console.log(JSON.stringify(userdata));
-          // setFname(JSON.stringify(data.fname));
-          // console.log(data.fname);
-        });
-      // setFname(JSON.stringify(data.fname));
-      // console.log(fname);
+    let mounted = true;
+    if (mounted) {
+      const fn = () => {
+        const url = "http://localhost:5000/userData";
+        const data = fetch(url, {
+          method: "POST",
+          crossDomain: true,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            token: window.localStorage.getItem("token"),
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data, "userData");
+            setUserdata(data);
+            setFname(data.data.fname);
+            setLname(data.data.lname);
+            setEmail(data.data.email);
+            setCodechef(data.data.codechef);
+            setCodeforces(data.data.codeforces);
+            setEasyQ(data.data.easyQ);
+            setMediumQ(data.data.mediumQ);
+            setGithub(data.data.github);
+            setHardQ(data.data.hard);
+            setScore(data.data.score);
+          });
+      };
+      fn();
+    }
+
+    return () => {
+      mounted = false;
     };
-    fn();
   }, []);
 
   return (
     <>
-      <div class="container mt-5 mb-5">
+      <div
+        class="container-fluid pt-5"
+        style={{ backgroundColor: "#1a1a1a", height: "100vh" }}
+      >
         <div class="row no-gutters">
           <div class="col-md-4 col-lg-4">
             <img src={userImage} />
@@ -96,6 +101,9 @@ function Profile() {
                 </a>
                 <a href={leetcode}>
                   <SiLeetcode style={{ color: "white" }} />
+                </a>
+                <a href={github}>
+                  <SiGithub style={{ color: "white" }} />
                 </a>
               </div>
               <div class="p-3 bg-black text-white">
