@@ -10,35 +10,29 @@ import Col from "react-bootstrap/Col";
 import userImage from "../assets/IMG_9711.jpg";
 
 function Profile() {
-  // const [studentId, setStudentId] = useState("");
+  const [studentId, setStudentId] = useState("");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [userName, setUserName] = useState("");
-  const [totalQ, setTotalQ] = useState(1100);
-  // const [easyQ, setEasyQ] = useState(0);
-  // const [mediumQ, setMediumQ] = useState(0);
-  // const [hardQ, setHardQ] = useState(0);
-  // const [github, setGithub] = useState("");
-  // const [image, setImage] = useState("");
-  // const [role, setRole] = useState("");
-  const [codeforces, setCodeforces] = useState(
-    "https://www.codeforces.com/profile/harshitbhatt"
-  );
-  const [codechef, setCodechef] = useState(
-    "https://www.codechef.com/users/itsharshitb"
-  );
-  const [leetcode, setLeetcode] = useState(
-    "https://www.leetcode.com/harshitbhatt"
-  );
-  // const [course, setCourse] = useState("");
-  // const [passing_out_year, setPassing_out_year] = useState("");
-  const [linkedin, setLinkedin] = useState(
-    "https://www.linkedin.com/in/harshit-bhatt11/"
-  );
-  // const [questions, setQuestions] = useState([]);
-  // const [score, setScore] = useState(0);
-  // const [university, setUniversity] = useState("");
+  const [email, setEmail] = useState("");
+  const [ph_no,setPh_no]=useState(0);
+  const [userName, setUserName] = useState("");
+  const [totalQ, setTotalQ] = useState(0);
+  const [easyQ, setEasyQ] = useState(0);
+  const [mediumQ, setMediumQ] = useState(0);
+  const [hardQ, setHardQ] = useState(0);
+  const [github, setGithub] = useState("");
+  const [image, setImage] = useState("");
+  const [role, setRole] = useState("");
+  const [userdata,setUserdata] =useState("");
+  const [codeforces, setCodeforces] = useState("");
+  const [codechef, setCodechef] = useState("");
+  const [leetcode, setLeetcode] = useState("");
+  const [course, setCourse] = useState("");
+  const [passing_out_year, setPassing_out_year] = useState(0);
+  const [linkedin, setLinkedin] = useState("");
+  const [questions, setQuestions] = useState([]);
+  const [score, setScore] = useState(0);
+  const [university, setUniversity] = useState("");
   useEffect(() => {
     const fn = () => {
       const url = "http://localhost:5000/userData";
@@ -57,9 +51,23 @@ function Profile() {
         .then((res) => res.json())
         .then((data) => {
           console.log(data, "userData");
+          setUserdata(data);
+          setFname(data.data.fname);
+          setLname(data.data.lname);
+          setEmail(data.data.email);
+          setCodechef(data.data.codechef);
+          setCodeforces(data.data.codeforces);
+          setEasyQ(data.data.easyQ);
+          setMediumQ(data.data.mediumQ);
+          setGithub(data.data.github);
+          setHardQ(data.data.hard);
+          setScore(data.data.score);
+         //console.log(JSON.stringify(userdata));
+          // setFname(JSON.stringify(data.fname));
+          // console.log(data.fname);
         });
-      setFname(JSON.stringify(data.fname));
-      console.log(fname);
+      // setFname(JSON.stringify(data.fname));
+      // console.log(fname);
     };
     fn();
   }, []);
@@ -92,7 +100,7 @@ function Profile() {
               </div>
               <div class="p-3 bg-black text-white">
                 <h3>University Rank: 1</h3>
-                <h6>Score: 675</h6>
+                <h6>Score: {score}</h6>
               </div>
               <div class="d-flex flex-row text-white">
                 <div class="p-4 bg-primary text-center skill-block">
@@ -100,15 +108,15 @@ function Profile() {
                   <h6>Problem Solved</h6>
                 </div>
                 <div class="p-3 bg-success text-center skill-block">
-                  <h4>178</h4>
+                  <h4>{easyQ}</h4>
                   <h6>Easy</h6>
                 </div>
                 <div class="p-3 bg-warning text-center skill-block">
-                  <h4>256</h4>
+                  <h4>{mediumQ}</h4>
                   <h6>Medium</h6>
                 </div>
                 <div class="p-3 bg-danger text-center skill-block">
-                  <h4>175</h4>
+                  <h4>{hardQ}</h4>
                   <h6>Hard</h6>
                 </div>
               </div>

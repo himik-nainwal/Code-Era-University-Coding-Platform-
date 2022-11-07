@@ -7,13 +7,13 @@ const userDetailsSchema=new mongoose.Schema({
     fname:{type:String},
     lname:{type:String},
     email: {type:String},
-    uname: {type:String},
-    q_done:{type:Number},
-    github_link:{type:String},
-    easy_q:{type:Number},
-    medium_q:{type:Number},
-    hard_q:{type:Number},
-    pic_url:{type:String},
+    userName: {type:String},
+    totalQ:{type:Number},
+    github:{type:String},
+    easyQ:{type:Number},
+    mediumQ:{type:Number},
+    hardQ:{type:Number},
+    image:{type:String},
     role:{
         type:String,
         default:"user",
@@ -26,7 +26,9 @@ const userDetailsSchema=new mongoose.Schema({
     course: {type:String},
     passing_out_year: {type:Number},
     linkedin: {type:String},
-    score:{type:Number} 
+    score:{type:Number},
+    university:{type:String},
+    questions:{type:[Number]} 
 
 },
 {

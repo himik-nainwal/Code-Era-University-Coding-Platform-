@@ -32,27 +32,30 @@ const User = mongoose.model("UserInfo");
 // API to register or directly ender through json through postman
 app.post("/register", async (req, res) => {
   const {
-    student_id,
-    password,
-    ph_no,
-    email,
-    fname,
-    lname,
-    uname,
-    q_done,
-    github_link,
-    easy_q,
-    medium_q,
-    hard_q,
-    pic_url,
-    role,
-    codeforces,
-    codechef,
-    leetcode,
-    course,
-    passing_out_year,
-    linkedin,
-    score
+    student_id, //done
+    password,//done
+    ph_no,//done
+    email,//done
+    fname,//done
+    lname,//done
+    userName,//done
+    totalQ,//done
+    github,//done
+    easyQ,//done
+    mediumQ,//done
+    hardQ,//done
+    image,//done
+    role,//done
+    codeforces,//done
+    codechef,//done
+    leetcode,//done
+    course,//done
+    passing_out_year,//done
+    linkedin,//done
+    score,//done
+    university,
+    questions//done
+
   } = req.body;
   const encryptedpass = await bcrypt.hash(password, 10);
 
@@ -68,13 +71,13 @@ app.post("/register", async (req, res) => {
       fname,
       lname,
       email,
-      uname,
-      q_done,
-      github_link,
-      easy_q,
-      medium_q,
-      hard_q,
-      pic_url,
+      userName,
+      totalQ,
+      github,
+      easyQ,
+      mediumQ,
+      hardQ,
+      image,
       role,
       codeforces,
       codechef,
@@ -83,6 +86,8 @@ app.post("/register", async (req, res) => {
       passing_out_year,
       linkedin,
       score,
+      university,
+      questions,
     });
     res.send({ status: "Ok" });
   } catch (error) {
