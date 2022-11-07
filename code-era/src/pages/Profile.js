@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import userImage from "../assets/IMG_9711.jpg";
+// import userImage from "../assets/IMG_9711.jpg";
 
 function Profile() {
   const [studentId, setStudentId] = useState("");
@@ -55,6 +55,16 @@ function Profile() {
             console.log(data, "userData");
             setUserdata(data);
             setFname(data.data.fname);
+            setRole(data.data.role);
+            setCourse(data.data.course);
+            setPassing_out_year(data.data.passing_out_year);
+            setLinkedin(data.data.linkedin);
+            setUniversity(data.data.university);
+            setLeetcode(data.data.leetcode);
+            setPh_no(data.data.ph_no);
+            setTotalQ(data.data.totalQ);
+            setUserName(data.data.userName);
+            setStudentId(data.data.student_id);
             setLname(data.data.lname);
             setEmail(data.data.email);
             setCodechef(data.data.codechef);
@@ -62,8 +72,9 @@ function Profile() {
             setEasyQ(data.data.easyQ);
             setMediumQ(data.data.mediumQ);
             setGithub(data.data.github);
-            setHardQ(data.data.hard);
+            setHardQ(data.data.hardQ);
             setScore(data.data.score);
+            setImage(data.data.image);
           });
       };
       fn();
@@ -82,11 +93,11 @@ function Profile() {
       >
         <div class="row no-gutters">
           <div class="col-md-4 col-lg-4">
-            <img src={userImage} />
+            <img src={image} />
           </div>
           <div class="col-md-8 col-lg-8">
             <div class="d-flex flex-column">
-              <div class="d-flex flex-row justify-content-between align-items-center p-5 bg-dark text-white">
+              <div class="d-flex flex-row justify-content-between align-items-center pt-5 px-5 bg-dark text-white">
                 <h3 class="display-5">
                   {fname} {lname}
                 </h3>
@@ -106,7 +117,22 @@ function Profile() {
                   <SiGithub style={{ color: "white" }} />
                 </a>
               </div>
-              <div class="p-3 bg-black text-white">
+              <div
+                class="d-flex flex-row justify-content-between align-items-center px-5 bg-dark"
+                style={{ color: "#9EA1A5" }}
+              >
+                Username: {userName}
+              </div>
+              <div
+                class="d-flex flex-row justify-content-between align-items-center px-5 bg-dark"
+                style={{ color: "#9EA1A5" }}
+              >
+                <p class="display-9">
+                  University: {university} ({course} {passing_out_year})
+                </p>
+                {/* <p>Batch: {passing_out_year}</p> */}
+              </div>
+              <div class="px-5 pt-3 pb-3 bg-black text-white">
                 <h3>University Rank: 1</h3>
                 <h6>Score: {score}</h6>
               </div>
