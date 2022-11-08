@@ -13,7 +13,7 @@ const userDetailsSchema=new mongoose.Schema({
     easyQ:{type:Number},
     mediumQ:{type:Number},
     hardQ:{type:Number},
-    image:{type:String},
+    image:{type:String, default:"https://freeimage.host/i/phWTP4"},
     role:{
         type:String,
         default:"user",

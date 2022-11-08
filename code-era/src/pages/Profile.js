@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-// import userImage from "../assets/IMG_9711.jpg";
+// import userImage from "../assets/no_image.jpg";
 
 function Profile() {
   const [studentId, setStudentId] = useState("");
@@ -94,7 +94,9 @@ function Profile() {
         <div class="row no-gutters">
           <div class="col-md-4 col-lg-4">
             <img src={image} />
+            
           </div>
+
           <div class="col-md-8 col-lg-8">
             <div class="d-flex flex-column">
               <div class="d-flex flex-row justify-content-between align-items-center pt-5 px-5 bg-dark text-white">
