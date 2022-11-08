@@ -78,7 +78,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <p className="small mb-2 pb-lg-3 ms-5">
+        <p className="fot">
           <a href="/reset">Forgot password?</a>
         </p>
         <div className="d-grid">
