@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
@@ -6,6 +7,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/esm/Button";
 
 function Problem() {
+  const { problemId } = useParams();
+  const [questionDetails, setQuestionDetails] = useState(null);
   const [code, setCode] = useState("//your code goes here...");
   const [selectedLanguage, setSelectedLanguage] = useState({
     id: 54,
@@ -56,13 +59,6 @@ function Problem() {
       source_code: code,
       language_id: selectedLanguage.id,
     };
-
-    fetch(``, {
-      method: "POST",
-      body: reqData,
-    }).then(res => {
-      
-    });
   };
 
   useEffect(() => {
@@ -73,13 +69,23 @@ function Problem() {
         }
       }
     });
+    const fetchData = async () => {
+      console.log("here");
+      fetch(`http://localhost:5000/problem/${problemId}`, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((res) => setQuestionDetails(res.data));
+    };
+
+    fetchData();
   }, []);
 
   return (
     <>
       <Row>
         <Col>
-          <h1>1. Two Sum</h1>
+          <h1>{questionDetails?.question_title}</h1>
         </Col>
         <Col>
           <Row style={{ padding: "0.2rem 0" }}>

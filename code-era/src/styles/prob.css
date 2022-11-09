@@ -1,37 +1,42 @@
-.box{
-    display:flex;
-    flex-direction: column;
-    border-radius: 20px;
-    max-height: 100%;
-    width:80%;
-    margin: 0 auto;
-    padding: 1%;
-    background-color: rgb(166, 213, 227);
-    box-shadow: 0px 10px 15px 0px rgba(0,0,0,0.56);
+.box {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  max-height: 100%;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1%;
+  background-color: rgb(166, 213, 227);
+  box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.56);
 }
 
-.header{
-    font-family: Montserrat; 
-    font-weight:bolder;
+a {
+  text-decoration: none;
+  color: black;
 }
 
-.data{
-    font-family: Montserrat; 
-    font-weight:bold;
+.header {
+  font-family: Montserrat;
+  font-weight: bolder;
 }
-.data-green{
-    font-family: Montserrat; 
-    font-weight:bold;
-    color: #238823 !important;
-}
-.data-red{
-    font-family: Montserrat; 
-    font-weight:bold;
 
-    color: #D2222D !important;
+.data {
+  font-family: Montserrat;
+  font-weight: bold;
 }
-.data-yellow{
-    font-family: Montserrat; 
-    font-weight:bold;
-    color: #FFBF00 !important;
+.data-green {
+  font-family: Montserrat;
+  font-weight: bold;
+  color: #238823 !important;
+}
+.data-red {
+  font-family: Montserrat;
+  font-weight: bold;
+
+  color: #d2222d !important;
+}
+.data-yellow {
+  font-family: Montserrat;
+  font-weight: bold;
+  color: #ffbf00 !important;
 }

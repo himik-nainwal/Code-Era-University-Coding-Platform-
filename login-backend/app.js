@@ -28,7 +28,8 @@ mongoose
 require("./userDetails");
 
 const User = mongoose.model("UserInfo");
-// const Problem = mongoose.model("")
+const Problem = require("./problem");
+console.log(mongoose.models);
 
 // API to register or directly ender through json through postman
 app.post("/register", async (req, res) => {
@@ -179,35 +180,12 @@ app.post("/forgot-password", async (req, res) => {
       }
     );
     const link = `http://localhost:5000/reset-password/${oldUser._id}/${token}`;
-    // var transporter = nodemailer.createTransport({
-    //   service: "gmail",
-    //   auth: {
-    //     user: "labsupdate@gmail.com@gmail.com",
-    //     pass: "xyz@321",
-    //   },
-    // });
-
-    // var mailOptions = {
-    //   from: "labsupdate@gmail.com",
-    //   to: "himithnainwal@gmail.com@gmail.com",
-    //   subject: "Password Reset",
-    //   text: link,
-    // };
-
-    // transporter.sendMail(mailOptions, function (error, info) {
-    //   if (error) {
-    //     console.log(error);
-    //   } else {
-    //     console.log("Email sent: " + info.response);
-    //   }
-    // });
     console.log(link);
   } catch (error) {}
 });
 
 app.get("/reset-password/:id/:token", async (req, res) => {
   const { id, token } = req.params;
-  //console.log(req.params);
   const oldUser = await User.findOne({ _id: id });
   if (!oldUser) {
     return res.json({ status: "User Not Exists!!" });
@@ -255,4 +233,25 @@ app.post("/reset-password/:id/:token", async (req, res) => {
   }
 });
 
-app.get("/problem/:problemId", async (req, res) => {});
+app.get("/problem/:problemId", async (req, res) => {
+  try {
+    const problemId = req.params.problemId;
+    const problem = await Problem.findOne({ ques_id: problemId });
+    if (!problem) return res.json({ status: "Invalid Question Id" });
+
+    return res.status(200).json({ status: "success", data: problem });
+  } catch (error) {
+    console.error(error);
+    res.json({ status: "Something went wrong" });
+  }
+});
+
+app.get("/problems", async (req, res) => {
+  try {
+    const problems = await Problem.find();
+    return res.status(200).json({ status: "success", data: problems });
+  } catch (error) {
+    console.error(error);
+    res.json({ status: "Something went wrong" });
+  }
+});

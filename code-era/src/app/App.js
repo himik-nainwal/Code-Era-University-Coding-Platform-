@@ -11,15 +11,20 @@ import Reset from "../pages/Reset";
 function App() {
   return (
     <>
-      <RootNavbar />
+      {localStorage.getItem("token") && <RootNavbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/problemset" element={<Problemset />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/problem" element={<Problem />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/reset" element={<Reset />} />
+        <Route path="/problem/:problemId" element={<Problem />} />
+        {!localStorage.getItem("token") && (
+          <>
+            <Route path="/login" element={<Login />} />
+            <Route path="/reset" element={<Reset />} />
+          </>
+        )}
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </>
   );
