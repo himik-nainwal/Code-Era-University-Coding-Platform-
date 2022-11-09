@@ -175,7 +175,7 @@ app.post("/forgot-password", async (req, res) => {
     }
     const secret = JWT_SECRET + oldUser.password;
     const token = jwt.sign({ student_id: oldUser.student_id, id: oldUser._id }, secret, {
-      expiresIn: "5m",
+      expiresIn: "55m",
     });
     const link = `http://localhost:5000/reset-password/${oldUser._id}/${token}`;
     // var transporter = nodemailer.createTransport({
