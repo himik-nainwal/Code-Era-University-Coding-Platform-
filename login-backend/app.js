@@ -28,34 +28,34 @@ mongoose
 require("./userDetails");
 
 const User = mongoose.model("UserInfo");
+// const Problem = mongoose.model("")
 
 // API to register or directly ender through json through postman
 app.post("/register", async (req, res) => {
   const {
     student_id, //done
-    password,//done
-    ph_no,//done
-    email,//done
-    fname,//done
-    lname,//done
-    userName,//done
-    totalQ,//done
-    github,//done
-    easyQ,//done
-    mediumQ,//done
-    hardQ,//done
-    image,//done
-    role,//done
-    codeforces,//done
-    codechef,//done
-    leetcode,//done
-    course,//done
-    passing_out_year,//done
-    linkedin,//done
-    score,//done
+    password, //done
+    ph_no, //done
+    email, //done
+    fname, //done
+    lname, //done
+    userName, //done
+    totalQ, //done
+    github, //done
+    easyQ, //done
+    mediumQ, //done
+    hardQ, //done
+    image, //done
+    role, //done
+    codeforces, //done
+    codechef, //done
+    leetcode, //done
+    course, //done
+    passing_out_year, //done
+    linkedin, //done
+    score, //done
     university,
-    questions//done
-
+    questions, //done
   } = req.body;
   const encryptedpass = await bcrypt.hash(password, 10);
 
@@ -105,7 +105,7 @@ app.post("/login-user", async (req, res) => {
   }
   // console.log(user.password);
   if (await bcrypt.compare(password, user.password)) {
-    const token = jwt.sign({student_id:user.student_id}, JWT_SECRET);
+    const token = jwt.sign({ student_id: user.student_id }, JWT_SECRET);
 
     if (res.status(201)) {
       return res.json({ status: "ok", data: token });
@@ -152,17 +152,14 @@ app.post("/userData", async (req, res) => {
       .catch((error) => {
         res.send({ status: "error", data: error });
       });
-  } catch (error) {
-    
-  }
+  } catch (error) {}
 });
 
 app.listen(5000, () => {
   console.log("Server Started");
 });
 
-
-// Forgot Password ! 
+// Forgot Password !
 
 app.post("/forgot-password", async (req, res) => {
   const { student_id } = req.body;
@@ -174,9 +171,13 @@ app.post("/forgot-password", async (req, res) => {
       return res.json({ status: "User Not Exists!!" });
     }
     const secret = JWT_SECRET + oldUser.password;
-    const token = jwt.sign({ student_id: oldUser.student_id, id: oldUser._id }, secret, {
-      expiresIn: "5m",
-    });
+    const token = jwt.sign(
+      { student_id: oldUser.student_id, id: oldUser._id },
+      secret,
+      {
+        expiresIn: "5m",
+      }
+    );
     const link = `http://localhost:5000/reset-password/${oldUser._id}/${token}`;
     // var transporter = nodemailer.createTransport({
     //   service: "gmail",
@@ -214,7 +215,10 @@ app.get("/reset-password/:id/:token", async (req, res) => {
   const secret = JWT_SECRET + oldUser.password;
   try {
     const verify = jwt.verify(token, secret);
-    res.render("index", { student_id: verify.student_id, status: "Not Verified" });
+    res.render("index", {
+      student_id: verify.student_id,
+      status: "Not Verified",
+    });
   } catch (error) {
     console.log(error);
     res.send("Not Verified");
@@ -243,7 +247,6 @@ app.post("/reset-password/:id/:token", async (req, res) => {
         },
       }
     );
-    
 
     res.render("index", { student_id: verify.student_id, status: "verified" });
   } catch (error) {
@@ -251,3 +254,5 @@ app.post("/reset-password/:id/:token", async (req, res) => {
     res.json({ status: "Something Went Wrong" });
   }
 });
+
+app.get("/problem/:problemId", async (req, res) => {});
