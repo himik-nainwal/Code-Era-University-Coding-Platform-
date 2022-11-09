@@ -1,4 +1,10 @@
 import React , {Component} from "react";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import logo from "../assets/lo.jpg";
+import "../styles/reset.css";
+
 
 export default class Reset extends Component{
     constructor(props){
@@ -34,7 +40,11 @@ export default class Reset extends Component{
     }
     render(){
         return(
+            <Container id="main-container" className="d-grid h-100">
+                    
+
             <form onSubmit={this.handleSubmit}>
+            <img className="loginLogo mb-4" src={logo} alt="Logo" />
                 <h3>
                     Forgot Password
                 </h3>
@@ -52,6 +62,7 @@ export default class Reset extends Component{
                 </div>
             
             </form>
+            </Container>
         );
     }
 }
