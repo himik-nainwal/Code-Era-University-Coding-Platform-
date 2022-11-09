@@ -167,7 +167,7 @@ app.post("/forgot-password", async (req, res) => {
   // console.log(student_id);
   try {
     const oldUser = await User.findOne({ student_id });
-    // console.log(oldUser);
+    
     if (!oldUser) {
       return res.json({ status: "User Not Exists!!" });
     }
