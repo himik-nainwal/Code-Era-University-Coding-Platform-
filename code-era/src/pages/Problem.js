@@ -6,7 +6,13 @@ import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/esm/Button";
 
+
+
 function Problem() {
+  function createMarkup(c) {
+    return {__html:c};
+  }
+  
   const { problemId } = useParams();
   const [questionDetails, setQuestionDetails] = useState(null);
   const [code, setCode] = useState("//your code goes here...");
@@ -85,7 +91,10 @@ function Problem() {
     <>
       <Row>
         <Col>
-          <h1>{questionDetails?.question_title}</h1>
+          <h1>{problemId}. {questionDetails?.question_title}</h1>
+          <Row>
+            {questionDetails && <div dangerouslySetInnerHTML={createMarkup(questionDetails?.description_html)}></div>}
+          </Row>
         </Col>
         <Col>
           <Row style={{ padding: "0.2rem 0" }}>

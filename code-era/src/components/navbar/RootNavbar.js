@@ -26,7 +26,8 @@ function RootNavbar() {
                 {/* <NavDropdown.Item href="">logout</NavDropdown.Item> */}
                 {/* <NavDropdown.Item href="#action/3.3">Item 3</NavDropdown.Item> */}
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
+                {/* <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item> */}
+                <NavDropdown.Item onClick={window.localStorage.clear()} href="/login">Logout</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

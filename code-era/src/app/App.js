@@ -24,7 +24,8 @@ function App() {
             <Route path="/reset" element={<Reset />} />
           </>
         )}
-        <Route path="*" element={<h1>404</h1>} />
+        {/* <Route path="*" element={<h1>404</h1>} /> */}
+        <Route path="/login" element={<Login />}/>
       </Routes>
     </>
   );
