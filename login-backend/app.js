@@ -140,10 +140,11 @@ app.post("/login-user", async (req, res) => {
 
 app.post("/userData", async (req, res) => {
   const { token } = req.body;
-  // console.log(token);
+  console.log(token);
+  // console.log();
   try {
     const user = jwt.verify(token, JWT_SECRET);
-    //console.log(user);
+    
 
     const sid = user.student_id;
     User.findOne({ student_id: sid })
