@@ -2,6 +2,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 
 function RootNavbar() {
+  const handleClick=()=>{
+    localStorage.clear();
+    window.location.reload();
+  }
   return (
     <>
       <Navbar
@@ -27,7 +31,7 @@ function RootNavbar() {
                 {/* <NavDropdown.Item href="#action/3.3">Item 3</NavDropdown.Item> */}
                 <NavDropdown.Divider />
                 {/* <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item> */}
-                {/* <NavDropdown.Item onClick={window.localStorage.clear()} href="/login">Logout</NavDropdown.Item> */}
+                <NavDropdown.Item onClick={handleClick} href="/login">Logout</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

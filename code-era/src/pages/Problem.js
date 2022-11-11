@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/esm/Button";
-
+import Split from 'react-split';
 
 
 function Problem() {
@@ -89,7 +89,9 @@ function Problem() {
 
   return (
     <>
+     <Split direction="horizontal" style={{height: 'calc(100vh-4rem'}}>
       <Row>
+     
         <Col>
           <h1>{problemId}. {questionDetails?.question_title}</h1>
           <Row>
@@ -138,7 +140,9 @@ function Problem() {
             />
           </Row>
         </Col>
+        
       </Row>
+      </Split>
     </>
   );
 }
