@@ -19,7 +19,7 @@ body{
 
   text-align: right;
 }
-.d-grid Button:hover {
+/* .d-grid Button:hover {
   background: #30595b;
   color: rgb(51, 109, 125);
   border-radius: 5px;
@@ -28,4 +28,4 @@ body{
               0 0 50px #5ac7ee,
               0 0 100px #5ac7ee;
 
-}
+} */
