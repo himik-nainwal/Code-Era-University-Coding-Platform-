@@ -29,7 +29,7 @@ require("./userDetails");
 
 const User = mongoose.model("UserInfo");
 const Problem = require("./problem");
-console.log(mongoose.models);
+// console.log(mongoose.models);
 
 // API to register or directly ender through json through postman
 app.post("/register", async (req, res) => {

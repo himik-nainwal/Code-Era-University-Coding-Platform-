@@ -9,6 +9,9 @@
     "client": "cd ../code-era && yarn start",
     "dev": "concurrently \"nodemon app\" \"yarn run client\""
   },
+  "resolutions": {
+    "autoprefixer": "10.4.5"
+},
   "author": "himik",
   "license": "ISC",
   "dependencies": {
