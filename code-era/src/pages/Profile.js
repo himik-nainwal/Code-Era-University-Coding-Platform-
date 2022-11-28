@@ -52,7 +52,6 @@ function Profile() {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data, "userData");
             setUserdata(data);
             setFname(data.data.fname);
             setRole(data.data.role);
@@ -94,7 +93,6 @@ function Profile() {
         <div class="row no-gutters">
           <div class="col-md-4 col-lg-4">
             <img src={image} />
-            
           </div>
 
           <div class="col-md-8 col-lg-8">

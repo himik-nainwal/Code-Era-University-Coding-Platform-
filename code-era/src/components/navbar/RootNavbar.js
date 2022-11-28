@@ -1,11 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 
-function RootNavbar() {
-  const handleClick=()=>{
+function RootNavbar({ user }) {
+  const handleClick = () => {
     localStorage.clear();
     window.location.reload();
-  }
+  };
   return (
     <>
       <Navbar
@@ -22,7 +22,10 @@ function RootNavbar() {
             <Nav className="me-auto">
               <Nav.Link href="/problemset">Problem Set</Nav.Link>
               <Nav.Link href="/problem">Problem</Nav.Link>
-              <Nav.Link href="/login">Login</Nav.Link>
+              {!user && <Nav.Link href="/login">Login</Nav.Link>}
+              {(user?.role === "admin" || user?.role === "dev") && (
+                <Nav.Link href="/admin">Admin Portal</Nav.Link>
+              )}
             </Nav>
             <Nav>
               <NavDropdown title="Account" id="collasible-nav-dropdown">
@@ -31,7 +34,9 @@ function RootNavbar() {
                 {/* <NavDropdown.Item href="#action/3.3">Item 3</NavDropdown.Item> */}
                 <NavDropdown.Divider />
                 {/* <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item> */}
-                <NavDropdown.Item onClick={handleClick} href="/login">Logout</NavDropdown.Item>
+                <NavDropdown.Item onClick={handleClick} href="/login">
+                  Logout
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

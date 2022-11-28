@@ -8,10 +8,49 @@ import Admin from "../pages/Admin";
 import Problem from "../pages/Problem";
 import Login from "../pages/Login";
 import Reset from "../pages/Reset";
+import { useState, useEffect } from "react";
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      const token = window.localStorage.getItem("token");
+      const fn = () => {
+        const url = "http://localhost:5000/userData";
+        fetch(url, {
+          method: "POST",
+          crossDomain: true,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            token,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setUser(data.data);
+          });
+      };
+      if (token) fn();
+      else if (
+        window.location.pathname !== "/login" &&
+        window.location.pathname !== "/reset"
+      )
+        window.location.href = "/login";
+    }
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return (
     <>
-      {localStorage.getItem("token") && <RootNavbar />}
+      {localStorage.getItem("token") && <RootNavbar user={user} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/problemset" element={<Problemset />} />
