@@ -5,14 +5,14 @@ import Col from "react-bootstrap/Col";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/esm/Button";
-import Split from 'react-split';
-
+import Split from "react-split";
+import axios from 'axios';
 
 function Problem() {
   function createMarkup(c) {
-    return {__html:c};
+    return { __html: c };
   }
-  
+
   const { problemId } = useParams();
   const [questionDetails, setQuestionDetails] = useState(null);
   const [code, setCode] = useState("//your code goes here...");
@@ -62,9 +62,29 @@ function Problem() {
   const handleRunCode = async (e) => {
     e.preventDefault();
     const reqData = {
-      source_code: code,
       language_id: selectedLanguage.id,
+      source_code: btoa(code),
+      stdin: ""
     };
+
+const options = {
+  method: 'POST',
+  url: 'https://judge0-ce.p.rapidapi.com/submissions',
+  params: {base64_encoded: 'true', fields: '*'},
+  headers: {
+    'content-type': 'application/json',
+    'Content-Type': 'application/json',
+    'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
+    'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+  },
+  data: JSON.stringify(reqData)
+};
+
+axios.request(options).then(function (response) {
+	console.log(response.data);
+}).catch(function (error) {
+	console.error(error);
+});
   };
 
   useEffect(() => {
@@ -76,7 +96,7 @@ function Problem() {
       }
     });
     const fetchData = async () => {
-      console.log("here");
+      // console.log("here");
       fetch(`http://localhost:5000/problem/${problemId}`, {
         method: "GET",
       })
@@ -89,59 +109,65 @@ function Problem() {
 
   return (
     <>
-     <Split direction="horizontal" style={{height: 'calc(100vh-4rem'}}>
-      <Row>
-     
-        <Col>
-          <h1>{problemId}. {questionDetails?.question_title}</h1>
-          <Row>
-            {questionDetails && <div dangerouslySetInnerHTML={createMarkup(questionDetails?.description_html)}></div>}
-          </Row>
-        </Col>
-        <Col>
-          <Row style={{ padding: "0.2rem 0" }}>
-            <Col>
-              <Dropdown>
-                <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                  {selectedLanguage?.name?.toUpperCase()}
-                </Dropdown.Toggle>
+      <Split direction="horizontal" style={{ height: "calc(100vh-4rem" }}>
+        <Row>
+          <Col>
+            <h1>
+              {problemId}. {questionDetails?.question_title}
+            </h1>
+            <Row>
+              {questionDetails && (
+                <div
+                  dangerouslySetInnerHTML={createMarkup(
+                    questionDetails?.description_html
+                  )}
+                ></div>
+              )}
+            </Row>
+          </Col>
+          <Col>
+            <Row style={{ padding: "0.2rem 0" }}>
+              <Col>
+                <Dropdown>
+                  <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    {selectedLanguage?.name?.toUpperCase()}
+                  </Dropdown.Toggle>
 
-                <Dropdown.Menu>
-                  {languages.map((lang, i) => (
-                    <Dropdown.Item
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setSelectedLanguage(lang);
-                      }}
-                    >
-                      {lang?.name}
-                    </Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
-            </Col>
-            <Col>
-              {" "}
-              <Button variant="light" onClick={handleRunCode}>
-                Run Code
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Editor
-              width={"100%"}
-              theme="light"
-              value={code}
-              onChange={(e) => {
-                setCode(e);
-              }}
-              height="90vh"
-              language={selectedLanguage.lang}
-            />
-          </Row>
-        </Col>
-        
-      </Row>
+                  <Dropdown.Menu>
+                    {languages.map((lang, i) => (
+                      <Dropdown.Item
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setSelectedLanguage(lang);
+                        }}
+                      >
+                        {lang?.name}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Col>
+              <Col>
+                {" "}
+                <Button variant="light" onClick={handleRunCode}>
+                  Run Code
+                </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Editor
+                width={"100%"}
+                theme="light"
+                value={code}
+                onChange={(e) => {
+                  setCode(e);
+                }}
+                height="90vh"
+                language={selectedLanguage.lang}
+              />
+            </Row>
+          </Col>
+        </Row>
       </Split>
     </>
   );
