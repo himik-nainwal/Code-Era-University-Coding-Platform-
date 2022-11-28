@@ -6,7 +6,7 @@ import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/esm/Button";
 import Split from "react-split";
-import axios from 'axios';
+import axios from "axios";
 
 function Problem() {
   function createMarkup(c) {
@@ -64,27 +64,54 @@ function Problem() {
     const reqData = {
       language_id: selectedLanguage.id,
       source_code: btoa(code),
-      stdin: ""
+      stdin: btoa(""),
     };
 
-const options = {
-  method: 'POST',
-  url: 'https://judge0-ce.p.rapidapi.com/submissions',
-  params: {base64_encoded: 'true', fields: '*'},
-  headers: {
-    'content-type': 'application/json',
-    'Content-Type': 'application/json',
-    'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
-    'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
-  },
-  data: JSON.stringify(reqData)
-};
+    // console.log(reqData);
 
-axios.request(options).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
+    // const options = {
+    //   method: "POST",
+    //   url: "https://judge0-ce.p.rapidapi.com/submissions",
+    //   params: { base64_encoded: "true", fields: "*" },
+    //   headers: {
+    //     "content-type": "application/json",
+    //     "Content-Type": "application/json",
+    //     "X-RapidAPI-Key": "e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a",
+    //     "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+    //   },
+    //   data: reqData,
+    // };
+
+    // axios
+    //   .request(options)
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
+
+    const options = {
+      method: "POST",
+      url: "https://judge0-ce.p.rapidapi.com/submissions",
+      params: { base64_encoded: "true", fields: "*" },
+      headers: {
+        "content-type": "application/json",
+        "Content-Type": "application/json",
+        "X-RapidAPI-Key": "e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a",
+        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+      },
+      data: '{"language_id":52,"source_code":"I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgbWFpbih2b2lkKSB7CiAgY2hhciBuYW1lWzEwXTsKICBzY2FuZigiJXMiLCBuYW1lKTsKICBwcmludGYoImhlbGxvLCAlc1xuIiwgbmFtZSk7CiAgcmV0dXJuIDA7Cn0=","stdin":"SnVkZ2Uw"}',
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   useEffect(() => {
