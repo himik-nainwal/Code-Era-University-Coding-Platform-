@@ -1,5 +1,5 @@
 const mongoose =require("mongoose");
-const codekaschema = new mongoose.Schema(
+const code_schema = new mongoose.Schema(
     {
         ques_id:{
             type: Number,
@@ -40,4 +40,4 @@ const codekaschema = new mongoose.Schema(
         collection: "codes",
     }
 );
-module.exports = mongoose.model("codes",codekaschema);
+module.exports = mongoose.model("codes",code_schema);
