@@ -1,35 +1,14 @@
 import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import "../styles/login.css";
-import logo from "../assets/lo.jpg";
+
 function Login() {
   const [StudentId, setStudentId] = useState("");
   const [Password, setPassword] = useState("");
+
+  //user Auth start
+
   const handleSubmit = (e) => {
-    // console.log(StudentId);
-    // console.log(Password);
     e.preventDefault();
-    /*fetch("http://localhost:5000/login-user", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        student_id: StudentId,
-        password: Password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "userRegister");
-        if (data.status === "ok") {
-          alert("login successful");
-          window.localStorage.setItem("token", data.data);
-          window.location.href = "./profile";
-      */
     fetch("http://localhost:5000/login-user", {
       method: "POST",
       crossDomain: true,
@@ -47,52 +26,55 @@ function Login() {
       .then((data) => {
         console.log(data, "userRegister");
         if (data.status === "ok") {
-          alert("login successful");
           window.localStorage.setItem("token", data.data);
           window.location.href = "./profile";
         }
       });
   };
+
+  //user Auth end
+
   return (
-    <Container id="main-container" className="d-grid h-100">
-      <Form id="sign-in-form" className="text-center w-100">
-        <img className="loginLogo mb-4" src={logo} alt="Logo" />
-        <h1 className="fs-3 fw-normal mb-3">Please sign in</h1>
-        <Form.Group controlId="student-id">
-          <Form.Control
-            className="mb-2 position-relative"
-            type="studentId"
-            size="lg"
+    <div class="login-box">
+      <h2>Login</h2>
+      <form>
+        <div class="user-box">
+          <input
+            type="text"
+            name=""
+            required=""
             placeholder="Student Id"
             value={StudentId}
             onChange={(e) => setStudentId(e.target.value)}
           />
-        </Form.Group>
-        <Form.Group controlId="password">
-          <Form.Control
-            className="mb-2 position-relative"
+        </div>
+        <div class="user-box">
+          <input
             type="password"
-            size="lg"
+            name=""
+            required=""
             placeholder="Password"
             value={Password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </Form.Group>
-        <p className="fot">
-          <a href="/reset">Forgot password?</a>
-        </p>
-        <div className="d-grid">
-          <Button
-            variant="primary"
-            size="lg"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Login
-          </Button>
         </div>
-      </Form>
-    </Container>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <a type="submit" onClick={handleSubmit} style={{ color: "white" }}>
+            Submit
+          </a>
+        </div>
+        <p style={{ display: "flex", justifyContent: "center" }}>
+          <a
+            href="/reset"
+            style={{
+              color: "white",
+            }}
+          >
+            Forgot password?
+          </a>
+        </p>
+      </form>
+    </div>
   );
 }
 

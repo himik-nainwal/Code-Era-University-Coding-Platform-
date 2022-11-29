@@ -12,8 +12,8 @@ function RootNavbar({ user }) {
         sticky="top"
         collapseOnSelect
         expand="lg"
-        bg="dark"
         variant="dark"
+        bg="dark"
       >
         <Container>
           <Navbar.Brand href="/">Code Era</Navbar.Brand>
