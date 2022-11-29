@@ -13,7 +13,7 @@ function RootNavbar({ user }) {
         collapseOnSelect
         expand="lg"
         variant="dark"
-        bg="dark"
+        style={{ background: "#243b55" }}
       >
         <Container>
           <Navbar.Brand href="/">Code Era</Navbar.Brand>
