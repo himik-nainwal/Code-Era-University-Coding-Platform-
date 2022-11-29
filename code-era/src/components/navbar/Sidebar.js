@@ -20,7 +20,7 @@ const Sidebar = () => {
             <ul className={active ? 'ul-item' : 'ul-item oicon'}>
                 <li>
                     <IoMdImage className='icon'/>
-                    <Link to='/'>Alumni</Link>
+                    <Link to='/'>Any</Link>
                 </li>
             
 
