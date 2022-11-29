@@ -35,46 +35,48 @@ function Login() {
   //user Auth end
 
   return (
-    <div class="login-box">
-      <h2>Login</h2>
-      <form>
-        <div class="user-box">
-          <input
-            type="text"
-            name=""
-            required=""
-            placeholder="Student Id"
-            value={StudentId}
-            onChange={(e) => setStudentId(e.target.value)}
-          />
-        </div>
-        <div class="user-box">
-          <input
-            type="password"
-            name=""
-            required=""
-            placeholder="Password"
-            value={Password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <a type="submit" onClick={handleSubmit} style={{ color: "white" }}>
-            Submit
-          </a>
-        </div>
-        <p style={{ display: "flex", justifyContent: "center" }}>
-          <a
-            href="/reset"
-            style={{
-              color: "white",
-            }}
-          >
-            Forgot password?
-          </a>
-        </p>
-      </form>
-    </div>
+    <section>
+      <div className="login-box">
+        <h2>Login</h2>
+        <form>
+          <div className="user-box">
+            <input
+              type="text"
+              name=""
+              required=""
+              placeholder="Student Id"
+              value={StudentId}
+              onChange={(e) => setStudentId(e.target.value)}
+            />
+          </div>
+          <div className="user-box">
+            <input
+              type="password"
+              name=""
+              required=""
+              placeholder="Password"
+              value={Password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <a type="submit" onClick={handleSubmit} style={{ color: "white" }}>
+              Submit
+            </a>
+          </div>
+          <p style={{ display: "flex", justifyContent: "center" }}>
+            <a
+              href="/reset"
+              style={{
+                color: "white",
+              }}
+            >
+              Forgot password?
+            </a>
+          </p>
+        </form>
+      </div>
+    </section>
   );
 }
 
