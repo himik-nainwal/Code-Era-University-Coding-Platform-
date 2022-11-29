@@ -1,34 +1,41 @@
-import React,{useState} from 'react'
-import {IoMdClose, IoMdImage, IoMdMenu} from 'react-icons/io'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
 import './Sidebar.css'
+import { FaBars }from "react-icons/fa";
+import {FcQuestions} from "react-icons/fc"
+import { NavLink } from 'react-router-dom';
+import addprob from '../admin/AddProb.js'
 
-const Sidebar = () => {
-
-    const [active,setActive] = useState(false)
-
-    const activateNav = () => {
-        setActive(!active)
-    } 
-
-  return (
-    <div className={active ? 'header' : 'header-mobile'}>
-               <div className='menu-icon' onClick={activateNav}>
-                {!active ? <IoMdMenu className='menu'/> : <IoMdClose className='menu'/>}
+const Sidebar = ({children}) => {
+    const[isOpen ,setIsOpen] = useState(false);
+    const toggle = () => setIsOpen (!isOpen);
+    const menuItem=[
+        {
+            // path:"../../admin/addprob",
+            name:"Dashboard",
+            icon:<FcQuestions onClick={addprob}/>
+        }
+    ]
+    return (
+        <div className="container">
+           <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
+               <div className="top_section">
+                   <h1 style={{display: isOpen ? "block" : "none"}} className="logo">Logo</h1>
+                   <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
+                       <FaBars onClick={toggle}/>
+                   </div>
                </div>
-        <nav>
-            <ul className={active ? 'ul-item' : 'ul-item oicon'}>
-                <li>
-                    <IoMdImage className='icon'/>
-                    <Link to='/'>Any</Link>
-                </li>
-            
+               {
+                   menuItem.map((item, index)=>(
+                       <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                           <div className="icon">{item.icon}</div>
+                           <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
+                       </NavLink>
+                   ))
+               }
+           </div>
+           <main>{children}</main>
+        </div>
+    );
+};
 
-            </ul>
-        </nav>
-
-    </div>
-  )
-}
-
-export default Sidebar
+export default Sidebar;
