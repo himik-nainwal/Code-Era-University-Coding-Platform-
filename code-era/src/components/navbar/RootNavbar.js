@@ -21,7 +21,6 @@ function RootNavbar({ user }) {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/problemset">Problem Set</Nav.Link>
-              <Nav.Link href="/problem">Problem</Nav.Link>
               {!user && <Nav.Link href="/login">Login</Nav.Link>}
               {(user?.role === "admin" || user?.role === "dev") && (
                 <Nav.Link href="/admin">Admin Portal</Nav.Link>

@@ -141,7 +141,7 @@ function Profile() {
                 <div class="d-flex flex-row text-white">
                   <div class="p-4 bg-primary text-center skill-block">
                     <h4>{totalQ}</h4>
-                    <h6>Problem Solved</h6>
+                    <h6>Problems Solved</h6>
                   </div>
                   <div class="p-3 bg-success text-center skill-block">
                     <h4>{easyQ}</h4>
