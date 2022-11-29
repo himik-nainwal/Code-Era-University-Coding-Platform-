@@ -38,7 +38,7 @@ const Problemset = () => {
                   : "Hard"}
               </td>
               <td>
-                {questionIds.includes(problem?.ques_id) ? "Solved" : "UnSolved"}
+                {questionIds.includes(problem?.ques_id) ? "Solved" : "Unsolved"}
               </td>
               <td>
                 <Link

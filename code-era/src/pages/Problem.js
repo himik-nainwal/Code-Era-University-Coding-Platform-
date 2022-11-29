@@ -69,38 +69,58 @@ function Problem() {
 
     console.log(reqData);
 
-    const options = {
+    let options = {
       method: 'POST',
       url: 'https://judge0-ce.p.rapidapi.com/submissions',
       params: { base64_encoded: 'true', fields: '*' },
       headers: {
         'content-type': 'application/json',
         'Content-Type': 'application/json',
-        'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
+        // 'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
+        'X-RapidAPI-Key': '36ca6be9edmsha4366d4621dace3p128c99jsnd780bbec375d',
         'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
       },
       data: reqData,
     };
 
-    // axios.request(options).then(function (response) {
-    //   console.log(response.data);
-    // }).catch(function (error) {
-    //   console.error(error);
-    // });
-
     async function createSubmission() {
       try {
         let response = await axios.request(options);
-        console.log(response.data);
+        // console.log(response.data);
+        return response.data;
       }
       catch (error) {
         console.error(error);
       }
     }
 
-    createSubmission();
+    const submissionToken = await createSubmission();
+    console.log(submissionToken);
 
-    //get token from createSubmission
+    options = {
+      method: 'GET',
+      url: 'https://judge0-ce.p.rapidapi.com/submissions/' + submissionToken.token,
+      params: { base64_encoded: 'true', fields: '*' },
+      headers: {
+        // 'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
+        'X-RapidAPI-Key': '36ca6be9edmsha4366d4621dace3p128c99jsnd780bbec375d',
+        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+      }
+    };
+
+    async function getSubmission() {
+      try {
+        let response = await axios.request(options);
+        // console.log(response.data);
+        return response.data;
+      }
+      catch (error) {
+        console.error(error);
+      }
+    }
+
+    const result = await getSubmission();
+    console.log(result);
 
   };
 
