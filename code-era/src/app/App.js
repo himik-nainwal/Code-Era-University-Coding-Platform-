@@ -8,6 +8,8 @@ import Admin from "../pages/Admin";
 import Problem from "../pages/Problem";
 import Login from "../pages/Login";
 import Reset from "../pages/Reset";
+import AddPro from "../components/admin/AddProb.js";
+import Sidebar from "../components/navbar/Sidebar";
 import { useState, useEffect } from "react";
 function App() {
   const [user, setUser] = useState(null);
@@ -56,6 +58,7 @@ function App() {
         <Route path="/problemset" element={<Problemset />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/addprob" element={<AddPro/>}/>
         <Route path="/problem/:problemId" element={<Problem />} />
         {!localStorage.getItem("token") && (
           <>
@@ -66,6 +69,11 @@ function App() {
         <Route path="*" element={<h1>404</h1>} />
         {/* <Route path="/login" element={<Login />}/> */}
       </Routes>
+      {/* <Sidebar>
+          <Routes>
+          <Route path="/addprob" element={<AddPro/>}/>
+          </Routes>
+        </Sidebar> */}
     </>
   );
 }

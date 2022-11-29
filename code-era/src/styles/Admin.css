@@ -1,0 +1,7 @@
+.mainn{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../assets/back.jpg);
+    background-size: cover;
+    background-position: center;
+}

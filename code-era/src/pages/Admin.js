@@ -1,17 +1,10 @@
 import React from "react";
-
+import SIDEBAR from '../components/navbar/Sidebar.js'
+import '../styles/Admin.css'
 function Admin() {
   return (
-    <div className="p-3">
-      <div>
-        <h5>1. Add a Problem</h5>
-      </div>
-      <div>
-        <h5>2. View a Record</h5>
-      </div>
-      <div>
-        <h5>3. View Ranking</h5>
-      </div>
+    <div className="mainn">
+     <SIDEBAR/>
     </div>
   );
 }
