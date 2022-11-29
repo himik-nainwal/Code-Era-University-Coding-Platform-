@@ -3,16 +3,15 @@ import './Sidebar.css'
 import { FaBars }from "react-icons/fa";
 import {FcQuestions} from "react-icons/fc"
 import { NavLink } from 'react-router-dom';
-import addprob from '../admin/AddProb.js'
-
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
     const menuItem=[
         {
-            // path:"../../admin/addprob",
-            name:"Dashboard",
-            icon:<FcQuestions onClick={addprob}/>
+           path:"/AddProb",
+            name:"Add Problems",
+            icon:<FcQuestions />,
+            
         }
     ]
     return (
