@@ -199,10 +199,33 @@ function Problem() {
                 onChange={(e) => {
                   setCode(e);
                 }}
-                height="90vh"
+                height="50vh"
                 language={selectedLanguage.lang}
               />
             </Row>
+            <Row>
+              <Col>
+              <h3><center>Input Custom</center></h3>
+              
+              </Col>
+              <Col>
+              <h3><center>Output</center></h3>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+              <center>
+              <Button>
+                Run Code
+                </Button>
+                </center>
+              </Col>
+              <Col>
+              <center>
+              <Button>Submit Code</Button>
+              </center>
+              </Col>
+              </Row>
           </Col>
         </Row>
       </Split>

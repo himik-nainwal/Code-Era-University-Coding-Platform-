@@ -29,6 +29,7 @@ require("./userDetails");
 
 const User = mongoose.model("UserInfo");
 const Problem = require("./problem");
+const question= mongoose.model("Question");
 // console.log(mongoose.models);
 
 // API to register or directly ender through json through postman
@@ -184,6 +185,9 @@ app.post("/forgot-password", async (req, res) => {
     console.log(link);
   } catch (error) {}
 });
+
+//Getting Details 
+
 
 app.get("/reset-password/:id/:token", async (req, res) => {
   const { id, token } = req.params;
