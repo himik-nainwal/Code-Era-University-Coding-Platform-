@@ -5,7 +5,7 @@ import { BsBoxArrowInRight } from "react-icons/bs";
 
 const Problemset = () => {
   const [problems, setProblems] = useState([]);
-  const questionIds = [105];
+  const questionIds = [];
   useEffect(() => {
     const fetchData = async () => {
       fetch(`http://localhost:5000/problems`)
