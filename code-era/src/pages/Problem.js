@@ -199,8 +199,10 @@ function Problem() {
             </Row>
             <Row>
               <Col>
-                <h3><center>Custom Input</center></h3>
-                <textarea id="custom input" name="custom input"></textarea>
+                <center>
+                  <h3>Custom Input</h3>
+                  <textarea id="custom input" name="custom input"></textarea>
+                </center>
               </Col>
               <Col>
                 <h3><center>Output</center></h3>
