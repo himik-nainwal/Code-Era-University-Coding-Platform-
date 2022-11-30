@@ -184,12 +184,6 @@ function Problem() {
                   </Dropdown.Menu>
                 </Dropdown>
               </Col>
-              <Col>
-                {" "}
-                <Button variant="light" onClick={handleRunCode}>
-                  Run Code
-                </Button>
-              </Col>
             </Row>
             <Row>
               <Editor
@@ -205,27 +199,27 @@ function Problem() {
             </Row>
             <Row>
               <Col>
-              <h3><center>Input Custom</center></h3>
-              
+                <h3><center>Custom Input</center></h3>
+                <textarea id="custom input" name="custom input"></textarea>
               </Col>
               <Col>
-              <h3><center>Output</center></h3>
+                <h3><center>Output</center></h3>
               </Col>
             </Row>
             <Row>
               <Col>
-              <center>
-              <Button>
-                Run Code
-                </Button>
+                <center>
+                  <Button onClick={handleRunCode}>
+                    Run Code
+                  </Button>
                 </center>
               </Col>
               <Col>
-              <center>
-              <Button>Submit Code</Button>
-              </center>
+                <center>
+                  <Button>Submit Code</Button>
+                </center>
               </Col>
-              </Row>
+            </Row>
           </Col>
         </Row>
       </Split>
