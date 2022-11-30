@@ -9,7 +9,7 @@ import Problem from "../pages/Problem";
 import Login from "../pages/Login";
 import Reset from "../pages/Reset";
 import AddPro from "../components/admin/AddProb.js";
-import Sidebar from "../components/navbar/Sidebar";
+// import Sidebar from "../components/navbar/Sidebar";
 import { useState, useEffect } from "react";
 
 function App() {
