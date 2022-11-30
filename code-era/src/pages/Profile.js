@@ -90,7 +90,7 @@ function Profile() {
         <div class="container-fluid pt-5" style={{ height: "100vh" }}>
           <div class="row no-gutters">
             <div class="col-md-4 col-lg-4">
-              <img src={image} />
+              <img className="img" src={image} />
             </div>
 
             <div class="col-md-8 col-lg-8">
