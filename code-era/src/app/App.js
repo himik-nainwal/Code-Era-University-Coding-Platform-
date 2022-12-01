@@ -9,6 +9,7 @@ import Problem from "../pages/Problem";
 import Login from "../pages/Login";
 import Reset from "../pages/Reset";
 import AddPro from "../components/admin/AddProb.js";
+import ProbDetails from "../components/admin/ProbDetails"
 // import Sidebar from "../components/navbar/Sidebar";
 import { useState, useEffect } from "react";
 
@@ -60,6 +61,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/addprob" element={<AddPro />} />
+        <Route path ="/probdetails" element={<ProbDetails/>}/>
         <Route path="/problem/:problemId" element={<Problem />} />
         {!localStorage.getItem("token") && (
           <>
