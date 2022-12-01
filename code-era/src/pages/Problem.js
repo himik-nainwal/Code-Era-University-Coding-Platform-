@@ -4,11 +4,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import Dropdown from "react-bootstrap/Dropdown";
-import Button from "react-bootstrap/esm/Button";
+// import Button from "react-bootstrap/esm/Button";
 import Split from "react-split";
 import axios from "axios";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import { positions } from "@mui/system";
 
 function Problem() {
@@ -19,6 +20,7 @@ function Problem() {
   const { problemId } = useParams();
   const [questionDetails, setQuestionDetails] = useState(null);
   const [code, setCode] = useState("//your code goes here...");
+  const [customInput, setCustomInput] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState({
     id: 54,
     name: "C++ (GCC 9.2.0)",
@@ -67,7 +69,7 @@ function Problem() {
     const reqData = {
       language_id: selectedLanguage.id,
       source_code: btoa(code),
-      stdin: btoa(""),
+      stdin: btoa({ customInput }),
     };
 
     console.log(reqData);
@@ -95,7 +97,10 @@ function Problem() {
         console.error(error);
       }
     }
+    // const handleCustomInputChange = (e) => {
 
+    //   setCustomInput(e.target.value);
+    // };
     const submissionToken = await createSubmission();
     console.log(submissionToken);
 
@@ -147,7 +152,11 @@ function Problem() {
 
   return (
     <>
-      <Split direction="horizontal" style={{ height: "calc(100vh-4rem" }}>
+      <Split
+        direction="horizontal"
+        className="m-3"
+        style={{ height: "calc(100vh-4rem" }}
+      >
         <Row>
           <Col>
             <h1>
@@ -167,7 +176,14 @@ function Problem() {
             <Row style={{ padding: "0.2rem 0" }}>
               <Col>
                 <Dropdown>
-                  <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                  <Dropdown.Toggle
+                    style={{
+                      backgroundColor: "white",
+                      color: "#60B7E9",
+                      border: "1px solid #60B7E9",
+                    }}
+                    id="dropdown-basic"
+                  >
                     {selectedLanguage?.name?.toUpperCase()}
                   </Dropdown.Toggle>
 
@@ -199,34 +215,32 @@ function Problem() {
               />
             </Row>
             <Row>
-              <Col >
+              <Col>
                 <center>
-                  <h3>Custom Input</h3>
-                  <TextField id ="custom input " 
+                  <h4 style={{ display: "flex", paddingTop: "1%" }}>
+                    Custom Input
+                  </h4>
+                </center>
+                <TextField
+                  id="custom input "
                   label="Enter your input here "
-                  multiline maxRows={4} >
-
-                  </TextField>
-                </center>
-              </Col>
-              <Col>
-                <h3>
-                  <center>Output</center>
-                </h3>
+                  multiline
+                  onChange={(e) => setCustomInput(e.target.value)}
+                ></TextField>
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <center>
-                  <Button onClick={handleRunCode}>Run Code</Button>
-                </center>
-              </Col>
-              <Col>
-                <center>
-                  <Button>Submit Code</Button>
-                </center>
-              </Col>
-            </Row>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                alignItems: "start",
+              }}
+            >
+              <Button onClick={handleRunCode} className="m-2">
+                Run Code
+              </Button>
+              <Button className="m-2">Submit Code</Button>
+            </div>
           </Col>
         </Row>
       </Split>
