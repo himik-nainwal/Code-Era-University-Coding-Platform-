@@ -7,6 +7,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/esm/Button";
 import Split from "react-split";
 import axios from "axios";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 function Problem() {
   function createMarkup(c) {
@@ -199,7 +201,11 @@ function Problem() {
               <Col>
                 <center>
                   <h3>Custom Input</h3>
-                  <textarea id="custom input" name="custom input"></textarea>
+                  <TextField id ="custom input " 
+                  label="Enter your input here "
+                  multiline maxRows={4} >
+
+                  </TextField>
                 </center>
               </Col>
               <Col>
