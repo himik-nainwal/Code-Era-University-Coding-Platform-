@@ -26,13 +26,14 @@ mongoose
 
 // Below code is for adding users through postman and mongo
 require("./userDetails");
-
+require("./codeDetails");
 const User = mongoose.model("UserInfo");
-const Problem = require("./problem");
-const question= mongoose.model("Question");
+const Problem = require("./problem");   // for questions details
+const code= mongoose.model("codes"); // for question code
+
 // console.log(mongoose.models);
 
-// API to register or directly ender through json through postman
+// API to register or directly enter through json through postman
 app.post("/register", async (req, res) => {
   const {
     student_id, //done
@@ -118,24 +119,6 @@ app.post("/login-user", async (req, res) => {
   return res.json({ status: "error", error: "Invalid Password" });
 });
 
-// // Login API
-// app.post("/login-user",async(req,res)=>{
-//     const {student_id, password}=req.body;
-
-//     const user=await User.findOne({student_id});
-//     if(!user){
-//         return res.json({error:"User Not Found"});
-//     }
-//     if(compare(password,user.password)){
-//         if(res.status(201)){
-//             return res.json({status:"OK",data:password});
-//         }
-//         else{
-//             return res.json({error:"error"});
-//         }
-//     }
-//     res.json({status:"error",error:"Incorrect Password"});
-// });
 
 //API for getting user Data
 
@@ -161,10 +144,6 @@ app.post("/userData", async (req, res) => {
 app.listen(5000, () => {
   console.log("Server Started");
 });
-
-
-
-
 
 // Forgot Password !
 
@@ -262,5 +241,70 @@ app.get("/problems", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.json({ status: "Something went wrong" });
+  }
+});
+
+
+// Adding questions API 
+app.post("/add_question_code", async (req,res) =>{
+  const {
+      ques_id,
+      cpp_boilerplate,
+      correct_code,
+      custom_judge,
+      example_test_case_input,
+      example_test_case_output,
+      all_test_cases_input,
+      all_test_cases_output,
+  } = req.body;
+  try {
+      const old_question = await code.findOne({ques_id});
+      if(old_question) {
+          return res.send({error : "Same question Exists "});
+      }
+      await code.create({
+      ques_id,
+      cpp_boilerplate,
+      correct_code,
+      custom_judge,
+      example_test_case_input,
+      example_test_case_output,
+      all_test_cases_input,
+      all_test_cases_output,
+      });
+      res.send({status : "Ok Done !"});
+  } catch (error){
+      res.send({status: "Error "});
+      console.log(error);
+  }
+});
+
+
+// Adding question details
+app.post("/add_question_details",async(req,res)=>{
+  const {
+      ques_id,
+      question_title,
+      question_title_slug,
+      difficulty_level,
+      description_html,
+  }=req.body;
+  try {
+      const old_version =await Problem.findOne({ques_id});
+      if(old_version){
+          return res.send({error : "Same question Exists "});
+      }
+      await Problem.create({
+          ques_id,
+          question_title,
+          question_title_slug,
+          difficulty_level,
+          description_html,
+      });
+      res.send({status : "Ok Done ! "});
+  }
+  catch(error){
+      res.send({status : "Error "});
+      console.log(error);
   }
 });

@@ -32,4 +32,4 @@ const userDetailsSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Question", userDetailsSchema);
+module.exports = mongoose.model("questions", userDetailsSchema);
