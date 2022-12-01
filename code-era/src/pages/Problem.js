@@ -9,6 +9,7 @@ import Split from "react-split";
 import axios from "axios";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { positions } from "@mui/system";
 
 function Problem() {
   function createMarkup(c) {
@@ -198,7 +199,7 @@ function Problem() {
               />
             </Row>
             <Row>
-              <Col>
+              <Col >
                 <center>
                   <h3>Custom Input</h3>
                   <TextField id ="custom input " 
