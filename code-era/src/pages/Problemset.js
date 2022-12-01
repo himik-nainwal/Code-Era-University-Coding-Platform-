@@ -14,6 +14,19 @@ const Problemset = () => {
     };
     fetchData();
   }, []);
+
+  // problems
+  function compare(a, b) {
+    if (a.ques_id < b.ques_id) {
+      return -1;
+    }
+    if (a.ques_id > b.ques_id) {
+      return 1;
+    }
+    return 0;
+  }
+
+  problems.sort(compare);
   return (
     // <app-navbar></app-navbar>
     <div class="big-box">
