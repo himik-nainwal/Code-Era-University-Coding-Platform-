@@ -14,8 +14,8 @@ const Problemset = () => {
     };
     fetchData();
   }, []);
-
-  // problems
+  
+//sorting questions
   function compare(a, b) {
     if (a.ques_id < b.ques_id) {
       return -1;
