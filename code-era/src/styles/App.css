@@ -1,10 +1,11 @@
-*{
-    /* font-family: sans-serif;  isko change mat karna. jis page pe lagana hai us page ke css pe lagana*/ 
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+  /* font-family: sans-serif;  isko change mat karna. jis page pe lagana hai us page ke css pe lagana*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-*::after,*::before{
-    box-sizing: border-box;
+*::after,
+*::before {
+  box-sizing: border-box;
 }

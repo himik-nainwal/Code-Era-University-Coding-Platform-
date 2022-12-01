@@ -69,7 +69,7 @@ function Problem() {
     const reqData = {
       language_id: selectedLanguage.id,
       source_code: btoa(code),
-      stdin: btoa({ customInput }),
+      stdin: btoa(customInput),
     };
 
     console.log(reqData);
@@ -159,18 +159,20 @@ function Problem() {
       >
         <Row>
           <Col>
-            <h1>
-              {problemId}. {questionDetails?.question_title}
-            </h1>
-            <Row>
-              {questionDetails && (
-                <div
-                  dangerouslySetInnerHTML={createMarkup(
-                    questionDetails?.description_html
-                  )}
-                ></div>
-              )}
-            </Row>
+            <div style={{ overflowY: "auto", height: "90vh" }}>
+              <h1>
+                {problemId}. {questionDetails?.question_title}
+              </h1>
+              <Row>
+                {questionDetails && (
+                  <div
+                    dangerouslySetInnerHTML={createMarkup(
+                      questionDetails?.description_html
+                    )}
+                  ></div>
+                )}
+              </Row>
+            </div>
           </Col>
           <Col>
             <Row style={{ padding: "0.2rem 0" }}>
@@ -193,6 +195,7 @@ function Problem() {
                         onClick={(e) => {
                           e.preventDefault();
                           setSelectedLanguage(lang);
+                          setCode("");
                         }}
                       >
                         {lang?.name}
@@ -204,16 +207,28 @@ function Problem() {
             </Row>
             <Row>
               <Editor
-                width={"100%"}
-                theme="light"
+                theme="vs-dark"
                 value={code}
                 onChange={(e) => {
                   setCode(e);
                 }}
-                height="50vh"
+                height="70vh"
                 language={selectedLanguage.lang}
               />
             </Row>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                alignItems: "start",
+              }}
+            >
+              <Button onClick={handleRunCode} className="m-2">
+                Run Code
+              </Button>
+              <Button className="m-2">Submit Code</Button>
+            </div>
             <Row>
               <Col>
                 <center>
@@ -229,18 +244,6 @@ function Problem() {
                 ></TextField>
               </Col>
             </Row>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "end",
-                alignItems: "start",
-              }}
-            >
-              <Button onClick={handleRunCode} className="m-2">
-                Run Code
-              </Button>
-              <Button className="m-2">Submit Code</Button>
-            </div>
           </Col>
         </Row>
       </Split>
