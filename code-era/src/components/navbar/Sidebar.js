@@ -12,6 +12,11 @@ const Sidebar = ({children}) => {
             name:"Add Problems",
             icon:<FcQuestions />,
             
+        },
+        {
+            path:"/ProbDetails",
+            name:"Add Problem Details",
+            icon:<FcQuestions />,
         }
     ]
     return (
