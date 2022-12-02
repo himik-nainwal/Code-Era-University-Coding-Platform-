@@ -14,7 +14,7 @@ const userDetailsSchema = new mongoose.Schema(
     easyQ: { type: Number },
     mediumQ: { type: Number },
     hardQ: { type: Number },
-    image: { type: String, default: "https://iili.io/phWTP4.webp" },
+    image: { type: String, default: "" },
     role: {
       type: String,
       default: "user",

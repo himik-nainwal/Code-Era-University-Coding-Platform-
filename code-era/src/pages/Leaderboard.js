@@ -1,6 +1,7 @@
 import React from 'react'
 import "../styles/Leaderboard.css"
 const Leaderboard = () => {
+  
   return (
     <div className="board">
         <h1 className='leaderboard'>Leaderboard</h1>

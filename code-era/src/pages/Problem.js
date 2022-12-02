@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { positions } from "@mui/system";
+export let ans;
 
 function Problem() {
   function createMarkup(c) {
@@ -21,6 +22,7 @@ function Problem() {
   const [questionDetails, setQuestionDetails] = useState(null);
   const [code, setCode] = useState("//your code goes here...");
   const [customInput, setCustomInput] = useState("");
+  const [output, setOutput] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState({
     id: 54,
     name: "C++ (GCC 9.2.0)",
@@ -126,8 +128,9 @@ function Problem() {
       }
     }
 
-    const result = await getSubmission();
-    console.log(result);
+    getSubmission().then(res => setOutput(res));
+    // ans=result;
+    // console.log(result?.stdout);
   };
 
   useEffect(() => {
@@ -242,6 +245,10 @@ function Problem() {
                   multiline
                   onChange={(e) => setCustomInput(e.target.value)}
                 ></TextField>
+                
+              </Col>
+              <Col>
+              <center><h3>{atob(output?.stdout)}</h3></center>
               </Col>
             </Row>
           </Col>
@@ -251,3 +258,4 @@ function Problem() {
   );
 }
 export default Problem;
+
