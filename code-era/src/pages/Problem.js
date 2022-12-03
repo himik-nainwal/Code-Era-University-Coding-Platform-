@@ -128,7 +128,7 @@ function Problem() {
       }
     }
 
-    getSubmission().then(res => setOutput(res));
+    getSubmission().then((res) => setOutput(res));
     // ans=result;
     // console.log(result?.stdout);
   };
@@ -245,10 +245,13 @@ function Problem() {
                   multiline
                   onChange={(e) => setCustomInput(e.target.value)}
                 ></TextField>
-                
               </Col>
               <Col>
-              <center><h3>{atob(output?.stdout)}</h3></center>
+                {output?.stdout && (
+                  <center>
+                    <h3>{atob(output?.stdout)}</h3>
+                  </center>
+                )}
               </Col>
             </Row>
           </Col>
@@ -258,4 +261,3 @@ function Problem() {
   );
 }
 export default Problem;
-
