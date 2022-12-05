@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
+/* Chenage here custom  */
 
-* > * {
+/* * > * {
     font-family: "Poppins", cursive;
     margin: 0;
-}
+} */
 
 :root{
     --color-dark: #2C3131;
