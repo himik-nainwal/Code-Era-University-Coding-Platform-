@@ -5,6 +5,12 @@ body{
   padding-top: 1rem;
   background: #141e30;
 }
+.pre{
+  background-color: rgb(240, 240, 240);
+  border: 1px solid grey;
+  text-align: left;
+  padding: 1%;
+}
 .box {
   display: flex;
   flex-direction: column;

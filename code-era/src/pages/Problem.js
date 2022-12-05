@@ -73,7 +73,7 @@ function Problem() {
       stdin: btoa(customInput),
     };
 
-    console.log(reqData);
+    // console.log(reqData);
 
     let options = {
       method: "POST",
@@ -103,7 +103,7 @@ function Problem() {
     //   setCustomInput(e.target.value);
     // };
     const submissionToken = await createSubmission();
-    console.log(submissionToken);
+    // console.log(submissionToken);
 
     options = {
       method: "GET",
@@ -239,8 +239,8 @@ function Problem() {
                   </h4>
                 </center>
                 <TextField
-                  id="custom input "
-                  label="Enter your input here "
+                  id="custom input"
+                  label="Enter your input here"
                   multiline
                   onChange={(e) => setCustomInput(e.target.value)}
                 ></TextField>
@@ -248,7 +248,12 @@ function Problem() {
               <Col>
                 {output?.stdout && (
                   <center>
-                    <h3>{atob(output?.stdout)}</h3>
+                    <h4 style={{ display: "flex", paddingTop: "1%" }}>
+                      Output
+                    </h4>
+                    <pre className='pre'>
+                      {atob(output?.stdout)}
+                    </pre>
                   </center>
                 )}
               </Col>
