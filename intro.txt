@@ -1,0 +1,5 @@
+- using ques_id retrieve code details and console log
+- show running animation and do not allow
+run code /submit code when submission already queued
+- using correct code, check accepted/error status on run code
+- using all_test_cases_input as stdin check all_test_cases_output from user submission

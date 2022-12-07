@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState}from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import "./AddProb.css"
@@ -6,9 +6,21 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-
-
-const AddProb = () => {
+function AddProb(){
+  const [] =useState("");
+const handleSubmit=(e) => {
+  e.preventDefault();
+  fetch("https://localhost:5000/add_question_details",{
+      method:"POST",
+      crossDomain: true,
+      headers:{
+        "Content-type":"application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin":"*",
+      },
+      body: JSON.stringify
+  })
+}
   return (
     <Box component = "Form" 
     sx ={{'& .MuiTextField-root':{
@@ -54,6 +66,6 @@ const AddProb = () => {
     </Container>
     </Box>
   )
-}
 
+}
 export default AddProb

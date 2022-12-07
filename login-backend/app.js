@@ -308,3 +308,18 @@ app.post("/add_question_details",async(req,res)=>{
       console.log(error);
   }
 });
+
+// To get Code details 
+
+app.get("/get_question_code/",async(req,res)=>{
+  try{
+   // const ques_id=req.params.ques_id;
+    const question_parameters = await code.find({ques_id:1});
+   if(!question_parameters)return res.status(200).json({ status: "success", data: question_parameters });
+  } catch (error) {
+    console.error(error);
+    console.log(error);
+    res.json({ status: "Something went wrong" });
+  }
+});
+
