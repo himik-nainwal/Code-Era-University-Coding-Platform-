@@ -22,6 +22,7 @@ function Problem() {
   const [code, setCode] = useState("//your code goes here...");
   const [customInput, setCustomInput] = useState("");
   const [output, setOutput] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState({
     id: 54,
     name: "C++ (GCC 9.2.0)",
@@ -66,6 +67,7 @@ function Problem() {
   ];
 
   const handleRunCode = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const reqData = {
       language_id: selectedLanguage.id,
@@ -128,6 +130,7 @@ function Problem() {
     }
 
     getSubmission().then((res) => setOutput(res));
+    setLoading(false);
     // ans=result;
     // console.log(result?.stdout);
   };
@@ -226,10 +229,16 @@ function Problem() {
                 alignItems: "start",
               }}
             >
-              <Button onClick={handleRunCode} className="m-2">
-                Run Code
+              <Button
+                disabled={loading}
+                onClick={handleRunCode}
+                className="m-2"
+              >
+                {loading ? "Compiling..." : "Run Code"}
               </Button>
-              <Button className="m-2">Submit Code</Button>
+              <Button disabled={loading} className="m-2">
+                Submit Code
+              </Button>
             </div>
             <Row>
               <Col>
@@ -251,9 +260,7 @@ function Problem() {
                     <h4 style={{ display: "flex", paddingTop: "1%" }}>
                       Output
                     </h4>
-                    <pre className='pre'>
-                      {atob(output?.stdout)}
-                    </pre>
+                    <pre className="pre">{atob(output?.stdout)}</pre>
                   </center>
                 )}
               </Col>
