@@ -249,6 +249,7 @@ app.get("/problems", async (req, res) => {
 app.post("/add_question_code", async (req,res) =>{
   const {
       ques_id,
+      lang_id,
       cpp_boilerplate,
       correct_code,
       custom_judge,
@@ -264,6 +265,7 @@ app.post("/add_question_code", async (req,res) =>{
       }
       await code.create({
       ques_id,
+      lang_id,
       cpp_boilerplate,
       correct_code,
       custom_judge,

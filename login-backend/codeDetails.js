@@ -6,6 +6,9 @@ const code_schema = new mongoose.Schema(
             required: true,
             unique:true,
         },
+        lang_id:{
+            type:Number,
+        },
         
         cpp_boilerplate:{
             type: String,
