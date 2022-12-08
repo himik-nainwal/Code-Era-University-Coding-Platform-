@@ -170,13 +170,14 @@ function Problem() {
       fetch(`http://localhost:5000/get_question_code/${problemId}`, {
         method: "GET",
       })
-        .then((res) => res.json())
-        .then((res) => setCodeDetails(res.data));
+        .then((ans) => ans.json())
+        .then((ans) => setCodeDetails(ans.data));
     };
 
     fetchData();
   }, []);
 
+  // console.log();
   return (
     <>
       <Split
@@ -235,7 +236,7 @@ function Problem() {
             <Row>
               <Editor
                 theme="vs-dark"
-                value={code}
+                value={codeDetails?.[0]?.cpp_boilerplate}
                 onChange={(e) => {
                   setCode(e);
                 }}
