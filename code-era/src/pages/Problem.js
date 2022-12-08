@@ -130,10 +130,9 @@ function Problem() {
       }
     }
 
-    getSubmission().then((res) => setOutput(res));
+    getSubmission().then((res) =>{ setOutput(res); console.log(res)});
     setLoading(false);
-    // ans=result;
-    // console.log(result?.stdout);
+    
   };
 
   useEffect(() => {
@@ -177,7 +176,7 @@ function Problem() {
     fetchData();
   }, []);
 
-  // console.log();
+  // console.log(codeDetails);
   return (
     <>
       <Split
