@@ -1,15 +1,21 @@
 const express = require("express");
 const app = express();
+
 const mongoose = require("mongoose");
 app.use(express.json());
+
 const cors = require("cors");
 app.use(cors());
+
 const bcrypt = require("bcryptjs");
+
 app.set("view engine", "ejs");
+
 app.use(express.urlencoded({ extended: false }));
 
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
+
 const JWT_SECRET = "myPasswrdis100%sexy";
 
 const mongoUrl =
@@ -27,8 +33,11 @@ mongoose
 // Below code is for adding users through postman and mongo
 require("./userDetails");
 require("./codeDetails");
+
 const User = mongoose.model("UserInfo");
+
 const Problem = require("./problem");   // for questions details
+
 const code= mongoose.model("codes"); // for question code
 
 // console.log(mongoose.models);
@@ -316,7 +325,9 @@ app.post("/add_question_details",async(req,res)=>{
 app.get("/get_question_code/:question_id",async(req,res)=>{
   try{
    const question_id=req.params.question_id;
+   //console.log(question_id);
     const question_parameters = await code.find({ques_id: question_id});
+    // console.log(question_parameters); 
   return res.status(200).json({ status: "success", data: question_parameters });
   } catch (error) {
     console.error(error);

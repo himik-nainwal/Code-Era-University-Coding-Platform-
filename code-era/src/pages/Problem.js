@@ -19,6 +19,7 @@ function Problem() {
 
   const { problemId } = useParams();
   const [questionDetails, setQuestionDetails] = useState(null);
+  const [codeDetails, setCodeDetails] = useState(null);
   const [code, setCode] = useState("//your code goes here...");
   const [customInput, setCustomInput] = useState("");
   const [output, setOutput] = useState(null);
@@ -150,6 +151,27 @@ function Problem() {
       })
         .then((res) => res.json())
         .then((res) => setQuestionDetails(res.data));
+    };
+
+    fetchData();
+  }, []);
+
+
+  useEffect(() => {
+    // window.addEventListener("keydown", (e) => {
+    //   if (e.ctrlKey || e.metaKey) {
+    //     if (String.fromCharCode(e.which).toLowerCase() === "s") {
+    //       e.preventDefault();
+    //     }
+    //   }
+    // });
+    const fetchData = async () => {
+      // console.log("here");
+      fetch(`http://localhost:5000/get_question_code/${problemId}`, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((res) => setCodeDetails(res.data));
     };
 
     fetchData();
