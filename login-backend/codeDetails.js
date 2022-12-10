@@ -13,7 +13,9 @@ const code_schema = new mongoose.Schema(
         cpp_boilerplate:{
             type: String,
         },
-        
+        py_boilerplate:{
+            type: String,
+        },
         correct_code:{
             type: String,
             // required: true,
