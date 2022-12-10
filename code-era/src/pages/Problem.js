@@ -11,6 +11,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { positions } from "@mui/system";
+import OutputWindow from "./OutputWindow";
+import OutputDetails from "./OutputDetails";
 
 function Problem() {
   function createMarkup(c) {
@@ -66,6 +68,10 @@ function Problem() {
       lang: "python",
     },
   ];
+  const id_to_lang={
+    54: "cpp_boilerplate",
+    71: 'py_boilerplate',
+  };
 
   const handleRunCode = async (e) => {
     setLoading(true);
@@ -155,7 +161,6 @@ function Problem() {
     fetchData();
   }, []);
 
-
   useEffect(() => {
     // window.addEventListener("keydown", (e) => {
     //   if (e.ctrlKey || e.metaKey) {
@@ -235,7 +240,7 @@ function Problem() {
             <Row>
               <Editor
                 theme="vs-dark"
-                value={codeDetails?.[0]?.cpp_boilerplate}
+                value={codeDetails?.[0]?.[id_to_lang[selectedLanguage.id]]}
                 onChange={(e) => {
                   setCode(e);
                 }}
@@ -277,14 +282,8 @@ function Problem() {
                 ></TextField>
               </Col>
               <Col>
-                {output?.stdout && (
-                  <center>
-                    <h4 style={{ display: "flex", paddingTop: "1%" }}>
-                      Output
-                    </h4>
-                    <pre className="pre">{atob(output?.stdout)}</pre>
-                  </center>
-                )}
+                <OutputWindow outputDetails={output} />{" "}
+                <OutputDetails outputDetails={output} />
               </Col>
             </Row>
           </Col>
