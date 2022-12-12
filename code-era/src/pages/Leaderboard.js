@@ -12,7 +12,7 @@ const Leaderboard = () => {
     fetchData();
   }, []);
 
-  // Lets do some sorting according to score Descending Order .
+  // Lets do some sorting according to score in Descending Order .
   function compare(a, b) {
     if (a.score > b.score) {
       return -1;

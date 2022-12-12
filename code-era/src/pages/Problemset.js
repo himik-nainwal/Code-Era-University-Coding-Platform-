@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/prob.css";
+import Leaderboard from "./Leaderboard";
 import { BsBoxArrowInRight } from "react-icons/bs";
 
 const Problemset = () => {
