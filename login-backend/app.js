@@ -337,3 +337,16 @@ app.get("/get_question_code/:question_id",async(req,res)=>{
     res.json({ status: "Something went wrong" });
   }
 });
+
+
+// API for leaderboard 
+
+app.get("/usermeta", async (req, res) => {
+  try {
+    const user = await User.find();
+    return res.status(200).json({ status: "success", data: user });
+  } catch (error) {
+    console.error(error);
+    res.json({ status: "Something went wrong" });
+  }
+});
