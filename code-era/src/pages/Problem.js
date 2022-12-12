@@ -68,9 +68,9 @@ function Problem() {
       lang: "python",
     },
   ];
-  const id_to_lang={
+  const id_to_lang = {
     54: "cpp_boilerplate",
-    71: 'py_boilerplate',
+    71: "py_boilerplate",
   };
 
   const handleRunCode = async (e) => {
@@ -136,9 +136,11 @@ function Problem() {
       }
     }
 
-    getSubmission().then((res) =>{ setOutput(res); console.log(res)});
+    getSubmission().then((res) => {
+      setOutput(res);
+      console.log(res);
+    });
     setLoading(false);
-    
   };
 
   useEffect(() => {

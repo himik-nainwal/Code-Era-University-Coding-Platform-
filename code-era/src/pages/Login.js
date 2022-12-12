@@ -27,7 +27,7 @@ function Login() {
         console.log(data, "userRegister");
         if (data.status === "ok") {
           window.localStorage.setItem("token", data.data);
-          window.location.href = "./profile";
+          window.location.href = "./problemset";
         }
       });
   };
