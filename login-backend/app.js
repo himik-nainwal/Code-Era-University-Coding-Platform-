@@ -343,10 +343,12 @@ app.get("/get_question_code/:question_id",async(req,res)=>{
 
 app.get("/usermeta", async (req, res) => {
   try {
-    const user = await User.find();
+    const user = await User.find({},{password:0});
     return res.status(200).json({ status: "success", data: user });
   } catch (error) {
     console.error(error);
     res.json({ status: "Something went wrong" });
   }
 });
+
+
