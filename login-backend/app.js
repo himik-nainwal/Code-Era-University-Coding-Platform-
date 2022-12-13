@@ -352,3 +352,19 @@ app.get("/usermeta", async (req, res) => {
 });
 
 
+// To get Profile info of others
+
+app.get("/oprofile/:studentid",async(req,res)=>{
+  try{
+    const studentid = req.params.studentid;
+    const person = await User.findOne({student_id:studentid},{password:0});
+    if (!person) return res.json({ status: "Invalid Student Id" });
+    return res.status(200).json({ status: "success", data: person });
+
+  }
+  catch (error) {
+    console.error(error);
+    res.json({ status: "Something went wrong" });
+  }
+});
+

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Leaderboard.css";
 const Leaderboard = () => {
   const [sblog, setSblog] = useState([]);
@@ -11,7 +12,6 @@ const Leaderboard = () => {
     };
     fetchData();
   }, []);
-
   // Lets do some sorting according to score in Descending Order .
   function compare(a, b) {
     if (a.score > b.score) {
@@ -36,6 +36,7 @@ const Leaderboard = () => {
                 <th class="header">Name</th>
                 <th class="header">Username</th>
                 <th class="header">Score</th>
+                <th class="header">Profile</th>
               </tr>
             </thead>
             <tbody>
@@ -45,6 +46,12 @@ const Leaderboard = () => {
                   <td>{profile.fname + " " + profile.lname}</td>
                   <td>{profile.userName}</td>
                   <td>{profile.score}</td>
+                  <td>
+                    <Link style={{ textDecoration: "none", color: "black" }}
+                        to={`/oprofile/${profile?.student_id}`}>
+                          Open Profile 
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>

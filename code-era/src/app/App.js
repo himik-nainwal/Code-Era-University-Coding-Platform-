@@ -11,6 +11,7 @@ import Reset from "../pages/Reset";
 import AddPro from "../components/admin/AddProb.js";
 import ProbDetails from "../components/admin/ProbDetails"
 import Leaderboard from "../pages/Leaderboard"
+import Oprofile from "../pages/Oprofile"
 // import Sidebar from "../components/navbar/Sidebar";
 import { useState, useEffect } from "react";
 
@@ -65,13 +66,14 @@ function App() {
         <Route path ="/probdetails" element={<ProbDetails/>}/>
         <Route path ="/leaderboard" element ={<Leaderboard/>}/>
         <Route path="/problem/:problemId" element={<Problem />} />
+        <Route path="/oprofile/:studentid" element={<Oprofile/>} />
         {!localStorage.getItem("token") && (
           <>
             <Route path="/login" element={<Login />} />
             <Route path="/reset" element={<Reset />} />
           </>
         )}
-        <Route path="*" element={<h1>404</h1>} />
+        {/* <Route path="*" element={<h1>404</h1>} /> */}
         {/* <Route path="/login" element={<Login />}/> */}
       </Routes>
       {/* <Sidebar>
