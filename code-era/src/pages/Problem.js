@@ -136,10 +136,13 @@ function Problem() {
       }
     }
 
-    getSubmission().then((res) => {
-      setOutput(res);
-      console.log(res);
-    });
+    const result = await getSubmission();
+    setOutput(result);
+    console.log(result);
+    // .then((res) => {
+    //   setOutput(res);
+    //   console.log(res);
+    // });
     setLoading(false);
   };
 
