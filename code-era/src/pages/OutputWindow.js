@@ -1,31 +1,39 @@
 import React from "react";
+import { Buffer } from 'buffer';
+
+function btoa(str) { return Buffer.from(str).toString('base64') }
+function atob(str) { return Buffer.from(str, 'base64').toString() }
 
 const OutputWindow = ({ outputDetails }) => {
-  //   console.log("Ooutput");
+  //   console.log("Output");
   const getOutput = () => {
     let statusId = outputDetails?.status?.id;
 
     if (statusId === 6) {
       // compilation error
-      return <div className="">{atob(outputDetails?.compile_output)}</div>;
+      return <pre className="">{atob(outputDetails?.compile_output)}</pre>;
     } else if (statusId === 3) {
-      return (
-        <div className="">
-          {atob(outputDetails.stdout) !== null
-            ? `${atob(outputDetails.stdout)}`
-            : null}
-        </div>
-      );
-    } else if (statusId === 5) {
-      return <div className="">{`Time Limit Exceeded`}</div>;
+      return (<>
+        <pre>Input: </pre><pre>{atob(outputDetails?.stdin)}</pre>
+        <pre>Output: </pre><pre>{atob(outputDetails?.stdout)}</pre>
+      </>);
+    } else if (statusId === 4) {
+      return (<>
+        <pre>Input: </pre><pre>{atob(outputDetails?.stdin)}</pre>
+        <pre>Output: </pre><pre>{atob(outputDetails?.stdout)}</pre>
+        <pre>Expected Output: </pre><pre>{atob(outputDetails?.expected_output)}</pre>
+      </>);
+    }
+    else if (statusId === 5) {
+      return <pre className="">{`Time Limit Exceeded`}</pre>;
     } else {
-      return <div className="">{atob(outputDetails?.stderr)}</div>;
+      return <pre className="">{atob(outputDetails?.stderr)}</pre>;
     }
   };
   return (
     <>
-      <h1 className="">Output</h1>
-      <div className="">{outputDetails ? <>{getOutput()}</> : null}</div>
+      <h4 className="">Output</h4>
+      <pre className="">{outputDetails ? <>{getOutput()}</> : null}</pre>
     </>
   );
 };

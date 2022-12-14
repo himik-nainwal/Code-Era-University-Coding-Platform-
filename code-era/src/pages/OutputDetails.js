@@ -3,15 +3,15 @@ import React from "react";
 const OutputDetails = ({ outputDetails }) => {
   return (
     <div className="">
-      <p className="">
+      <pre className="">
         Status: <span className="">{outputDetails?.status?.description}</span>
-      </p>
-      <p className="">
-        Memory: <span className="">{outputDetails?.memory}</span>
-      </p>
-      <p className="">
-        Time: <span className="">{outputDetails?.time}</span>
-      </p>
+      </pre>
+      <pre className="">
+        Memory: <span className="">{outputDetails?.memory} kB</span>
+      </pre>
+      <pre className="">
+        Time: <span className="">{outputDetails?.time} sec</span>
+      </pre>
     </div>
   );
 };

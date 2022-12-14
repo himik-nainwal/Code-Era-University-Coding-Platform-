@@ -13,6 +13,7 @@ import TextField from "@mui/material/TextField";
 import { positions } from "@mui/system";
 import OutputWindow from "./OutputWindow";
 import OutputDetails from "./OutputDetails";
+import { Buffer } from 'buffer';
 
 function Problem() {
   function createMarkup(c) {
@@ -73,77 +74,92 @@ function Problem() {
     71: "py_boilerplate",
   };
 
+  async function getSubmission(options) {
+    try {
+      let response = await axios.request(options);
+      // console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function createSubmission(options) {
+    try {
+      let response = await axios.request(options);
+      // console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const createSubmissionOptions = {
+    method: "POST",
+    url: "https://judge0-ce.p.rapidapi.com/submissions",
+    params: { base64_encoded: "true", fields: "*" },
+    headers: {
+      "content-type": "application/json",
+      "Content-Type": "application/json",
+      // 'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
+      "X-RapidAPI-Key": "36ca6be9edmsha4366d4621dace3p128c99jsnd780bbec375d",
+      "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+    },
+    data: {
+      language_id: 0,
+      source_code: "",
+      stdin: "",
+      expected_output: "",
+    },
+  };
+
+  function getSubmissionOptions(token) {
+    this.method = "GET";
+    this.url = "https://judge0-ce.p.rapidapi.com/submissions/" + token;
+    this.params = { base64_encoded: "true", fields: "*" };
+    this.headers = {
+      // 'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
+      "X-RapidAPI-Key": "36ca6be9edmsha4366d4621dace3p128c99jsnd780bbec375d",
+      "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+    };
+  }
+
+  function btoa(str) { return Buffer.from(str).toString('base64') }
+  function atob(str) { return Buffer.from(str, 'base64').toString() }
+
   const handleRunCode = async (e) => {
     setLoading(true);
     e.preventDefault();
-    const reqData = {
-      language_id: selectedLanguage.id,
-      source_code: btoa(code),
-      stdin: btoa(customInput),
-    };
 
-    // console.log(reqData);
+    // console.log(codeDetails[0]);
 
-    let options = {
-      method: "POST",
-      url: "https://judge0-ce.p.rapidapi.com/submissions",
-      params: { base64_encoded: "true", fields: "*" },
-      headers: {
-        "content-type": "application/json",
-        "Content-Type": "application/json",
-        // 'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
-        "X-RapidAPI-Key": "36ca6be9edmsha4366d4621dace3p128c99jsnd780bbec375d",
-        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
-      },
-      data: reqData,
-    };
-
-    async function createSubmission() {
-      try {
-        let response = await axios.request(options);
-        // console.log(response.data);
-        return response.data;
-      } catch (error) {
-        console.error(error);
-      }
+    if (customInput === "") {
+      createSubmissionOptions.data.language_id = selectedLanguage.id;
+      createSubmissionOptions.data.source_code = btoa(code);
+      createSubmissionOptions.data.stdin = btoa(codeDetails[0].example_test_case_input);
+      createSubmissionOptions.data.expected_output = btoa(codeDetails[0].example_test_case_output);
+      const submissionToken = await createSubmission(createSubmissionOptions);
+      const result = await getSubmission(new getSubmissionOptions(submissionToken.token));
+      setOutput(result);
+      console.log(result);
     }
-    // const handleCustomInputChange = (e) => {
-
-    //   setCustomInput(e.target.value);
-    // };
-    const submissionToken = await createSubmission();
-    // console.log(submissionToken);
-
-    options = {
-      method: "GET",
-      url:
-        "https://judge0-ce.p.rapidapi.com/submissions/" + submissionToken.token,
-      params: { base64_encoded: "true", fields: "*" },
-      headers: {
-        // 'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
-        "X-RapidAPI-Key": "36ca6be9edmsha4366d4621dace3p128c99jsnd780bbec375d",
-        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
-      },
-    };
-
-    async function getSubmission() {
-      try {
-        let response = await axios.request(options);
-        // console.log(response.data);
-        return response.data;
-      } catch (error) {
-        console.error(error);
-      }
+    else {
+      createSubmissionOptions.data.language_id = codeDetails[0].correct_code_lang_id;
+      createSubmissionOptions.data.source_code = btoa(codeDetails[0].correct_code);
+      createSubmissionOptions.data.stdin = btoa(customInput);
+      const correctResultToken = await createSubmission(createSubmissionOptions);
+      const correctResult = await getSubmission(new getSubmissionOptions(correctResultToken.token));
+      createSubmissionOptions.data.expected_output = correctResult.stdout;
+      createSubmissionOptions.data.language_id = selectedLanguage.id;
+      createSubmissionOptions.data.source_code = btoa(code);
+      const submissionToken = await createSubmission(createSubmissionOptions);
+      const result = await getSubmission(new getSubmissionOptions(submissionToken.token));
+      setOutput(result);
+      console.log(result);
     }
 
-    const result = await getSubmission();
-    setOutput(result);
-    console.log(result);
-    // .then((res) => {
-    //   setOutput(res);
-    //   console.log(res);
-    // });
     setLoading(false);
+
   };
 
   useEffect(() => {

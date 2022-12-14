@@ -1,48 +1,48 @@
-const mongoose =require("mongoose");
+const mongoose = require("mongoose");
 const code_schema = new mongoose.Schema(
     {
-        ques_id:{
+        ques_id: {
             type: Number,
             required: true,
-            unique:true,
+            unique: true,
         },
-        lang_id:{
-            type:Number,
+        correct_code_lang_id: {
+            type: Number,
         },
-        
-        cpp_boilerplate:{
+
+        cpp_boilerplate: {
             type: String,
         },
-        py_boilerplate:{
+        py_boilerplate: {
             type: String,
         },
-        correct_code:{
+        correct_code: {
             type: String,
             // required: true,
         },
 
-        custom_judge:{
+        custom_judge: {
             type: String,
         },
-        example_test_case_input:{
-            type:String,
+        example_test_case_input: {
+            type: String,
 
         },
-        example_test_case_output:{
-            type:String,
+        example_test_case_output: {
+            type: String,
         },
-        all_test_cases_input:{
-            type:String,
+        all_test_cases_input: {
+            type: String,
         },
-        all_test_cases_output:{
-            type:String,
+        all_test_cases_output: {
+            type: String,
         },
     },
     {
-        timestamps:true,
+        timestamps: true,
     },
     {
         collection: "codes",
     }
 );
-module.exports = mongoose.model("codes",code_schema);
+module.exports = mongoose.model("codes", code_schema);
