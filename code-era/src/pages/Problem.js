@@ -13,7 +13,7 @@ import TextField from "@mui/material/TextField";
 import { positions } from "@mui/system";
 import OutputWindow from "./OutputWindow";
 import OutputDetails from "./OutputDetails";
-import { Buffer } from 'buffer';
+import { Buffer } from "buffer";
 
 function Problem() {
   function createMarkup(c) {
@@ -27,6 +27,8 @@ function Problem() {
   const [customInput, setCustomInput] = useState("");
   const [output, setOutput] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
+
   const [selectedLanguage, setSelectedLanguage] = useState({
     id: 54,
     name: "C++ (GCC 9.2.0)",
@@ -124,8 +126,12 @@ function Problem() {
     };
   }
 
-  function btoa(str) { return Buffer.from(str).toString('base64') }
-  function atob(str) { return Buffer.from(str, 'base64').toString() }
+  function btoa(str) {
+    return Buffer.from(str).toString("base64");
+  }
+  function atob(str) {
+    return Buffer.from(str, "base64").toString();
+  }
 
   const handleRunCode = async (e) => {
     setLoading(true);
@@ -136,30 +142,66 @@ function Problem() {
     if (customInput === "") {
       createSubmissionOptions.data.language_id = selectedLanguage.id;
       createSubmissionOptions.data.source_code = btoa(code);
-      createSubmissionOptions.data.stdin = btoa(codeDetails[0].example_test_case_input);
-      createSubmissionOptions.data.expected_output = btoa(codeDetails[0].example_test_case_output);
+      createSubmissionOptions.data.stdin = btoa(
+        codeDetails[0].example_test_case_input
+      );
+      createSubmissionOptions.data.expected_output = btoa(
+        codeDetails[0].example_test_case_output
+      );
       const submissionToken = await createSubmission(createSubmissionOptions);
-      const result = await getSubmission(new getSubmissionOptions(submissionToken.token));
+      const result = await getSubmission(
+        new getSubmissionOptions(submissionToken.token)
+      );
       setOutput(result);
       console.log(result);
-    }
-    else {
-      createSubmissionOptions.data.language_id = codeDetails[0].correct_code_lang_id;
-      createSubmissionOptions.data.source_code = btoa(codeDetails[0].correct_code);
+    } else {
+      createSubmissionOptions.data.language_id =
+        codeDetails[0].correct_code_lang_id;
+      createSubmissionOptions.data.source_code = btoa(
+        codeDetails[0].correct_code
+      );
       createSubmissionOptions.data.stdin = btoa(customInput);
-      const correctResultToken = await createSubmission(createSubmissionOptions);
-      const correctResult = await getSubmission(new getSubmissionOptions(correctResultToken.token));
+      const correctResultToken = await createSubmission(
+        createSubmissionOptions
+      );
+      const correctResult = await getSubmission(
+        new getSubmissionOptions(correctResultToken.token)
+      );
       createSubmissionOptions.data.expected_output = correctResult.stdout;
       createSubmissionOptions.data.language_id = selectedLanguage.id;
       createSubmissionOptions.data.source_code = btoa(code);
       const submissionToken = await createSubmission(createSubmissionOptions);
-      const result = await getSubmission(new getSubmissionOptions(submissionToken.token));
+      const result = await getSubmission(
+        new getSubmissionOptions(submissionToken.token)
+      );
       setOutput(result);
       console.log(result);
     }
 
     setLoading(false);
+  };
 
+  const handleSubmitCode = async (e) => {
+    setLoading1(true);
+    e.preventDefault();
+    createSubmissionOptions.data.language_id = selectedLanguage.id;
+    createSubmissionOptions.data.source_code = btoa(code);
+    createSubmissionOptions.data.stdin = btoa(
+      codeDetails[0].all_test_cases_input
+    );
+    createSubmissionOptions.data.expected_output = btoa(
+      codeDetails[0].all_test_cases_output
+    );
+
+    const submissionToken = await createSubmission(createSubmissionOptions);
+    const result = await getSubmission(
+      new getSubmissionOptions(submissionToken.token)
+    );
+
+    setOutput(result);
+    console.log(result);
+
+    setLoading1(false);
   };
 
   useEffect(() => {
@@ -284,8 +326,12 @@ function Problem() {
               >
                 {loading ? "Compiling..." : "Run Code"}
               </Button>
-              <Button disabled={loading} className="m-2">
-                Submit Code
+              <Button
+                disabled={loading1}
+                onClick={handleSubmitCode}
+                className="m-2"
+              >
+                {loading1 ? "Submitting..." : "Submit Code"}
               </Button>
             </div>
             <Row>
