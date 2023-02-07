@@ -1,71 +1,99 @@
-import React ,{useState}from 'react'
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import "./AddProb.css"
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import React, { useState } from "react";
 
-function AddProb(){
-  const [] =useState("");
-const handleSubmit=(e) => {
-  e.preventDefault();
-  fetch("https://localhost:5000/add_question_details",{
-      method:"POST",
-      crossDomain: true,
-      headers:{
-        "Content-type":"application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin":"*",
-      },
-      body: JSON.stringify
-  })
-}
+const AddProb = () => {
+  const [quesId, setQuesId] = useState("");
+  const [questionTitle, setQuestionTitle] = useState("");
+  const [questionTitleSlug, setQuestionTitleSlug] = useState("");
+  const [difficultyLevel, setDifficultyLevel] = useState("");
+  const [descriptionHtml, setDescriptionHtml] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:5000/add_question_details", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ques_id: quesId,
+          question_title: questionTitle,
+          question_title_slug: questionTitleSlug,
+          difficulty_level: difficultyLevel,
+          description_html: descriptionHtml,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit question");
+      }
+
+      // Reset form after successful submission
+      setQuesId("");
+      setQuestionTitle("");
+      setQuestionTitleSlug("");
+      setDifficultyLevel("");
+      setDescriptionHtml("");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <Box component = "Form" 
-    sx ={{'& .MuiTextField-root':{
-      m: 1, width: '25ch'
-    },
-    }}
-    noValidate >
-    <Container className='main'>
-      <Col>
-      <Row>
-        <TextField id ="question-id"
-        label="Enter Question id ">
-        </TextField>
-      </Row>
-      
-      <Row>
-        <TextField id ="question_title"
-        label="Question Title">
-        </TextField>
-      </Row>
-      </Col>
-      <Col>
-      <Row>
-        <TextField id ="question_title_slug"
-        label="Question Title Slug">
-        </TextField>
-      </Row>
-      <Row>
-        <TextField id ="difficulty_level"
-        label="Difficulty Level">
-        </TextField>
-      </Row>
-      </Col>
-      <Col>
-      <Row>
-        <TextField id ="description_html"
-        label="Description HTML"
-        multiline 
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="quesId">Question ID:</label>
+        <input
+          type="number"
+          id="quesId"
+          value={quesId}
+          onChange={(event) => setQuesId(event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="questionTitle">Question Title:</label>
+        <input
+          type="text"
+          id="questionTitle"
+          value={questionTitle}
+          onChange={(event) => setQuestionTitle(event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="questionTitleSlug">Question Title Slug:</label>
+        <input
+          type="text"
+          id="questionTitleSlug"
+          value={questionTitleSlug}
+          onChange={(event) => setQuestionTitleSlug(event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="difficultyLevel">Difficulty Level:</label>
+        <select
+          id="difficultyLevel"
+          value={difficultyLevel}
+          onChange={(event) => setDifficultyLevel(event.target.value)}
         >
-        </TextField>
-      </Row>
-      </Col>
-    </Container>
-    </Box>
-  )
+          <option value="">-- Select Difficulty --</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="descriptionHtml">Description HTML:</label>
+        <textarea
+          id="descriptionHtml"
+          value= {descriptionHtml}
+          onChange={(event) => setDescriptionHtml(event.target.value)}
+        />
+      </div>
+      <button type="submit">Submit Question</button>
+    </form>
+  );
+};
 
-}
-export default AddProb
+export default AddProb;
+
