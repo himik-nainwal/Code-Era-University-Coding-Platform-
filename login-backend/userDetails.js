@@ -27,9 +27,9 @@ const userDetailsSchema = new mongoose.Schema(
     course: { type: String },
     passing_out_year: { type: Number },
     linkedin: { type: String },
-    score: { type: Number,default:0 },
+    score: { type: Number, default: 0 },
     university: { type: String },
-    questions: { type: [Number] },
+    questionIds: { type: [Number] },
   },
   {
     timestamps: true,
