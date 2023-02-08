@@ -36,9 +36,9 @@ require("./codeDetails");
 
 const User = mongoose.model("UserInfo");
 
-const Problem = require("./problem");   // for questions details
+const Problem = require("./problem"); // for questions details
 
-const code= mongoose.model("codes"); // for question code
+const code = mongoose.model("codes"); // for question code
 
 // console.log(mongoose.models);
 
@@ -128,7 +128,6 @@ app.post("/login-user", async (req, res) => {
   return res.json({ status: "error", error: "Invalid Password" });
 });
 
-
 //API for getting user Data
 
 app.post("/userData", async (req, res) => {
@@ -137,7 +136,6 @@ app.post("/userData", async (req, res) => {
   // console.log();
   try {
     const user = jwt.verify(token, JWT_SECRET);
-    
 
     const sid = user.student_id;
     User.findOne({ student_id: sid })
@@ -161,7 +159,7 @@ app.post("/forgot-password", async (req, res) => {
   // console.log(student_id);
   try {
     const oldUser = await User.findOne({ student_id });
-    
+
     if (!oldUser) {
       return res.json({ status: "User Not Exists!!" });
     }
@@ -178,8 +176,7 @@ app.post("/forgot-password", async (req, res) => {
   } catch (error) {}
 });
 
-//Getting Details 
-
+//Getting Details
 
 app.get("/reset-password/:id/:token", async (req, res) => {
   const { id, token } = req.params;
@@ -253,27 +250,26 @@ app.get("/problems", async (req, res) => {
   }
 });
 
-
-// Adding questions API 
-app.post("/add_question_code", async (req,res) =>{
+// Adding questions API
+app.post("/add_question_code", async (req, res) => {
   const {
-      ques_id,
-      lang_id,
-      cpp_boilerplate,
-      py_boilerplate,
-      correct_code,
-      custom_judge,
-      example_test_case_input,
-      example_test_case_output,
-      all_test_cases_input,
-      all_test_cases_output,
+    ques_id,
+    lang_id,
+    cpp_boilerplate,
+    py_boilerplate,
+    correct_code,
+    custom_judge,
+    example_test_case_input,
+    example_test_case_output,
+    all_test_cases_input,
+    all_test_cases_output,
   } = req.body;
   try {
-      const old_question = await code.findOne({ques_id});
-      if(old_question) {
-          return res.send({error : "Same question Exists "});
-      }
-      await code.create({
+    const old_question = await code.findOne({ ques_id });
+    if (old_question) {
+      return res.send({ error: "Same question Exists " });
+    }
+    await code.create({
       ques_id,
       lang_id,
       cpp_boilerplate,
@@ -284,53 +280,53 @@ app.post("/add_question_code", async (req,res) =>{
       example_test_case_output,
       all_test_cases_input,
       all_test_cases_output,
-      });
-      res.send({status : "Ok Done !"});
-  } catch (error){
-      res.send({status: "Error "});
-      console.log(error);
+    });
+    res.send({ status: "Ok Done !" });
+  } catch (error) {
+    res.send({ status: "Error " });
+    console.log(error);
   }
 });
 
-
 // Adding question details
-app.post("/add_question_details",async(req,res)=>{
+app.post("/add_question_details", async (req, res) => {
   const {
+    ques_id,
+    question_title,
+    question_title_slug,
+    difficulty_level,
+    description_html,
+  } = req.body;
+  try {
+    const old_version = await Problem.findOne({ ques_id });
+    if (old_version) {
+      return res.send({ error: "Same question Exists " });
+    }
+    await Problem.create({
       ques_id,
       question_title,
       question_title_slug,
       difficulty_level,
       description_html,
-  }=req.body;
-  try {
-      const old_version =await Problem.findOne({ques_id});
-      if(old_version){
-          return res.send({error : "Same question Exists "});
-      }
-      await Problem.create({
-          ques_id,
-          question_title,
-          question_title_slug,
-          difficulty_level,
-          description_html,
-      });
-      res.send({status : "Ok Done ! "});
-  }
-  catch(error){
-      res.send({status : "Error "});
-      console.log(error);
+    });
+    res.send({ status: "Ok Done ! " });
+  } catch (error) {
+    res.send({ status: "Error " });
+    console.log(error);
   }
 });
 
-// To get Code details 
+// To get Code details
 
-app.get("/get_question_code/:question_id",async(req,res)=>{
-  try{
-   const question_id=req.params.question_id;
-   //console.log(question_id);
-    const question_parameters = await code.find({ques_id: question_id});
-    // console.log(question_parameters); 
-  return res.status(200).json({ status: "success", data: question_parameters });
+app.get("/get_question_code/:question_id", async (req, res) => {
+  try {
+    const question_id = req.params.question_id;
+    //console.log(question_id);
+    const question_parameters = await code.find({ ques_id: question_id });
+    // console.log(question_parameters);
+    return res
+      .status(200)
+      .json({ status: "success", data: question_parameters });
   } catch (error) {
     console.error(error);
     console.log(error);
@@ -338,12 +334,11 @@ app.get("/get_question_code/:question_id",async(req,res)=>{
   }
 });
 
-
-// API for leaderboard 
+// API for leaderboard
 
 app.get("/usermeta", async (req, res) => {
   try {
-    const user = await User.find({},{password:0});
+    const user = await User.find({}, { password: 0 });
     return res.status(200).json({ status: "success", data: user });
   } catch (error) {
     console.error(error);
@@ -351,21 +346,19 @@ app.get("/usermeta", async (req, res) => {
   }
 });
 
-
 // To get Profile info of others
 
-app.get("/oprofile/:studentid",async(req,res)=>{
-  try{
+app.get("/oprofile/:studentid", async (req, res) => {
+  try {
     const studentid = req.params.studentid;
-    const person = await User.findOne({student_id:studentid},{password:0});
+    const person = await User.findOne(
+      { student_id: studentid },
+      { password: 0 }
+    );
     if (!person) return res.json({ status: "Invalid Student Id" });
     return res.status(200).json({ status: "success", data: person });
-
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
     res.json({ status: "Something went wrong" });
   }
 });
-
- 
