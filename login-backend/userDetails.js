@@ -1,5 +1,23 @@
 const mongoose = require("mongoose");
 
+// const codedetails = new mongoose.Schema({
+//   questionId:{
+//     type:Number
+//   },
+//   code:{
+//     type:String
+//   },
+//   status:{
+//     type:String
+//     },
+//   time:{
+//     type:String
+//   },
+//   language:{
+//     type:String
+//   },
+//   });
+
 const userDetailsSchema = new mongoose.Schema(
   {
     student_id: { type: Number, unique: true, require: true },
@@ -30,7 +48,9 @@ const userDetailsSchema = new mongoose.Schema(
     score: { type: Number, default: 0 },
     university: { type: String },
     questionIds: { type: [Number] },
+    // code: [codedetails],
   },
+
   {
     timestamps: true,
   },
