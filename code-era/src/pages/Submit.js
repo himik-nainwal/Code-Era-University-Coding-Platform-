@@ -4,7 +4,7 @@ import { Buffer } from 'buffer';
 function btoa(str) { return Buffer.from(str).toString('base64') }
 function atob(str) { return Buffer.from(str, 'base64').toString() }
 
-const OutputWindow = ({ outputDetails }) => {
+const Submit = ({ outputDetails }) => {
   const [display,setDisplay] = useState(false);
   //   console.log("Output");
   const getOutput = () => {
@@ -15,8 +15,8 @@ const OutputWindow = ({ outputDetails }) => {
       return <pre className="">{atob(outputDetails?.compile_output)}</pre>;
     } else if (statusId === 3) {
       return (<>
-        {/* <pre>Input: </pre><pre>{atob(outputDetails?.stdin)}</pre>
-        <pre>Output: </pre><pre>{atob(outputDetails?.stdout)}</pre> */}
+        <pre>Input: </pre><pre>{atob(outputDetails?.stdin)}</pre>
+        <pre>Output: </pre><pre>{atob(outputDetails?.stdout)}</pre>
       </>);
     } else if (statusId === 4) {
       return (<>
@@ -39,4 +39,4 @@ const OutputWindow = ({ outputDetails }) => {
   );
 };
 
-export default OutputWindow;
+export default Submit;

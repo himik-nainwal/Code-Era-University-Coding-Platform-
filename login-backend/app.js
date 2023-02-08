@@ -67,7 +67,7 @@ app.post("/register", async (req, res) => {
     linkedin, //done
     score, //done
     university,
-    questions, //done
+    questionIds, //done
   } = req.body;
   const encryptedpass = await bcrypt.hash(password, 10);
 
@@ -99,7 +99,7 @@ app.post("/register", async (req, res) => {
       linkedin,
       score,
       university,
-      questions,
+      questionIds,
     });
     res.send({ status: "Ok" });
   } catch (error) {
@@ -367,5 +367,3 @@ app.get("/oprofile/:studentid",async(req,res)=>{
     res.json({ status: "Something went wrong" });
   }
 });
-
- 
