@@ -145,7 +145,7 @@ app.post("/userData", async (req, res) => {
       .catch((error) => {
         res.send({ status: "error", data: error });
       });
-  } catch (error) {}
+  } catch (error) { }
 });
 
 app.listen(5000, () => {
@@ -173,7 +173,7 @@ app.post("/forgot-password", async (req, res) => {
     );
     const link = `http://localhost:5000/reset-password/${oldUser._id}/${token}`;
     console.log(link);
-  } catch (error) {}
+  } catch (error) { }
 });
 
 //Getting Details
@@ -357,6 +357,23 @@ app.get("/oprofile/:studentid", async (req, res) => {
     );
     if (!person) return res.json({ status: "Invalid Student Id" });
     return res.status(200).json({ status: "success", data: person });
+  } catch (error) {
+    console.error(error);
+    res.json({ status: "Something went wrong" });
+  }
+});
+
+
+//to mark a question as solved by an user
+app.post("/solved/:qid/:sid", async (req, res) => {
+  try {
+    const { qid, sid } = req.params;
+    const update = await User.updateOne(
+      { student_id: sid },
+      { $push: { questionIds: qid } }
+    );
+    if (!update) return res.json({ status: "Invalid Student Id" });
+    return res.status(200).json({ status: "success" });
   } catch (error) {
     console.error(error);
     res.json({ status: "Something went wrong" });

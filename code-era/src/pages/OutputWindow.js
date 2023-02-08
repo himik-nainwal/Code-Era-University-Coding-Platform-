@@ -15,8 +15,8 @@ const OutputWindow = ({ outputDetails }) => {
       return <pre className="">{atob(outputDetails?.compile_output)}</pre>;
     } else if (statusId === 3) {
       return (<>
-        {/* <pre>Input: </pre><pre>{atob(outputDetails?.stdin)}</pre>
-        <pre>Output: </pre><pre>{atob(outputDetails?.stdout)}</pre> */}
+        <pre>Input: </pre><pre>{atob(outputDetails?.stdin)}</pre>
+        <pre>Output: </pre><pre>{atob(outputDetails?.stdout)}</pre>
       </>);
     } else if (statusId === 4) {
       return (<>

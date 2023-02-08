@@ -15,13 +15,11 @@ import OutputWindow from "./OutputWindow";
 import Submit from "./Submit";
 import OutputDetails from "./OutputDetails";
 import { Buffer } from "buffer";
+// import { listenerCount } from "../../../login-backend/problem";
 
 function Problem() {
-  function createMarkup(c) {
-    return { __html: c };
-  }
+  const [questionIds, setQuestionIds] = useState([]);
 
-  const { problemId } = useParams();
   const [questionDetails, setQuestionDetails] = useState(null);
   const [codeDetails, setCodeDetails] = useState(null);
   const [code, setCode] = useState("//your code goes here...");
@@ -29,6 +27,7 @@ function Problem() {
   const [output, setOutput] = useState(null);
   const [loading, setLoading] = useState(false);
   const [loading1, setLoading1] = useState(false);
+  const [userDetails, setUserDetails] = useState(null);
 
   const [selectedLanguage, setSelectedLanguage] = useState({
     id: 54,
@@ -77,6 +76,45 @@ function Problem() {
     71: "py_boilerplate",
   };
 
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      const fn = () => {
+        const url = "http://localhost:5000/userData";
+        const data = fetch(url, {
+          method: "POST",
+          crossDomain: true,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            token: window.localStorage.getItem("token"),
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setUserDetails(data.data);
+            setQuestionIds(data.data.questionIds);
+            console.log(data.data);
+          });
+      };
+      fn();
+    }
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+
+  function createMarkup(c) {
+    return { __html: c };
+  }
+
+  const { problemId } = useParams();
+
   async function getSubmission(options) {
     try {
       let response = await axios.request(options);
@@ -104,8 +142,8 @@ function Problem() {
     headers: {
       "content-type": "application/json",
       "Content-Type": "application/json",
-      // 'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
-      "X-RapidAPI-Key": "36ca6be9edmsha4366d4621dace3p128c99jsnd780bbec375d",
+      'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
+      // "X-RapidAPI-Key": "36ca6be9edmsha4366d4621dace3p128c99jsnd780bbec375d",
       "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
     },
     data: {
@@ -121,8 +159,8 @@ function Problem() {
     this.url = "https://judge0-ce.p.rapidapi.com/submissions/" + token;
     this.params = { base64_encoded: "true", fields: "*" };
     this.headers = {
-      // 'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
-      "X-RapidAPI-Key": "36ca6be9edmsha4366d4621dace3p128c99jsnd780bbec375d",
+      'X-RapidAPI-Key': 'e7aba527c2msh4791c3306942553p17f71bjsnd62f0d24477a',
+      // "X-RapidAPI-Key": "36ca6be9edmsha4366d4621dace3p128c99jsnd780bbec375d",
       "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
     };
   }
@@ -139,6 +177,7 @@ function Problem() {
     e.preventDefault();
 
     // console.log(codeDetails[0]);
+    // console.log(questionIds);
 
     if (customInput === "") {
       createSubmissionOptions.data.language_id = selectedLanguage.id;
@@ -202,6 +241,16 @@ function Problem() {
     setOutput(result);
     console.log(result);
 
+    if (result.status.id === 3) {
+      if (!questionIds.includes(questionDetails.ques_id)) {
+
+        const solved = await axios.request({
+          method: "POST",
+          url: `http://localhost:5000/solved/${questionDetails.ques_id}/${userDetails.student_id}`
+        });
+      }
+    }
+
     setLoading1(false);
   };
 
@@ -220,6 +269,12 @@ function Problem() {
       })
         .then((res) => res.json())
         .then((res) => setQuestionDetails(res.data));
+
+      // fetch(`http://localhost:5000/userData`, {
+      //     method: "POST",
+      //   })
+      //     .then((res) => res.json())
+      //     .then((res) => setUserDetails(res.data));
     };
 
     fetchData();
