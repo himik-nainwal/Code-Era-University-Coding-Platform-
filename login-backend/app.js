@@ -379,3 +379,19 @@ app.post("/solved/:qid/:sid", async (req, res) => {
     res.json({ status: "Something went wrong" });
   }
 });
+
+// to update score
+app.post("/updatescore/:newscore/:sid", async (req, res) => {
+  try {
+    const { newscore, sid } = req.params;
+    const update = await User.updateOne(
+      { student_id: sid },
+      { $set: { score: newscore } }
+    );
+    if (!update) return res.json({ status: "Invalid Student Id" });
+    return res.status(200).json({ status: "success" });
+  } catch (error) {
+    console.error(error);
+    res.json({ status: "Something went wrong" });
+  }
+});

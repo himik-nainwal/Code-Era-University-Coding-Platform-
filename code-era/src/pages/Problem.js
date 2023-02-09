@@ -248,6 +248,11 @@ function Problem() {
           method: "POST",
           url: `http://localhost:5000/solved/${questionDetails.ques_id}/${userDetails.student_id}`
         });
+
+        const updated = await axios.request({
+          method:"POST",
+          url: `http://localhost:5000/updatescore/${userDetails.score+questionDetails.difficulty_level}/${userDetails.student_id}`
+        })
       }
     }
 
