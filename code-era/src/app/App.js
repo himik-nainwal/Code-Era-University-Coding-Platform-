@@ -44,7 +44,8 @@ function App() {
       if (token) fn();
       else if (
         window.location.pathname !== "/login" &&
-        window.location.pathname !== "/reset"
+        window.location.pathname !== "/reset" && 
+        window.location.pathname !=="/" 
       )
         window.location.href = "/login";
     }

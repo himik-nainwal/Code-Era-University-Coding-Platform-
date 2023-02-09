@@ -1,0 +1,24 @@
+.container-fluid {
+    background-color: #477aa3;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  
+  .lead {
+    font-size: 1.5rem;
+  }
+  
+  .card {
+    background-color: #6a66af;
+    padding: 5rem;
+    width: 50%;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
