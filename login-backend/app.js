@@ -365,9 +365,9 @@ app.get("/oprofile/:studentid", async (req, res) => {
 
 
 //to mark a question as solved by an user
-app.post("/solved/:qid/:sid", async (req, res) => {
+app.post("/solved", async (req, res) => {
   try {
-    const { qid, sid } = req.params;
+    const { qid, sid } = req.body;
     const update = await User.updateOne(
       { student_id: sid },
       { $push: { questionIds: qid } }
@@ -381,9 +381,9 @@ app.post("/solved/:qid/:sid", async (req, res) => {
 });
 
 // to update score
-app.post("/updatescore/:newscore/:sid", async (req, res) => {
+app.post("/updatescore", async (req, res) => {
   try {
-    const { newscore, sid } = req.params;
+    const { newscore, sid } = req.body;
     const update = await User.updateOne(
       { student_id: sid },
       { $set: { score: newscore } }

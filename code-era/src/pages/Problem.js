@@ -239,24 +239,34 @@ function Problem() {
     );
 
     setOutput(result);
+    setLoading1(false);
     console.log(result);
 
-    if (result.status.id === 3) {
-      if (!questionIds.includes(questionDetails.ques_id)) {
+    let status = false;
 
-        const solved = await axios.request({
-          method: "POST",
-          url: `http://localhost:5000/solved/${questionDetails.ques_id}/${userDetails.student_id}`
+    if (result.status.id === 3) {
+      status = true;
+      if (!questionIds.includes(questionDetails.ques_id)) {
+        const solved = await axios.post('http://localhost:5000/solved', {
+          qid: questionDetails.ques_id,
+          sid: userDetails.student_id
         });
 
-        const updated = await axios.request({
-          method:"POST",
-          url: `http://localhost:5000/updatescore/${userDetails.score+questionDetails.difficulty_level}/${userDetails.student_id}`
-        })
+        const updated = await axios.post('http://localhost:5000/updatescore', {
+          newscore: userDetails.score + questionDetails.difficulty_level,
+          sid: userDetails.student_id
+        });
       }
     }
 
-    setLoading1(false);
+    const history = await axios.post('http://localhost:5000/update_history', {
+      student_id: userDetails.student_id,
+      questionId: questionDetails.ques_id,
+      program: code,
+      status: status,
+      time: result.time,
+      language: selectedLanguage.name
+    });
   };
 
   useEffect(() => {
