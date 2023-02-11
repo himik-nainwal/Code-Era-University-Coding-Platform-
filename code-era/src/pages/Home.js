@@ -20,7 +20,7 @@ Whether you are just starting out on your coding journey or are already an exper
 Our team is made up of experienced developers, educators, and technologists who are passionate about helping students succeed. We work tirelessly to create a supportive and inclusive community where students from all backgrounds can come together to learn, grow, and succeed.
 
 So if you're looking to take your coding skills to the next level, join Code-Era today and start your journey towards a successful career in tech!          </p>
-         {localStorage.getItem("token")===null &&  <a href="/login"><Button variant="primary">Login Here</Button></a>}
+         {localStorage.getItem("token")===null && <a href="/login"><Button variant="primary">Login Here</Button></a>}
         </Card.Body>
       </Card>
     </div>

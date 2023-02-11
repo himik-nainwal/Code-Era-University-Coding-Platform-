@@ -395,3 +395,29 @@ app.post("/updatescore/:newscore/:sid", async (req, res) => {
     res.json({ status: "Something went wrong" });
   }
 });
+
+app.post("/update_history", async (req, res) => {
+  const { student_id, questionId, program, status, time, language } = req.body;
+
+  try {
+    const user = await User.findOne({ student_id });
+    if (!user) return res.status(400).send("User not found");
+
+    const codeIndex = user.code.findIndex((c) => c.questionId === questionId);
+    if (codeIndex === -1) {
+      user.code.push({ questionId, program, status, time, language });
+    } else {
+      user.code[codeIndex].questionId = questionId;
+      user.code[codeIndex].program = program;
+      user.code[codeIndex].status = status;
+      user.code[codeIndex].time = time;
+      user.code[codeIndex].language = language;
+    }
+
+    await user.save();
+
+    res.send("Code updated successfully");
+  } catch (error) {
+    res.status(500).send("Error updating code");
+  }
+});
