@@ -365,9 +365,9 @@ app.get("/oprofile/:studentid", async (req, res) => {
 
 
 //to mark a question as solved by an user
-app.post("/solved/:qid/:sid", async (req, res) => {
+app.post("/solved", async (req, res) => {
   try {
-    const { qid, sid } = req.params;
+    const { qid, sid } = req.body;
     const update = await User.updateOne(
       { student_id: sid },
       { $push: { questionIds: qid } }
@@ -381,9 +381,9 @@ app.post("/solved/:qid/:sid", async (req, res) => {
 });
 
 // to update score
-app.post("/updatescore/:newscore/:sid", async (req, res) => {
+app.post("/updatescore", async (req, res) => {
   try {
-    const { newscore, sid } = req.params;
+    const { newscore, sid } = req.body;
     const update = await User.updateOne(
       { student_id: sid },
       { $set: { score: newscore } }
@@ -393,5 +393,31 @@ app.post("/updatescore/:newscore/:sid", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.json({ status: "Something went wrong" });
+  }
+});
+
+app.post("/update_history", async (req, res) => {
+  const { student_id, questionId, program, status, time, language } = req.body;
+
+  try {
+    const user = await User.findOne({ student_id });
+    if (!user) return res.status(400).send("User not found");
+
+    const codeIndex = user.code.findIndex((c) => c.questionId === questionId);
+    if (codeIndex === -1) {
+      user.code.push({ questionId, program, status, time, language });
+    } else {
+      user.code[codeIndex].questionId = questionId;
+      user.code[codeIndex].program = program;
+      user.code[codeIndex].status = status;
+      user.code[codeIndex].time = time;
+      user.code[codeIndex].language = language;
+    }
+
+    await user.save();
+
+    res.send("Code updated successfully");
+  } catch (error) {
+    res.status(500).send("Error updating code");
   }
 });
