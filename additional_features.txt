@@ -1,11 +1,18 @@
+Harshit {
 In Leaderboard and question page 
 Set NAME,Rank, Score and username will be hyperlink.
-
 Profile and leaderboard integration!
+Profile mai submission history
+}
+aditya{
 Problem set sorting
-Data Table and pagination implementation. // ProblemSet
+Data Table and pagination implementation. // ProblemSet    
 Admin Page - Make 2 cards for adding problems and details
 Make problemset page as leetcode problem page.
+}
+Himik {
 Search profile in admin.
-Ubuntu deploy 
-Profile mai submission history
+Ubuntu deploy    // Ketan and Himik
+}
+
+
