@@ -14,5 +14,3 @@ Search profile in admin.
 Admin Page - Make 2 cards for adding problems and details
 Ubuntu deploy    // Ketan and Himik
 }
-
-
