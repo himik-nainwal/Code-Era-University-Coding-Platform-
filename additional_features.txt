@@ -1,1 +1,11 @@
-1- Adding time in one question
+In Leaderboard and question page 
+Set NAME,Rank, Score and username will be hyperlink.
+
+Profile and leaderboard integration!
+Problem set sorting
+Data Table and pagination implementation. // ProblemSet
+Admin Page - Make 2 cards for adding problems and details
+Make problemset page as leetcode problem page.
+Search profile in admin.
+Ubuntu deploy 
+Profile mai submission history
