@@ -16,7 +16,6 @@
     "buffer": "^6.0.3",
     "devextreme": "22.1.6",
     "devextreme-react": "22.1.6",
-    "hawk": "^9.0.1",
     "jsonwebtoken": "^8.5.1",
     "jumbotron": "^0.2.9",
     "mdb-react-ui-kit": "^4.2.0",
