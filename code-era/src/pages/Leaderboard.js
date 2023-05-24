@@ -26,32 +26,51 @@ const Leaderboard = () => {
   sblog.sort(compare);
   console.log(sblog);
   return (
-    <div className="board">
-      <div class="big-box">
+    <div className="board bodycolor">
+      <div class="">
         <div class="box">
           <table class="table table-striped">
             <thead>
               <tr>
-                <th class="header">ID</th>
+                <th class="header">Rank</th>
                 <th class="header">Name</th>
-                <th class="header">Username</th>
                 <th class="header">Score</th>
-                <th class="header">Profile</th>
+                <th class="header">Username</th>
+                {/* <th class="header">Profile</th> */}
               </tr>
             </thead>
             <tbody>
               {sblog.map((profile, key) => (
-                <tr>
+                <tr key={key}>
+                  {/* <td>{key + 1}</td> */}
                   <td>{key + 1}</td>
-                  <td>{profile.fname + " " + profile.lname}</td>
-                  <td>{profile.userName}</td>
+                  <td>
+                    <a
+                      href={`/oprofile/${profile?.student_id}`}
+                      className="link-unstyled"
+                      target="_blank"
+                    >
+                      {profile.fname + " " + profile.lname}
+                    </a>
+                  </td>
                   <td>{profile.score}</td>
                   <td>
-                    <Link style={{ textDecoration: "none", color: "black" }}
-                        to={`/oprofile/${profile?.student_id}`}>
-                          Open Profile 
-                    </Link>
+                    <a
+                      href={`/oprofile/${profile?.student_id}`}
+                      className="link-unstyled"
+                      target="_blank"
+                    >
+                      {profile.userName}
+                    </a>
                   </td>
+                  {/* <td>
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/oprofile/${profile?.student_id}`}
+                    >
+                      Open Profile
+                    </Link>
+                  </td> */}
                 </tr>
               ))}
             </tbody>

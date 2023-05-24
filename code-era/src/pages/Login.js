@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../styles/login.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const [StudentId, setStudentId] = useState("");
@@ -28,7 +30,13 @@ function Login() {
         if (data.status === "ok") {
           window.localStorage.setItem("token", data.data);
           window.location.href = "./problemset";
-        }
+          toast.success("Logged In", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        } else
+          toast.error("Wrong Credential!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
       });
   };
 
@@ -41,7 +49,7 @@ function Login() {
         <form>
           <div className="user-box">
             <input
-              type="text"
+              type="number"
               name=""
               required=""
               placeholder="Student Id"
