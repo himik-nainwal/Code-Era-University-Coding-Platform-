@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./ProbDetails.css";
 
 const ProbDetails = () => {
   const [ques_id, setQuesId] = useState("");
@@ -51,103 +52,117 @@ const ProbDetails = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="ques_id">Question ID:</label>
-        <input
-          type="text"
-          id="ques_id"
-          value={ques_id}
-          onChange={(event) => setQuesId(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="lang_id">Language ID:</label>
-        <input
-          type="text"
-          id="lang_id"
-          value={lang_id}
-          onChange={(event) => setLangId(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="cpp_boilerplate">Cpp Boilerplate:</label>
-        <input
-          type="text"
-          id="cpp_boilerplate"
-          value={cpp_boilerplate}
-          onChange={(event) => setCppBoilerplate(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="py_boilerplate">Py Boilerplate:</label>
-        <input
-          type="text"
-          id="py_boilerplate"
-          value={py_boilerplate}
-          onChange={(event) => setPyBoilerplate(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="correct_code">Correct Code:</label>
-        <input
-          type="text"
-          id="correct_code"
-          value={correct_code}
-          onChange={(event) => setCorrectCode(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="custom_judge">Custom Judge:</label>
-        <input
-          type="text"
-          id="custom_judge"
-          value={custom_judge}
-          onChange={(event) => setCustomJudge(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="example_test_case_input">
-          Example Test Case Input:
-        </label>
-        <input
-          type="text"
-          id="example_test_case_input"
-          value={example_test_case_input}
-          onChange={(event) => setExampleTestCaseInput(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="example_test_case_output">
-          Example Test Case Output:
-        </label>
-        <input
-          type="text"
-          id="example_test_case_output"
-          value={example_test_case_output}
-          onChange={(event) => setExampleTestCaseOutput(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="all_test_cases_input">All Test Cases Input:</label>
-        <input
-          type="text"
-          id="all_test_cases_input"
-          value={all_test_cases_input}
-          onChange={(event) => setAllTestCasesInput(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="all_test_cases_output">All Test Cases Output:</label>
-        <input
-          type="text"
-          id="all_test_cases_output"
-          value={all_test_cases_output}
-          onChange={(event) => setAllTestCasesOutput(event.target.value)}
-        />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <center>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="ques_id">Question ID:</label>
+          <input
+            type="text"
+            id="ques_id"
+            value={ques_id}
+            onChange={(event) => setQuesId(event.target.value)}
+            className="form-control input-width"
+          />
+        </div>
+        <div>
+          <label htmlFor="lang_id">Language ID:</label>
+          <input
+            type="text"
+            id="lang_id"
+            value={lang_id}
+            onChange={(event) => setLangId(event.target.value)}
+            className="form-control input-width"
+          />
+        </div>
+        <div>
+          <label htmlFor="cpp_boilerplate">Cpp Boilerplate:</label>
+          <input
+            type="text"
+            id="cpp_boilerplate"
+            value={cpp_boilerplate}
+            onChange={(event) => setCppBoilerplate(event.target.value)}
+            className="form-control input-width"
+          />
+        </div>
+        <div>
+          <label htmlFor="py_boilerplate">Py Boilerplate:</label>
+          <input
+            className="form-control input-width"
+            type="text"
+            id="py_boilerplate"
+            value={py_boilerplate}
+            onChange={(event) => setPyBoilerplate(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="correct_code">Correct Code:</label>
+          <input
+            className="form-control input-width"
+            type="text"
+            id="correct_code"
+            value={correct_code}
+            onChange={(event) => setCorrectCode(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="custom_judge">Custom Judge:</label>
+          <input
+            className="form-control input-width"
+            type="text"
+            id="custom_judge"
+            value={custom_judge}
+            onChange={(event) => setCustomJudge(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="example_test_case_input">
+            Example Test Case Input:
+          </label>
+          <input
+            className="form-control input-width"
+            type="text"
+            id="example_test_case_input"
+            value={example_test_case_input}
+            onChange={(event) => setExampleTestCaseInput(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="example_test_case_output">
+            Example Test Case Output:
+          </label>
+          <input
+            className="form-control input-width"
+            type="text"
+            id="example_test_case_output"
+            value={example_test_case_output}
+            onChange={(event) => setExampleTestCaseOutput(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="all_test_cases_input">All Test Cases Input:</label>
+          <input
+            className="form-control input-width"
+            type="text"
+            id="all_test_cases_input"
+            value={all_test_cases_input}
+            onChange={(event) => setAllTestCasesInput(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="all_test_cases_output">All Test Cases Output:</label>
+          <input
+            className="form-control input-width"
+            type="text"
+            id="all_test_cases_output"
+            value={all_test_cases_output}
+            onChange={(event) => setAllTestCasesOutput(event.target.value)}
+          />
+        </div>
+        <button type="submit" className="p-2 m-2 button">
+          Submit
+        </button>
+      </form>
+    </center>
   );
 };
 

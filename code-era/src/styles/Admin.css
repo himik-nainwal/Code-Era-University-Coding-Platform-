@@ -1,7 +1,45 @@
-.mainn{
-    width: 100%;
+.options-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100vh;
-    background-image: url(../assets/back.jpg);
-    background-size: cover;
-    background-position: center;
-}
+    background-color: #f8f9fa;
+  }
+  
+  .options-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .option-square {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .option1 {
+    background-color: #6c757d;
+  }
+  
+  .option2 {
+    background-color: #6c757d;
+  }
+  
+  .option-square:hover {
+    background-color: #495057;
+  }
+  
+  .option-content {
+    text-align: center;
+  }
+  
+  .option-content h2 {
+    color: #fff;
+    font-size: 24px;
+  }
+  

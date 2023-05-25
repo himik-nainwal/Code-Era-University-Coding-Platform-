@@ -4,7 +4,14 @@
     align-items: center;
     padding: 20px;
   }
-  
+  .input-width {
+    width: 25%;
+  }
+  .button{
+    border: none;
+    background-color: black;
+    color: white;
+  }
   .form-container label {
     font-weight: bold;
     margin-bottom: 5px;
