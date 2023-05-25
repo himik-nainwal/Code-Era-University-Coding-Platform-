@@ -10,7 +10,16 @@
     --color-dark: #2C3131;
     --color-light: #F3F3F2;
 }
-
+.bodycolor{
+    padding-top: 1rem;
+    background-color: #141e30;
+    min-height: 100vh;
+}
+.link-unstyled {
+    text-decoration: none;
+    color: black !important;
+  }
+  
 #main{
         display: flex;
         justify-content: center;

@@ -9,9 +9,11 @@ import Problem from "../pages/Problem";
 import Login from "../pages/Login";
 import Reset from "../pages/Reset";
 import AddPro from "../components/admin/AddProb.js";
-import ProbDetails from "../components/admin/ProbDetails"
-import Leaderboard from "../pages/Leaderboard"
-import Oprofile from "../pages/Oprofile"
+import ProbDetails from "../components/admin/ProbDetails";
+import Leaderboard from "../pages/Leaderboard";
+import Oprofile from "../pages/Oprofile";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import Sidebar from "../components/navbar/Sidebar";
 import { useState, useEffect } from "react";
 
@@ -44,8 +46,8 @@ function App() {
       if (token) fn();
       else if (
         window.location.pathname !== "/login" &&
-        window.location.pathname !== "/reset" && 
-        window.location.pathname !=="/" 
+        window.location.pathname !== "/reset" &&
+        window.location.pathname !== "/"
       )
         window.location.href = "/login";
     }
@@ -64,10 +66,10 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/addprob" element={<AddPro />} />
-        <Route path ="/probdetails" element={<ProbDetails/>}/>
-        <Route path ="/leaderboard" element ={<Leaderboard/>}/>
+        <Route path="/probdetails" element={<ProbDetails />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/problem/:problemId" element={<Problem />} />
-        <Route path="/oprofile/:studentid" element={<Oprofile/>} />
+        <Route path="/oprofile/:studentid" element={<Oprofile />} />
         {!localStorage.getItem("token") && (
           <>
             <Route path="/login" element={<Login />} />
@@ -77,6 +79,7 @@ function App() {
         <Route path="*" element={<h1>404</h1>} />
         {/* <Route path="/login" element={<Login />}/> */}
       </Routes>
+      <ToastContainer />
       {/* <Sidebar>
           <Routes>
           <Route path="/addprob" element={<AddPro/>}/>

@@ -79,8 +79,7 @@ export default class Login extends Component {
             Submit
           </button>
         </div>
-        <p className="forgot-password text-right">
-        </p>
+        <p className="forgot-password text-right"></p>
       </form>
     );
   }

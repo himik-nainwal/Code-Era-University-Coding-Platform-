@@ -9,6 +9,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Leaderboard from "./Leaderboard";
 // import userImage from "../assets/no_image.jpg";
+import TableCard from "../components/TableCard";
+import RecentQuestion from "../components/RecentQuestion";
 
 function Profile() {
   const [studentId, setStudentId] = useState("");
@@ -34,6 +36,8 @@ function Profile() {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const [university, setUniversity] = useState("");
+  const [code, setCode] = useState([]);
+
   useEffect(() => {
     let mounted = true;
     if (mounted) {
@@ -75,6 +79,8 @@ function Profile() {
             setHardQ(data.data.hardQ);
             setScore(data.data.score);
             setImage(data.data.image);
+            // const codeArrayJson = JSON.stringify(data.data.code);
+            setCode(data.data.code);
           });
       };
       fn();
@@ -85,10 +91,12 @@ function Profile() {
     };
   }, []);
 
+  console.log("code" + code);
+
   return (
     <>
       <div className="big-box">
-        <div class="container-fluid pt-5" style={{ height: "100vh" }}>
+        <div class="container-fluid pt-5" style={{ height: "100%" }}>
           <div class="row no-gutters">
             <div class="col-md-4 col-lg-4">
               <img className="img" src={image} />
@@ -158,6 +166,20 @@ function Profile() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="d-flex flex-row justify-content-around">
+            <div
+              className="col-md-5 float-left mt-5 card"
+              style={{ height: "fit-content" }}
+            >
+              <TableCard />
+            </div>
+            <div
+              className="col-md-5 float-right mt-5 card"
+              style={{ height: "fit-content" }}
+            >
+              <RecentQuestion code={code} />
             </div>
           </div>
         </div>

@@ -96,10 +96,11 @@ const Problemset = () => {
   return (
     <>
       <div
-        className="p-4 d-flex justify-content-center px-4"
+        className="d-flex justify-content-center px-4"
         style={{ background: "#141e30" }}
       >
         {/* <DropdownMenu onOptionSelected={handleOptionSelected} /> */}
+        <h1 className="text-white h1 pt-3">All Problems</h1>
       </div>
       <div>
         {problems.length ? (
@@ -108,19 +109,35 @@ const Problemset = () => {
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th class="header">ID</th>
+                    <th class="header">Qusetion</th>
                     <th class="header">Title</th>
                     <th class="header">Difficulty</th>
                     <th class="header">Actions</th>
-                    <th class="header">View Problem</th>
+                    {/* <th class="header">View Problem</th> */}
                     {/* <button class="header">Sort</button> */}
                   </tr>
                 </thead>
                 <tbody>
                   {problems.slice(startPgNo, endPgNo + 1).map((problem, i) => (
                     <tr key={i}>
-                      <td>{problem?.ques_id}</td>
-                      <td>{problem?.question_title}</td>
+                      <td className="text-start">
+                        <a
+                          href={`/problem/${problem?.ques_id}`}
+                          className="link-unstyled"
+                          target="_blank"
+                        >
+                          {i + 1}
+                        </a>
+                      </td>
+                      <td className="text-start">
+                        <a
+                          href={`/problem/${problem?.ques_id}`}
+                          className="link-unstyled"
+                          target="_blank"
+                        >
+                          {problem?.question_title}
+                        </a>
+                      </td>
                       <td
                         className={
                           problem?.difficulty_level === 1
@@ -143,11 +160,17 @@ const Problemset = () => {
                             : "Unsolved"
                         }
                       >
-                        {questionIds.includes(problem?.ques_id)
-                          ? "Solved"
-                          : "Unsolved"}
+                        <a
+                          href={`/problem/${problem?.ques_id}`}
+                          className="link-unstyled"
+                          target="_blank"
+                        >
+                          {questionIds.includes(problem?.ques_id)
+                            ? "Solved"
+                            : "Unsolved"}
+                        </a>
                       </td>
-                      <td>
+                      {/* <td>
                         <Link
                           style={{ textDecoration: "none", color: "black" }}
                           to={`/problem/${problem?.ques_id}`}
@@ -155,33 +178,37 @@ const Problemset = () => {
                           View Problem
                           <BsBoxArrowInRight className="ms-2" />
                         </Link>
-                      </td>
+                      </td> */}
                     </tr>
                   ))}
                 </tbody>
               </table>
               <div className="row">
-                <div className="col-2">
-                  <button
-                    className="btn btn-info btn-sm"
-                    disabled={startPgNo == 1}
-                    onClick={() => {
-                      setStartPgNo(startPgNo - 15);
-                      setEndPgNo(endPgNo - 15);
-                    }}
-                  >
-                    Prev
-                  </button>
-                  <button
-                    className="btn btn-info btn-sm"
-                    disabled={startPgNo + 15 > problems.length}
-                    onClick={() => {
-                      setStartPgNo(startPgNo + 15);
-                      setEndPgNo(endPgNo + 15);
-                    }}
-                  >
-                    Next
-                  </button>
+                <div className="col-12 d-flex justify-content-end">
+                  <div className="col-2">
+                    <button
+                      className="btn btn-sm m-2"
+                      style={{ backgroundColor: "#141e30", color: "white" }}
+                      disabled={startPgNo == 1}
+                      onClick={() => {
+                        setStartPgNo(startPgNo - 15);
+                        setEndPgNo(endPgNo - 15);
+                      }}
+                    >
+                      Prev
+                    </button>
+                    <button
+                      className="btn btn-sm"
+                      style={{ backgroundColor: "#141e30", color: "white" }}
+                      disabled={startPgNo + 15 > problems.length}
+                      onClick={() => {
+                        setStartPgNo(startPgNo + 15);
+                        setEndPgNo(endPgNo + 15);
+                      }}
+                    >
+                      Next
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
