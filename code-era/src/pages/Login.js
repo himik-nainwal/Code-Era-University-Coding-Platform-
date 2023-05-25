@@ -67,11 +67,11 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <p style={{ display: "flex", justifyContent: "center" }}>
             <a type="submit" onClick={handleSubmit} style={{ color: "white" }}>
               Submit
             </a>
-          </div>
+          </p>
           <p style={{ display: "flex", justifyContent: "center" }}>
             <a
               href="/reset"
