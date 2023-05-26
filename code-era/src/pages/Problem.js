@@ -76,9 +76,20 @@ function Problem() {
     71: "py_boilerplate",
   };
 
+  //need a code reset functionality that will reset code to biolerplate code
   useEffect(() => {
+    // let lastSelectedLanguageId;
+    // localStorage.setItem(selectedLanguage.lang + "code", code);
+    // if (lastSelectedLanguageId !== selectedLanguage.id) {
+    //   lastSelectedLanguageId = selectedLanguage.id;
+    //   let oldcode = localStorage.getItem(selectedLanguage.lang + "code");
+    //   if(oldcode)
+    //     setCode(oldcode);
+    // }
+
     let mounted = true;
     if (mounted) {
+      // lastSelectedLanguageId=-1;
       const fn = () => {
         const url = "http://localhost:5000/userData";
         const data = fetch(url, {
@@ -138,7 +149,7 @@ function Problem() {
   const createSubmissionOptions = {
     method: "POST",
     url: "https://judge0-ce.p.rapidapi.com/submissions",
-    params: { base64_encoded: "true", fields: "*" },
+    params: { base64_encoded: "true", wait: 'true', fields: "*" },
     headers: {
       "content-type": "application/json",
       "Content-Type": "application/json",
@@ -188,12 +199,13 @@ function Problem() {
       createSubmissionOptions.data.expected_output = btoa(
         codeDetails[0].example_test_case_output
       );
-      const submissionToken = await createSubmission(createSubmissionOptions);
-      const result = await getSubmission(
-        new getSubmissionOptions(submissionToken.token)
-      );
+      // const submissionToken = await createSubmission(createSubmissionOptions);
+      const result = await createSubmission(createSubmissionOptions);
       setOutput(result);
       console.log(result);
+      if(codeDetails.custom_judge){
+        
+      }
     } else {
       createSubmissionOptions.data.language_id =
         codeDetails[0].correct_code_lang_id;
@@ -201,19 +213,17 @@ function Problem() {
         codeDetails[0].correct_code
       );
       createSubmissionOptions.data.stdin = btoa(customInput);
-      const correctResultToken = await createSubmission(
-        createSubmissionOptions
-      );
-      const correctResult = await getSubmission(
-        new getSubmissionOptions(correctResultToken.token)
-      );
+      // const correctResultToken = await createSubmission(
+      //   createSubmissionOptions
+      // );
+
+      const correctResult = await createSubmission(createSubmissionOptions);
+
       createSubmissionOptions.data.expected_output = correctResult.stdout;
       createSubmissionOptions.data.language_id = selectedLanguage.id;
       createSubmissionOptions.data.source_code = btoa(code);
-      const submissionToken = await createSubmission(createSubmissionOptions);
-      const result = await getSubmission(
-        new getSubmissionOptions(submissionToken.token)
-      );
+      // const submissionToken = await createSubmission(createSubmissionOptions);
+      const result = await createSubmission(createSubmissionOptions);
       setOutput(result);
       console.log(result);
     }
@@ -233,10 +243,8 @@ function Problem() {
       codeDetails[0].all_test_cases_output
     );
 
-    const submissionToken = await createSubmission(createSubmissionOptions);
-    const result = await getSubmission(
-      new getSubmissionOptions(submissionToken.token)
-    );
+    // const submissionToken = await createSubmission(createSubmissionOptions);
+    const result = await createSubmission(createSubmissionOptions);
 
     setOutput(result);
     setLoading1(false);
@@ -361,7 +369,7 @@ function Problem() {
                         onClick={(e) => {
                           e.preventDefault();
                           setSelectedLanguage(lang);
-                          setCode("");
+                          // setCode("");
                         }}
                       >
                         {lang?.name}

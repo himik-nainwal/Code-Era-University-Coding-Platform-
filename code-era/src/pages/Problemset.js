@@ -5,6 +5,10 @@ import Leaderboard from "./Leaderboard";
 import { BsBoxArrowInRight } from "react-icons/bs";
 import DropdownMenu from "../components/dropdown/DropdownMenu";
 
+function compare(a, b) {
+    return a.ques_id - b.ques_id;
+  }
+
 const Problemset = () => {
   const [problems, setProblems] = useState([]);
   const [questionIds, setQuestionIds] = useState([]);
@@ -17,7 +21,10 @@ const Problemset = () => {
     const fetchData = async () => {
       fetch(`http://localhost:5000/problems`)
         .then((res) => res.json())
-        .then((res) => setProblems(res.data));
+      .then(res => res.data)
+      .then(res => res.sort(compare))
+        // .then(res=> console.log(res))
+        .then((res) => setProblems(res));
     };
     fetchData();
   }, []);
@@ -189,7 +196,7 @@ const Problemset = () => {
                     <button
                       className="btn btn-sm m-2"
                       style={{ backgroundColor: "#141e30", color: "white" }}
-                      disabled={startPgNo == 1}
+                      disabled={startPgNo === 1}
                       onClick={() => {
                         setStartPgNo(startPgNo - 15);
                         setEndPgNo(endPgNo - 15);

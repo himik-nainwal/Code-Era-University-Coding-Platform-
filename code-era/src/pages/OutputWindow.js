@@ -14,11 +14,13 @@ const OutputWindow = ({ outputDetails }) => {
       // compilation error
       return <pre className="">{atob(outputDetails?.compile_output)}</pre>;
     } else if (statusId === 3) {
+      //accepted
       return (<>
         <pre>Input: </pre><pre>{atob(outputDetails?.stdin)}</pre>
         <pre>Output: </pre><pre>{atob(outputDetails?.stdout)}</pre>
       </>);
     } else if (statusId === 4) {
+      //wrong answer
       return (<>
         <pre>Input: </pre><pre>{atob(outputDetails?.stdin)}</pre>
         <pre>Output: </pre><pre>{atob(outputDetails?.stdout)}</pre>
