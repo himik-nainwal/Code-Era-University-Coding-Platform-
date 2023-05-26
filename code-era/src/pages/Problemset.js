@@ -103,10 +103,11 @@ const Problemset = () => {
   return (
     <>
       <div
-        className="p-4 d-flex justify-content-center px-4"
+        className="d-flex justify-content-center px-4"
         style={{ background: "#141e30" }}
       >
         {/* <DropdownMenu onOptionSelected={handleOptionSelected} /> */}
+        <h1 className="text-white h1 pt-3">All Problems</h1>
       </div>
       <div>
         {problems.length ? (

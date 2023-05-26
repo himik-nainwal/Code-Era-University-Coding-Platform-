@@ -27,6 +27,7 @@ const Leaderboard = () => {
   console.log(sblog);
   return (
     <div className="board bodycolor">
+      <h1 className="text-white h1 pb-3">Top Achievers</h1>
       <div class="">
         <div class="box">
           <table class="table table-striped">
